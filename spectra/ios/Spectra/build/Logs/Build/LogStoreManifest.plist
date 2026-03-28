@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>12</integer>
+	<key>logs</key>
+	<dict>
+		<key>23940A49-DAE0-4951-9FBC-0E8C562F8CCE</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>23940A49-DAE0-4951-9FBC-0E8C562F8CCE.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Spectra project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Spectra</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Spectra with scheme Spectra</string>
+			<key>timeStartedRecording</key>
+			<real>796376145.66302395</real>
+			<key>timeStoppedRecording</key>
+			<real>796376150.20728505</real>
+			<key>title</key>
+			<string>Building project Spectra with scheme Spectra</string>
+			<key>uniqueIdentifier</key>
+			<string>23940A49-DAE0-4951-9FBC-0E8C562F8CCE</string>
+		</dict>
+		<key>AE85A264-F6D7-4317-82D8-BC79B13478C6</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>AE85A264-F6D7-4317-82D8-BC79B13478C6.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Spectra project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Spectra</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Spectra with scheme Spectra</string>
+			<key>timeStartedRecording</key>
+			<real>796376895.689533</real>
+			<key>timeStoppedRecording</key>
+			<real>796376900.04231095</real>
+			<key>title</key>
+			<string>Building project Spectra with scheme Spectra</string>
+			<key>uniqueIdentifier</key>
+			<string>AE85A264-F6D7-4317-82D8-BC79B13478C6</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

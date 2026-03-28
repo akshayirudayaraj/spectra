@@ -1,0 +1,15 @@
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/SpectraApp.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Theme/DesignSystem.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/TaskStatus.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/ConfirmationRequest.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/PlanStep.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/MemoryItem.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Services/WebSocketService.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Services/SpeechService.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Services/NotificationService.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/HomeView.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/TaskRunningView.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/ConfirmationSheet.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/ResultView.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/AskUserRequest.swift
+/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/AskUserSheet.swift

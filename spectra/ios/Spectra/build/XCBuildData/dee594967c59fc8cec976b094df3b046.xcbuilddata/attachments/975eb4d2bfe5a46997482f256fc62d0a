@@ -1,0 +1,86 @@
+{
+  "" : {
+    "const-values" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary.swiftconstvalues",
+    "dependencies" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary.d",
+    "diagnostics" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary.dia",
+    "emit-module-dependencies" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary-emit-module.dia",
+    "pch" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/Spectra-primary.swiftdeps"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/AskUserRequest.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/AskUserRequest.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/AskUserRequest.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/AskUserRequest.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/ConfirmationRequest.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ConfirmationRequest.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ConfirmationRequest.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ConfirmationRequest.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/MemoryItem.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/MemoryItem.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/MemoryItem.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/MemoryItem.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/PlanStep.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/PlanStep.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/PlanStep.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/PlanStep.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Models/TaskStatus.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/TaskStatus.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/TaskStatus.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/TaskStatus.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Services/NotificationService.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/NotificationService.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/NotificationService.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/NotificationService.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Services/SpeechService.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/SpeechService.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/SpeechService.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/SpeechService.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Services/WebSocketService.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/WebSocketService.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/WebSocketService.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/WebSocketService.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/SpectraApp.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/SpectraApp.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/SpectraApp.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/SpectraApp.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Theme/DesignSystem.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/DesignSystem.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/DesignSystem.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/DesignSystem.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/AskUserSheet.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/AskUserSheet.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/AskUserSheet.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/AskUserSheet.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/ConfirmationSheet.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ConfirmationSheet.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ConfirmationSheet.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ConfirmationSheet.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/HomeView.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/HomeView.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/ResultView.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ResultView.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ResultView.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/ResultView.o"
+  },
+  "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/Spectra/Views/TaskRunningView.swift" : {
+    "index-unit-output-path" : "/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/TaskRunningView.o",
+    "llvm-bc" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/TaskRunningView.bc",
+    "object" : "/Users/akshayirudayaraj/yhack/spectra/ios/Spectra/build/Spectra.build/Release-iphoneos/Spectra.build/Objects-normal/arm64/TaskRunningView.o"
+  }
+}

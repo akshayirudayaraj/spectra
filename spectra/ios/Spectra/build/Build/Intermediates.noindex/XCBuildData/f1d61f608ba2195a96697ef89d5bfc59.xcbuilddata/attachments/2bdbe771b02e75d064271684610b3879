@@ -1,0 +1,159 @@
+{
+  "" : {
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/Spectra-primary.dia",
+    "emit-module-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/Spectra-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/Spectra-primary-emit-module.dia",
+    "pch" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/Spectra-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/Spectra-primary.swiftdeps"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/AskUserRequest.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserRequest~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/ConfirmationRequest.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationRequest~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/MemoryItem.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/MemoryItem~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/PlanStep.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/PlanStep~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/TaskStatus.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskStatus~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Services/NotificationService.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/NotificationService~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Services/SpeechService.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpeechService~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Services/WebSocketService.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/WebSocketService~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/SpectraApp.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/SpectraApp~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Theme/DesignSystem.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/DesignSystem~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/AskUserSheet.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/AskUserSheet~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/ConfirmationSheet.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ConfirmationSheet~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/HomeView.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/HomeView~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/ResultView.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/ResultView~partial.swiftmodule"
+  },
+  "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/TaskRunningView.swift" : {
+    "const-values" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.swiftconstvalues",
+    "dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.d",
+    "diagnostics" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.dia",
+    "index-unit-output-path" : "/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.o",
+    "llvm-bc" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.bc",
+    "object" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.o",
+    "swift-dependencies" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView.swiftdeps",
+    "swiftmodule" : "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/build/Build/Intermediates.noindex/Spectra.build/Debug-iphonesimulator/Spectra.build/Objects-normal/arm64/TaskRunningView~partial.swiftmodule"
+  }
+}

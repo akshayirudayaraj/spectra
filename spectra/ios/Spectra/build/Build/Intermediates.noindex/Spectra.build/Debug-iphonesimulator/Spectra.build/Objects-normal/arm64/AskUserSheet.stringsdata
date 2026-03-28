@@ -1,0 +1,24 @@
+{
+  "source": "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/AskUserSheet.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Agent needs your input",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Type your answer...",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 65
+        }
+      }
+    ]
+  },
+  "version": 1
+}

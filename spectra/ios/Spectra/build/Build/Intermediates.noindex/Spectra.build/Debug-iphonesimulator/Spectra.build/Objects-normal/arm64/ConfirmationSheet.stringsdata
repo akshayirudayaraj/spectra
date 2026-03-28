@@ -1,0 +1,48 @@
+{
+  "source": "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/ConfirmationSheet.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Your turn",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Confirm action",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "I'm done",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Confirm",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 98
+        }
+      }
+    ]
+  },
+  "version": 1
+}

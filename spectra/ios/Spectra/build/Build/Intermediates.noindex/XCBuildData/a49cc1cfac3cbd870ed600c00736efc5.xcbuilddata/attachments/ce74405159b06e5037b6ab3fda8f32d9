@@ -1,0 +1,15 @@
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/SpectraApp.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Theme/DesignSystem.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/TaskStatus.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/ConfirmationRequest.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/PlanStep.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/MemoryItem.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Services/WebSocketService.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Services/SpeechService.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Services/NotificationService.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/HomeView.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/TaskRunningView.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/ConfirmationSheet.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/ResultView.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Models/AskUserRequest.swift
+/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/AskUserSheet.swift

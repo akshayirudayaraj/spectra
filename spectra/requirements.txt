@@ -1,0 +1,10 @@
+facebook-wda
+google-genai
+rich
+pydantic
+SpeechRecognition
+faster-whisper
+fastapi
+uvicorn
+websockets
+pyaudio

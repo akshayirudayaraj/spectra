@@ -1,0 +1,72 @@
+{
+  "source": "/Users/krish/Developer/yale-hacks/spectra/ios/Spectra/Spectra/Views/HomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "What can I help you with?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "Listening on Mac mic...",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Spectra",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "your iOS agent",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Type a task...",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld steps · %@s%@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Completed",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "Failed",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 145
+        }
+      }
+    ]
+  },
+  "version": 1
+}
