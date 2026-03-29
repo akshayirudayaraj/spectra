@@ -1,0 +1,17 @@
+{"type": "header", "task": "Give me directions to Brown University", "started_at": 1774761260.4622872, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Maps"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774761267.963959}
+{"type": "step", "step": 2, "action": "tap", "params": {"ref": 3}, "target": {"label": "Close", "type": "XCUIElementTypeButton", "value": "", "x": 342, "y": 88, "width": 44, "height": 44}, "tree_hash": "ee4fa02a", "timestamp": 1774761272.397266}
+{"type": "step", "step": 3, "action": "tap", "params": {"ref": 23}, "target": {"label": "Brown University, Providence", "type": "XCUIElementTypeButton", "value": "", "x": 23, "y": 851, "width": 356, "height": 67}, "tree_hash": "f284adb3", "timestamp": 1774761275.341802}
+{"type": "step", "step": 4, "action": "tap", "params": {"ref": 6}, "target": {"label": "Card controller", "type": "XCUIElementTypeButton", "value": "Half screen", "x": 154, "y": 483, "width": 94, "height": 25}, "tree_hash": "e2866e2d", "timestamp": 1774761281.056103}
+{"type": "step", "step": 5, "action": "tap", "params": {"ref": 3}, "target": {"label": "Close", "type": "XCUIElementTypeButton", "value": "", "x": 342, "y": 88, "width": 44, "height": 44}, "tree_hash": "2b5577a1", "timestamp": 1774761284.963103}
+{"type": "step", "step": 6, "action": "type_text", "params": {"text": "Brown University", "ref": 7}, "target": {"label": "Apple Maps", "type": "XCUIElementTypeSearchField", "value": "Apple Maps", "x": 23, "y": 503, "width": 306, "height": 43}, "tree_hash": "8fa4e36d", "timestamp": 1774761289.1974552}
+{"type": "step", "step": 7, "action": "tap", "params": {"ref": 7}, "target": {"label": "Brown University, Recently Viewed \u00b7 Providence", "type": "XCUIElementTypeButton", "value": "", "x": 76, "y": 151, "width": 203, "height": 43}, "tree_hash": "29e80681", "timestamp": 1774761294.6598248}
+{"type": "step", "step": 8, "action": "tap", "params": {"ref": 7}, "target": {"label": "Directions", "type": "XCUIElementTypeButton", "value": "", "x": 23, "y": 565, "width": 84, "height": 52}, "tree_hash": "6c82549b", "timestamp": 1774761299.297455}
+{"type": "step", "step": 9, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "41787f33", "timestamp": 1774761303.540216}
+{"type": "step", "step": 10, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "32caa24a", "timestamp": 1774761308.649199}
+{"type": "step", "step": 11, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "32caa24a", "timestamp": 1774761314.336968}
+{"type": "step", "step": 12, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "32caa24a", "timestamp": 1774761320.652179}
+{"type": "step", "step": 13, "action": "scroll", "params": {"direction": "up"}, "target": null, "tree_hash": "32caa24a", "timestamp": 1774761326.882647}
+{"type": "step", "step": 14, "action": "tap", "params": {"ref": 7}, "target": {"label": "Drive", "type": "XCUIElementTypeButton", "value": "1", "x": 23, "y": 478, "width": 72, "height": 48}, "tree_hash": "41787f33", "timestamp": 1774761332.013071}
+{"type": "step", "step": 15, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "41787f33", "timestamp": 1774761340.514913}
+{"type": "footer", "total_steps": 15, "finished_at": 1774761342.0243762}

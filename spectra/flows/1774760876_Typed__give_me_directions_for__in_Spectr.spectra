@@ -1,3 +1,7 @@
 {"type": "header", "task": "Typed 'give me directions for' in Spectra; Opened Home; Typed 'give me directions for' in Spectra", "started_at": 1774760876.744512, "version": 1}
 {"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Home"}, "target": null, "tree_hash": "7e4787f7", "timestamp": 1774760885.982261}
 {"type": "step", "step": 2, "action": "type_text", "params": {"ref": 5, "text": "give me directions for"}, "target": {"label": "", "type": "XCUIElementTypeTextField", "value": "Or type a task\u2026", "x": 48, "y": 776, "width": 264, "height": 22}, "tree_hash": "436960f4", "timestamp": 1774760889.0146298}
+{"type": "step", "step": 3, "action": "go_home", "params": {}, "target": null, "tree_hash": "f3878f6e", "timestamp": 1774760896.1833868}
+{"type": "step", "step": 4, "action": "type_text", "params": {"ref": 8, "text": "give me directions for"}, "target": {"label": "Spectra", "type": "XCUIElementTypeIcon", "value": "", "x": 213, "y": 188, "width": 69, "height": 92}, "tree_hash": "7e592d99", "timestamp": 1774760902.395958}
+{"type": "step", "step": 5, "action": "type_text", "params": {"ref": 2, "text": "give me directions for"}, "target": null, "tree_hash": "f039374e", "timestamp": 1774760912.9207208}
+{"type": "step", "step": 7, "action": "tap", "params": {"ref": 2}, "target": {"label": "Back", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 62, "width": 44, "height": 44}, "tree_hash": "7e4787f7", "timestamp": 1774761040.4547179}
