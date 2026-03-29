@@ -1,0 +1,3 @@
+{"type": "header", "task": "Give me directions to Brown University", "started_at": 1774748704.9459178, "version": 1}
+{"type": "step", "step": 1, "action": "stuck", "params": {"reason": "Lost connection to WDA on iOS Simulator (screenshot failed)."}, "target": null, "tree_hash": "dc973568", "timestamp": 1774748708.831528}
+{"type": "footer", "total_steps": 1, "finished_at": 1774748711.2836008}

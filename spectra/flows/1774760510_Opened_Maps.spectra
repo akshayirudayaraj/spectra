@@ -1,0 +1,4 @@
+{"type": "header", "task": "Opened Maps", "started_at": 1774760510.3313339, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Maps"}, "target": null, "tree_hash": "b92ae4fd", "timestamp": 1774760517.754027}
+{"type": "step", "step": 2, "action": "done", "params": {"summary": "Maps is open and currently showing a route from My Location to Brown University."}, "target": null, "tree_hash": "41787f33", "timestamp": 1774760519.807169}
+{"type": "footer", "total_steps": 2, "finished_at": 1774760521.3944068}

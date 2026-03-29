@@ -1,0 +1,7 @@
+{"type": "header", "task": "Give me directions to Brown University", "started_at": 1774748912.47865, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Maps"}, "target": null, "tree_hash": "c048e430", "timestamp": 1774748921.182781}
+{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 1, "text": "Brown University"}, "target": {"label": "Give me directions to Brown University", "type": "XCUIElementTypeNavigationBar", "value": "", "x": 0, "y": 62, "width": 402, "height": 54}, "tree_hash": "c048e430", "timestamp": 1774748984.6018822}
+{"type": "step", "step": 3, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "42e411f3", "timestamp": 1774748989.970016}
+{"type": "step", "step": 4, "action": "tap", "params": {"ref": 1}, "target": {"label": "NavSignCollectionViewCell", "type": "XCUIElementTypeCell", "value": "", "x": 16, "y": 62, "width": 370, "height": 145}, "tree_hash": "42e411f3", "timestamp": 1774748991.9114938}
+{"type": "step", "step": 5, "action": "tap", "params": {"ref": 3}, "target": {"label": "Card controller", "type": "XCUIElementTypeButton", "value": "", "x": 156, "y": 769, "width": 90, "height": 24}, "tree_hash": "42e411f3", "timestamp": 1774748995.249432}
+{"type": "step", "step": 6, "action": "tap", "params": {"ref": 4}, "target": {"label": "Brown University", "type": "XCUIElementTypeButton", "value": "", "x": 23, "y": 631, "width": 225, "height": 66}, "tree_hash": "ff7d5c80", "timestamp": 1774749000.724573}
