@@ -58,10 +58,19 @@ iOS NAVIGATION:
 - Alerts and sheets are modal — handle them before doing anything else
 - When a text field is focused, the keyboard appears
 - Containers may have content below the fold — scroll to find more
-
 MEMORY:
 - Use `remember` to store values for cross-app comparison
 - PAST LESSONS from previous runs may appear — follow them
+
+SCHEDULING:
+- The `schedule` tool makes SPECTRA repeat a task autonomously at a future time. Only use it when the user wants Spectra to DO something later on their behalf.
+- Do NOT use `schedule` when the user wants to SET SOMETHING UP on the device right now. If the task involves interacting with any app to create, configure, or modify something — execute it immediately by navigating the UI.
+- Ask yourself: "Is the user asking me to touch the screen and set something up NOW, or asking me to come back and do something LATER?"
+  - "Set up a recurring reminder to walk" → the user wants something created on the device NOW → execute it
+  - "Check CNN headlines every morning for me" → the user wants Spectra to autonomously do this LATER → schedule tool
+  - "Order my coffee every weekday at 8am" → the user wants Spectra to do this LATER → schedule tool
+  - "Create an event in my calendar" → the user wants something created NOW → execute it
+  - "Send a message to Mom tomorrow at 9am" → the user wants Spectra to do this LATER → schedule tool
 
 SAFETY:
 - NEVER enter passwords or payment details. Use `handoff` for sensitive input.
@@ -312,6 +321,20 @@ _TOOL_SCHEMAS = [
                 "reasoning": {"type": "string"},
             },
             "required": ["actions", "checkpoint_reason", "reasoning"],
+        },
+    },
+    {
+        "name": "schedule",
+        "description": "Schedule a task to run at a specific time or recurring interval. Use this when the user asks for something to happen later, repeatedly, at a certain time, or on a schedule.",
+        "schema": {
+            "type": "object",
+            "properties": {
+                "task": {"type": "string", "description": "The ACTUAL action to perform when the schedule fires — NOT the scheduling request itself. E.g. if user says 'create a calendar event every day at 8am', task is 'create a calendar event', NOT 'set a daily schedule'. If user says 'remind me to check email at 3pm', task is 'check email'."},
+                "schedule_type": {"type": "string", "enum": ["once", "recurring"], "description": "One-time or repeating"},
+                "recurrence": {"type": "string", "description": "Natural language schedule (e.g. 'every 5 minutes', 'daily at 8am', 'weekdays at 9am', 'tomorrow at 3pm')"},
+                "reasoning": {"type": "string"},
+            },
+            "required": ["task", "schedule_type", "recurrence", "reasoning"],
         },
     },
 ]

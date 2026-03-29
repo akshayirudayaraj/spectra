@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+import inspect
 import json
 import sys
 import threading
@@ -9,6 +10,7 @@ import time
 import types as builtin_types
 from unittest.mock import MagicMock, patch
 
+import httpx
 import pytest
 
 # Stub heavy core modules so we don't need wda/genai at test time
@@ -30,6 +32,14 @@ sys.modules['core.executor'].Executor = type('Executor', (), {
 sys.modules['core.stuck_detector'].StuckDetector = type('StuckDetector', (), {'__init__': lambda *a, **k: None})
 
 from fastapi.testclient import TestClient
+
+if 'app' not in inspect.signature(httpx.Client.__init__).parameters:
+    _original_httpx_client_init = httpx.Client.__init__
+
+    def _compat_httpx_client_init(self, *args, app=None, **kwargs):
+        return _original_httpx_client_init(self, *args, **kwargs)
+
+    httpx.Client.__init__ = _compat_httpx_client_init
 
 from server.ws_server import (
     ConnectionState,
@@ -218,6 +228,91 @@ class TestWebSocketEndpoint:
             msg = json.loads(raw)
             assert msg['type'] == 'error'
             assert 'Unknown' in msg['message']
+
+    @patch('server.ws_server._scheduler')
+    def test_schedule_list_returns_enabled_state(self, mock_scheduler):
+        mock_scheduler.list_tasks.return_value = [
+            {'id': 'rec-1', 'task': 'Check CNN', 'schedule_type': 'recurring', 'recurrence': 'every 2 minutes', 'enabled': True},
+            {'id': 'rec-2', 'task': 'Check NYT', 'schedule_type': 'recurring', 'recurrence': 'daily at 8am', 'enabled': False},
+        ]
+
+        client = TestClient(app)
+        with client.websocket_connect('/ws') as ws:
+            ws.send_text(json.dumps({'type': 'schedule_list'}))
+            msg = json.loads(ws.receive_text())
+            assert msg['type'] == 'scheduled_tasks_response'
+            assert msg['tasks'][0]['enabled'] is True
+            assert msg['tasks'][1]['enabled'] is False
+
+    @patch('server.ws_server._scheduler')
+    def test_schedule_pause_returns_schedule_paused(self, mock_scheduler):
+        mock_scheduler.get_task.side_effect = [
+            {'id': 'rec-1', 'schedule_type': 'recurring', 'enabled': True},
+            {'id': 'rec-1', 'schedule_type': 'recurring', 'enabled': False},
+        ]
+        mock_scheduler.pause.return_value = True
+
+        client = TestClient(app)
+        with client.websocket_connect('/ws') as ws:
+            ws.send_text(json.dumps({'type': 'schedule_pause', 'task_id': 'rec-1'}))
+            msg = json.loads(ws.receive_text())
+            assert msg['type'] == 'schedule_paused'
+            assert msg['task_id'] == 'rec-1'
+            assert msg['success'] is True
+            assert msg['task']['enabled'] is False
+
+    @patch('server.ws_server._scheduler')
+    def test_schedule_resume_returns_schedule_resumed(self, mock_scheduler):
+        mock_scheduler.get_task.side_effect = [
+            {'id': 'rec-1', 'schedule_type': 'recurring', 'enabled': False},
+            {'id': 'rec-1', 'schedule_type': 'recurring', 'enabled': True},
+        ]
+        mock_scheduler.resume.return_value = True
+
+        client = TestClient(app)
+        with client.websocket_connect('/ws') as ws:
+            ws.send_text(json.dumps({'type': 'schedule_resume', 'task_id': 'rec-1'}))
+            msg = json.loads(ws.receive_text())
+            assert msg['type'] == 'schedule_resumed'
+            assert msg['task_id'] == 'rec-1'
+            assert msg['success'] is True
+            assert msg['task']['enabled'] is True
+
+    @patch('server.ws_server._scheduler')
+    def test_schedule_cancel_only_allows_pending_one_time_tasks(self, mock_scheduler):
+        mock_scheduler.get_task.return_value = {
+            'id': 'once-1',
+            'schedule_type': 'once',
+            'enabled': True,
+        }
+        mock_scheduler.cancel.return_value = True
+
+        client = TestClient(app)
+        with client.websocket_connect('/ws') as ws:
+            ws.send_text(json.dumps({'type': 'schedule_cancel', 'task_id': 'once-1'}))
+            msg = json.loads(ws.receive_text())
+            assert msg['type'] == 'schedule_cancelled'
+            assert msg['task_id'] == 'once-1'
+            assert msg['success'] is True
+
+    @patch('server.ws_server._scheduler')
+    def test_schedule_cancel_rejects_recurring_tasks(self, mock_scheduler):
+        mock_scheduler.get_task.return_value = {
+            'id': 'rec-1',
+            'schedule_type': 'recurring',
+            'enabled': True,
+        }
+
+        client = TestClient(app)
+        with client.websocket_connect('/ws') as ws:
+            ws.send_text(json.dumps({'type': 'schedule_cancel', 'task_id': 'rec-1'}))
+            msg = json.loads(ws.receive_text())
+            assert msg == {
+                'type': 'schedule_cancelled',
+                'task_id': 'rec-1',
+                'success': False,
+            }
+        mock_scheduler.cancel.assert_not_called()
 
     @patch('server.ws_server._voice_listen_thread')
     def test_voice_start_spawns_thread(self, mock_voice):

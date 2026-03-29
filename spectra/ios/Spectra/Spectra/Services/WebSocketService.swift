@@ -16,6 +16,10 @@ final class WebSocketService: ObservableObject {
     @Published var voiceError: String?
     @Published var errorMessage: String?
     @Published var storedTasks: [StoredTask] = []
+    @Published var scheduledTasks: [ScheduledTask] = []
+    @Published var lastCreatedSchedule: ScheduledTask?
+    @Published var highlightedScheduleID: String?
+    @Published var scheduleNavigationRequestID = UUID()
     @Published var actionLog: [ActionLogEntry] = []
     @Published var learnedSequences: [LearnedSequence] = []
     @Published var sequenceSuggestion: SequenceSuggestion?
@@ -23,6 +27,7 @@ final class WebSocketService: ObservableObject {
     private var webSocketTask: URLSessionWebSocketTask?
     private let url = URL(string: "ws://localhost:8765/ws")!
     private let session: URLSession = URLSession(configuration: .default)
+    private let notificationCoordinator = NotificationCoordinator.shared
     private var connectionID = 0  // guards stale callbacks
     private var isConnecting = false
 
@@ -109,6 +114,10 @@ final class WebSocketService: ObservableObject {
     }
 
     func sendConfirmation(_ approved: Bool) {
+        notificationCoordinator.clearConfirmationNotification()
+        DispatchQueue.main.async {
+            self.confirmationRequest = nil
+        }
         send(["type": "confirm", "approved": approved])
     }
 
@@ -135,16 +144,61 @@ final class WebSocketService: ObservableObject {
     }
 
     func sendTakeoverDone() {
+        notificationCoordinator.clearHandoffNotification()
+        DispatchQueue.main.async {
+            self.handoffRequest = nil
+        }
         send(["type": "takeover_done"])
     }
 
     func sendUserAnswer(_ answer: String) {
+        notificationCoordinator.clearAskUserNotification()
         send(["type": "user_answer", "answer": answer])
         DispatchQueue.main.async { self.askUserRequest = nil }
     }
 
     func requestStoredTasks() {
         send(["type": "stored_tasks_request"])
+    }
+
+    func requestScheduledTasks() {
+        send(["type": "schedule_list"])
+    }
+
+    func pauseScheduledTask(_ taskId: String) {
+        send(["type": "schedule_pause", "task_id": taskId])
+    }
+
+    func resumeScheduledTask(_ taskId: String) {
+        send(["type": "schedule_resume", "task_id": taskId])
+    }
+
+    func cancelScheduledTask(_ taskId: String) {
+        send(["type": "schedule_cancel", "task_id": taskId])
+    }
+
+    func openSchedules(highlighting taskId: String? = nil) {
+        DispatchQueue.main.async {
+            self.highlightedScheduleID = taskId
+            self.scheduleNavigationRequestID = UUID()
+            self.requestScheduledTasks()
+        }
+    }
+
+    func clearScheduleHighlight() {
+        DispatchQueue.main.async {
+            self.highlightedScheduleID = nil
+        }
+    }
+
+    func dismissLastCreatedSchedule() {
+        DispatchQueue.main.async {
+            self.lastCreatedSchedule = nil
+        }
+    }
+
+    func setAppIsActive(_ isActive: Bool) {
+        notificationCoordinator.setAppIsActive(isActive)
     }
 
     func requestActionLog() {
@@ -156,14 +210,36 @@ final class WebSocketService: ObservableObject {
     }
 
     func acceptSequenceSuggestion(_ nextAction: String) {
+        let sequenceID = sequenceSuggestion?.sequenceId ?? ""
+        acceptSequenceSuggestion(sequenceID: sequenceID, nextAction: nextAction)
+    }
+
+    func acceptSequenceSuggestion(sequenceID: String, nextAction: String) {
+        if !sequenceID.isEmpty {
+            notificationCoordinator.clearSequenceSuggestionNotification(sequenceID: sequenceID)
+        }
         send(["type": "sequence_suggestion_accept", "next_action": nextAction])
-        DispatchQueue.main.async { self.sequenceSuggestion = nil }
+        DispatchQueue.main.async {
+            if self.sequenceSuggestion?.sequenceId == sequenceID {
+                self.sequenceSuggestion = nil
+            }
+        }
     }
 
     func declineSequenceSuggestion() {
-        let seqId = sequenceSuggestion?.sequenceId ?? ""
-        send(["type": "sequence_suggestion_decline", "sequence_id": seqId])
-        DispatchQueue.main.async { self.sequenceSuggestion = nil }
+        declineSequenceSuggestion(sequenceID: sequenceSuggestion?.sequenceId ?? "")
+    }
+
+    func declineSequenceSuggestion(sequenceID: String) {
+        if !sequenceID.isEmpty {
+            notificationCoordinator.clearSequenceSuggestionNotification(sequenceID: sequenceID)
+        }
+        send(["type": "sequence_suggestion_decline", "sequence_id": sequenceID])
+        DispatchQueue.main.async {
+            if self.sequenceSuggestion?.sequenceId == sequenceID {
+                self.sequenceSuggestion = nil
+            }
+        }
     }
 
     // MARK: - Internal
@@ -179,6 +255,8 @@ final class WebSocketService: ObservableObject {
             self.handoffRequest = nil
             self.askUserRequest = nil
             self.errorMessage = nil
+            self.lastCreatedSchedule = nil
+            self.sequenceSuggestion = nil
         }
     }
 
@@ -250,8 +328,6 @@ final class WebSocketService: ObservableObject {
                let status = try? JSONDecoder().decode(TaskStatus.self, from: data) {
                 latestStatus = status
                 statusHistory.append(status)
-                // Don't post progress notifications — they cover the screen and interfere with WDA
-                // NotificationService.shared.postProgress(step: status.step, total: status.total, detail: status.detail)
             }
 
         case "memory_update":
@@ -274,32 +350,39 @@ final class WebSocketService: ObservableObject {
             if let data = try? JSONSerialization.data(withJSONObject: json),
                let request = try? JSONDecoder().decode(ConfirmationRequest.self, from: data) {
                 confirmationRequest = request
-                NotificationService.shared.postConfirmation(action: request.action, detail: request.detail)
+                notificationCoordinator.handle(.confirmRequest(request))
             }
 
         case "handoff_request":
             if let reason = json["reason"] as? String {
                 handoffRequest = HandoffRequest(reason: reason)
-                NotificationService.shared.postConfirmation(action: "Handoff", detail: reason)
+                notificationCoordinator.handle(.handoff(reason: reason))
             }
 
         case "ask_user":
             if let data = try? JSONSerialization.data(withJSONObject: json),
                let request = try? JSONDecoder().decode(AskUserRequest.self, from: data) {
                 askUserRequest = request
-                NotificationService.shared.postConfirmation(action: "Question", detail: request.question)
+                notificationCoordinator.handle(.askUser(request))
             }
 
         case "done":
             if let data = try? JSONSerialization.data(withJSONObject: json),
                let result = try? JSONDecoder().decode(TaskResult.self, from: data) {
                 taskResult = result
-                NotificationService.shared.postCompletion(summary: result.summary, steps: result.steps, duration: result.duration)
+                confirmationRequest = nil
+                handoffRequest = nil
+                askUserRequest = nil
+                notificationCoordinator.handle(.taskResult(result))
             }
 
         case "stuck":
             let reason = json["reason"] as? String ?? "Unknown"
             taskResult = TaskResult(success: false, summary: reason, steps: statusHistory.count, duration: 0)
+            confirmationRequest = nil
+            handoffRequest = nil
+            askUserRequest = nil
+            notificationCoordinator.handle(.taskStuck(reason: reason))
 
         case "voice_listening":
             isVoiceListening = true
@@ -352,7 +435,79 @@ final class WebSocketService: ObservableObject {
                     goalState: json["goal_state"] as? String
                 )
                 sequenceSuggestion = suggestion
-                NotificationService.shared.postSequenceSuggestion(nextAction: nextAction, prefix: prefix)
+                notificationCoordinator.handle(.sequenceSuggestion(suggestion))
+            }
+
+        case "schedule_fired":
+            if let taskId = json["task_id"] as? String,
+               let taskDesc = json["task"] as? String {
+                requestScheduledTasks()
+                notificationCoordinator.handle(
+                    .scheduleFired(
+                        taskID: taskId,
+                        task: taskDesc,
+                        isRecurring: (json["schedule_type"] as? String) == "recurring"
+                    )
+                )
+            }
+
+        case "schedule_created":
+            if let taskInfo = json["task"] as? [String: Any],
+               let createdTask = makeScheduledTask(from: taskInfo) {
+                notificationCoordinator.handle(.scheduleCreated(createdTask))
+                if createdTask.isRecurring {
+                    lastCreatedSchedule = createdTask
+                }
+                requestScheduledTasks()
+            }
+
+        case "scheduled_tasks_response":
+            if let tasksArray = json["tasks"] as? [[String: Any]] {
+                scheduledTasks = tasksArray.compactMap(makeScheduledTask)
+                if let lastCreatedSchedule {
+                    self.lastCreatedSchedule = scheduledTasks.first(where: { $0.id == lastCreatedSchedule.id })
+                }
+            }
+
+        case "schedule_cancelled":
+            let taskId = json["task_id"] as? String ?? ""
+            let success = json["success"] as? Bool ?? false
+            if success {
+                scheduledTasks.removeAll { $0.id == taskId }
+                notificationCoordinator.clearScheduleNotifications(taskID: taskId)
+                if lastCreatedSchedule?.id == taskId {
+                    lastCreatedSchedule = nil
+                }
+                requestScheduledTasks()
+            } else if !taskId.isEmpty {
+                errorMessage = "Couldn't cancel scheduled task"
+            }
+
+        case "schedule_paused":
+            let taskId = json["task_id"] as? String ?? ""
+            let success = json["success"] as? Bool ?? false
+            if success {
+                notificationCoordinator.clearScheduleNotifications(taskID: taskId)
+                if let taskInfo = json["task"] as? [String: Any],
+                   let updatedTask = makeScheduledTask(from: taskInfo) {
+                    upsertScheduledTask(updatedTask)
+                }
+                requestScheduledTasks()
+            } else if !taskId.isEmpty {
+                errorMessage = "Couldn't stop recurring schedule"
+            }
+
+        case "schedule_resumed":
+            let taskId = json["task_id"] as? String ?? ""
+            let success = json["success"] as? Bool ?? false
+            if success {
+                if let taskInfo = json["task"] as? [String: Any],
+                   let updatedTask = makeScheduledTask(from: taskInfo) {
+                    upsertScheduledTask(updatedTask)
+                }
+                requestScheduledTasks()
+            } else if !taskId.isEmpty {
+                errorMessage = "Couldn't resume recurring schedule"
             }
 
         case "stored_tasks_response":
@@ -383,6 +538,43 @@ final class WebSocketService: ObservableObject {
 
         default:
             break
+        }
+    }
+
+    private func makeScheduledTask(from dict: [String: Any]) -> ScheduledTask? {
+        guard let id = dict["id"] as? String,
+              let task = dict["task"] as? String,
+              let scheduleType = dict["schedule_type"] as? String,
+              let recurrence = dict["recurrence"] as? String,
+              let enabled = dict["enabled"] as? Bool else { return nil }
+
+        let nextRun = (dict["next_run"] as? NSNumber)?.doubleValue
+        let createdAt = (dict["created_at"] as? NSNumber)?.doubleValue ?? 0
+        let fireCount = (dict["fire_count"] as? NSNumber)?.intValue ?? 0
+        let lastFiredAt = (dict["last_fired_at"] as? NSNumber)?.doubleValue
+
+        return ScheduledTask(
+            id: id,
+            task: task,
+            scheduleType: scheduleType,
+            recurrence: recurrence,
+            nextRun: nextRun,
+            nextRunDisplay: dict["next_run_display"] as? String,
+            enabled: enabled,
+            createdAt: createdAt,
+            fireCount: fireCount,
+            lastFiredAt: lastFiredAt
+        )
+    }
+
+    private func upsertScheduledTask(_ task: ScheduledTask) {
+        if let existingIndex = scheduledTasks.firstIndex(where: { $0.id == task.id }) {
+            scheduledTasks[existingIndex] = task
+        } else {
+            scheduledTasks.append(task)
+        }
+        if lastCreatedSchedule?.id == task.id {
+            lastCreatedSchedule = task
         }
     }
 }

@@ -40,7 +40,7 @@ def _summarize_task(history, task, planner) -> str:
 _TERMINAL = {'done', 'stuck'}
 
 # Non-UI actions that don't change the screen — skip re-snapshot after these
-_NO_UI_ACTIONS = {'remember', 'plan', 'ask_user'}
+_NO_UI_ACTIONS = {'remember', 'plan', 'ask_user', 'schedule'}
 
 # Adaptive sleep: action → seconds to wait for UI to settle
 _ACTION_SLEEP = {
@@ -100,6 +100,7 @@ def run_agent(
     takeover: TakeoverManager | None = None,
     step_callback=None,
     ask_user_fn=None,
+    scheduler=None,
 ) -> bool:
     """Execute a natural language task on the iOS simulator.
 
@@ -304,6 +305,27 @@ def run_agent(
             history.append(f'  User answered: {answer}')
             if verbose:
                 print(f'    User: {answer}')
+            last_action_was_no_ui = True
+            continue
+
+        if action_name == 'schedule':
+            if scheduler:
+                created = scheduler.schedule(
+                    task=action_input.get('task', ''),
+                    schedule_type=action_input.get('schedule_type', 'once'),
+                    recurrence=action_input.get('recurrence', ''),
+                )
+                result = f"Scheduled: '{created['task']}' — {created['recurrence']} (next: {created.get('next_run_display', 'unknown')})"
+                if step_callback:
+                    step_callback(step, max_steps, 'schedule', action_input, result, current_app, ref_map, tree)
+                # Notify iOS of creation
+                if hasattr(scheduler, '_state') and scheduler._state:
+                    scheduler._state.send({'type': 'schedule_created', 'task': created})
+            else:
+                result = 'Scheduling not available'
+            history.append(f'Step {step}: schedule — {result}')
+            if verbose:
+                print(f'    {result}')
             last_action_was_no_ui = True
             continue
 

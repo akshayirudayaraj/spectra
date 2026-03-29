@@ -18,6 +18,25 @@ struct StoredTask: Identifiable {
     let triggers: [ContextTrigger]
 }
 
+struct ScheduledTask: Identifiable, Equatable {
+    let id: String
+    let task: String
+    let scheduleType: String
+    let recurrence: String
+    let nextRun: Double?
+    let nextRunDisplay: String?
+    let enabled: Bool
+    let createdAt: Double
+    let fireCount: Int
+    let lastFiredAt: Double?
+
+    var isRecurring: Bool { scheduleType == "recurring" }
+    var isActiveRecurring: Bool { isRecurring && enabled }
+    var isPausedRecurring: Bool { isRecurring && !enabled }
+    var isPendingOneTime: Bool { !isRecurring && enabled }
+    var isCompletedOneTime: Bool { !isRecurring && !enabled }
+}
+
 struct ActionLogEntry: Identifiable {
     let id: String
     let timestamp: Double

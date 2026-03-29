@@ -5,15 +5,17 @@ struct HomeView: View {
     @State private var inputText = ""
     @State private var navPath = NavigationPath()
     @State private var taskHistory: [CompletedTask] = []
-    @State private var currentTask = ""
     @State private var showPortal = false
+    @State private var showSchedules = false
 
     var body: some View {
         NavigationStack(path: $navPath) {
             VStack(spacing: 0) {
-                // Header with hamburger menu
+                // Header with portal and schedules access
                 HStack {
-                    NavigationLink(destination: TransparencyPortalView().environmentObject(ws)) {
+                    Button {
+                        showPortal = true
+                    } label: {
                         Image(systemName: "line.3.horizontal")
                             .font(.title3)
                             .foregroundStyle(DS.primary)
@@ -26,8 +28,23 @@ struct HomeView: View {
                             .font(.caption).foregroundStyle(.secondary)
                     }
                     Spacer()
-                    // Balance the hamburger icon width
-                    Color.clear.frame(width: 24, height: 24)
+                    Button {
+                        ws.clearScheduleHighlight()
+                        showSchedules = true
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "calendar")
+                                .font(.caption.weight(.semibold))
+                            Text("Schedules")
+                                .font(.caption).fontWeight(.semibold)
+                        }
+                        .foregroundStyle(DS.primary)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .background(DS.primaryTint)
+                        .clipShape(Capsule())
+                    }
+                    .accessibilityLabel("Schedules")
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
@@ -72,6 +89,14 @@ struct HomeView: View {
                 })
                 .environmentObject(ws)
             }
+            .navigationDestination(isPresented: $showPortal) {
+                TransparencyPortalView()
+                    .environmentObject(ws)
+            }
+            .navigationDestination(isPresented: $showSchedules) {
+                SchedulesDashboardView()
+                    .environmentObject(ws)
+            }
             .onChange(of: ws.voiceTranscript) { _, transcript in
                 if let transcript = transcript, !transcript.isEmpty {
                     inputText = transcript
@@ -91,6 +116,14 @@ struct HomeView: View {
                         ),
                         at: 0
                     )
+                }
+            }
+            .onChange(of: ws.scheduleNavigationRequestID) { _, _ in
+                showSchedules = true
+            }
+            .onChange(of: showSchedules) { _, isPresented in
+                if !isPresented {
+                    ws.clearScheduleHighlight()
                 }
             }
         }

@@ -32,20 +32,33 @@ from core.memory import AgentMemory
 from core.plan_preview import PlanPreview
 from core.planner import Planner
 from core.router import TaskRouter
+from core.scheduler import TaskScheduler
 from core.takeover import TakeoverManager
 
 app = FastAPI(title='Spectra WebSocket Server')
 
 
-def _send_sim_push(title: str, body: str, bundle_id: str = 'com.spectra.agent'):
+def _send_sim_push(
+    title: str,
+    body: str,
+    bundle_id: str = 'com.spectra.agent',
+    category: str | None = None,
+    user_info: dict | None = None,
+):
     """Send a push notification to the booted iOS simulator via xcrun simctl."""
     import subprocess, tempfile
-    payload = json.dumps({
-        'aps': {
-            'alert': {'title': f'Spectra — {title}', 'body': body},
-            'sound': 'default',
-        }
-    })
+    aps = {
+        'alert': {'title': f'Spectra — {title}', 'body': body},
+        'sound': 'default',
+    }
+    if category:
+        aps['category'] = category
+
+    payload_dict = {'aps': aps}
+    if user_info:
+        payload_dict.update(user_info)
+
+    payload = json.dumps(payload_dict)
     try:
         with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
             f.write(payload)
@@ -59,6 +72,7 @@ def _send_sim_push(title: str, body: str, bundle_id: str = 'com.spectra.agent'):
 
 # Global observer reference so we can wire ws_state when a client connects
 _observer = None
+_scheduler = TaskScheduler()
 
 @app.on_event("startup")
 async def start_trigger_loop():
@@ -94,6 +108,9 @@ async def start_trigger_loop():
             traceback.print_exc()
 
     asyncio.create_task(_run_observer())
+
+    # Start the scheduler polling thread
+    _scheduler.start()
 
 
 # ---------------------------------------------------------------------------
@@ -385,6 +402,7 @@ def _run_task_in_thread(
     state: ConnectionState,
     wda_url: str = 'http://localhost:8100',
     max_steps: int | None = None,
+    enable_scheduler: bool = True,
 ) -> None:
     """Execute the full route → plan → agent flow in a thread."""
     import traceback
@@ -535,6 +553,7 @@ def _run_task_in_thread(
                 takeover=takeover,
                 step_callback=step_callback,
                 ask_user_fn=ask_user.ask,
+                scheduler=_scheduler if enable_scheduler else None,
             )
         else:
             for app_info in apps:
@@ -552,6 +571,7 @@ def _run_task_in_thread(
                     takeover=takeover,
                     step_callback=step_callback,
                     ask_user_fn=ask_user.ask,
+                    scheduler=_scheduler if enable_scheduler else None,
                 )
                 if state.stop_event.is_set():
                     break
@@ -597,6 +617,12 @@ async def websocket_endpoint(ws: WebSocket):
     global _observer
     if _observer is not None:
         _observer.ws_state = state
+
+    # Wire scheduler so it can send notifications and execute tasks
+    global _scheduler
+    _scheduler._state = state
+    _scheduler._run_agent_fn = lambda t: _run_task_in_thread(t, None, state, enable_scheduler=False)
+    _scheduler._push_fn = lambda title, body, **kwargs: _send_sim_push(title, body, **kwargs)
 
     # Sender task — drains outgoing queue and sends JSON over the socket
     async def _sender():
@@ -806,6 +832,43 @@ async def websocket_endpoint(ws: WebSocket):
                 state.screen_update_data.update(msg.get('screen', {}))
                 state.screen_update_event.set()
 
+            elif msg_type == 'schedule_list':
+                tasks = _scheduler.list_tasks()
+                await out_queue.put({'type': 'scheduled_tasks_response', 'tasks': tasks})
+
+            elif msg_type == 'schedule_pause':
+                task_id = msg.get('task_id', '')
+                task = _scheduler.get_task(task_id)
+                paused = bool(task and task.get('schedule_type') == 'recurring' and _scheduler.pause(task_id))
+                await out_queue.put({
+                    'type': 'schedule_paused',
+                    'task_id': task_id,
+                    'success': paused,
+                    'task': _scheduler.get_task(task_id) if paused else None,
+                })
+
+            elif msg_type == 'schedule_resume':
+                task_id = msg.get('task_id', '')
+                task = _scheduler.get_task(task_id)
+                resumed = bool(task and task.get('schedule_type') == 'recurring' and _scheduler.resume(task_id))
+                await out_queue.put({
+                    'type': 'schedule_resumed',
+                    'task_id': task_id,
+                    'success': resumed,
+                    'task': _scheduler.get_task(task_id) if resumed else None,
+                })
+
+            elif msg_type == 'schedule_cancel':
+                task_id = msg.get('task_id', '')
+                task = _scheduler.get_task(task_id)
+                cancelled = bool(
+                    task
+                    and task.get('schedule_type') == 'once'
+                    and task.get('enabled')
+                    and _scheduler.cancel(task_id)
+                )
+                await out_queue.put({'type': 'schedule_cancelled', 'task_id': task_id, 'success': cancelled})
+
             elif msg_type == 'stop':
                 state.stop_event.set()
                 # Reset task_running immediately so the user can start a new task
@@ -833,6 +896,9 @@ async def websocket_endpoint(ws: WebSocket):
         print(f"[ws] Connection error: {e}")
         traceback.print_exc()
     finally:
+        if _scheduler._state is state:
+            _scheduler._state = None
+            _scheduler._run_agent_fn = None
         print("[ws] Connection cleanup")
         await out_queue.put(None)
         sender_task.cancel()
