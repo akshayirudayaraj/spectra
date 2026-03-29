@@ -1,0 +1,8 @@
+{"type": "header", "task": "Give me directions to Brown University", "started_at": 1774742075.278799, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Maps"}, "target": null, "tree_hash": "379b3f8f", "timestamp": 1774742083.126014}
+{"type": "step", "step": 2, "action": "tap", "params": {"ref": 3}, "target": {"label": "Card controller", "type": "XCUIElementTypeButton", "value": "", "x": 156, "y": 769, "width": 90, "height": 24}, "tree_hash": "42e411f3", "timestamp": 1774742086.181571}
+{"type": "step", "step": 3, "action": "type_text", "params": {"text": "Brown University", "ref": 1}, "target": {"label": "Card controller", "type": "XCUIElementTypeButton", "value": "Half screen", "x": 154, "y": 483, "width": 94, "height": 25}, "tree_hash": "69d198a0", "timestamp": 1774742094.625505}
+{"type": "step", "step": 4, "action": "tap", "params": {"ref": 15}, "target": {"label": "Brown University, Providence", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 382, "width": 370, "height": 69}, "tree_hash": "2eb40a37", "timestamp": 1774742100.0235012}
+{"type": "step", "step": 5, "action": "tap", "params": {"ref": 7}, "target": {"label": "Directions", "type": "XCUIElementTypeButton", "value": "", "x": 23, "y": 565, "width": 84, "height": 52}, "tree_hash": "fb916ee4", "timestamp": 1774742105.916517}
+{"type": "step", "step": 6, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "379b3f8f", "timestamp": 1774742114.4076412}
+{"type": "footer", "total_steps": 6, "finished_at": 1774742116.513824}

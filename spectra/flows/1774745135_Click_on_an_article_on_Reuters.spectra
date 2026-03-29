@@ -1,0 +1,7 @@
+{"type": "header", "task": "Click on an article on Reuters", "started_at": 1774745135.350655, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "9857a34f", "timestamp": 1774745143.102808}
+{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 66, "text": "reuters.com"}, "target": null, "tree_hash": "9857a34f", "timestamp": 1774745179.7093031}
+{"type": "step", "step": 3, "action": "type_text", "params": {"ref": 12, "text": "reuters.com\n"}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "Search or enter website", "x": 136, "y": 806, "width": 133, "height": 21}, "tree_hash": "0aeeac7d", "timestamp": 1774745185.0585449}
+{"type": "step", "step": 4, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "2dbf663a", "timestamp": 1774745201.860418}
+{"type": "step", "step": 5, "action": "tap", "params": {"ref": 3}, "target": {"label": "One month into Iran war, only hard choices for Trump, includes gallery", "type": "XCUIElementTypeLink", "value": "", "x": 17, "y": 237, "width": 368, "height": 20}, "tree_hash": "3b369ae4", "timestamp": 1774745215.930916}
+{"type": "footer", "total_steps": 5, "finished_at": 1774745218.269556}

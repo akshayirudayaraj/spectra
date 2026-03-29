@@ -1,0 +1,9 @@
+{"type": "header", "task": "Open Reddit and click on the first post", "started_at": 1774745254.6113222, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.reddit.Reddit"}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745262.071632}
+{"type": "step", "step": 2, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745266.5189881}
+{"type": "step", "step": 3, "action": "open_app", "params": {"bundle_id": "com.reddit.Reddit"}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745271.1526132}
+{"type": "step", "step": 4, "action": "open_app", "params": {"bundle_id": "com.reddit.Reddit"}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745274.939327}
+{"type": "step", "step": 5, "action": "wait", "params": {"seconds": 5}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745283.63697}
+{"type": "step", "step": 6, "action": "open_app", "params": {"bundle_id": "com.reddit.Reddit"}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745288.221146}
+{"type": "step", "step": 7, "action": "go_home", "params": {}, "target": null, "tree_hash": "7037266e", "timestamp": 1774745293.3159318}
+{"type": "footer", "total_steps": 7, "finished_at": 1774745295.482657}

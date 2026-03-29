@@ -1,0 +1,4 @@
+{"type": "header", "task": "Opened Safari", "started_at": 1774743413.606534, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "1705f4ef", "timestamp": 1774743420.359848}
+{"type": "step", "step": 2, "action": "done", "params": {"summary": "Safari is open and currently displaying the Brown University website."}, "target": null, "tree_hash": "469c2075", "timestamp": 1774743422.661941}
+{"type": "footer", "total_steps": 2, "finished_at": 1774743424.221596}
