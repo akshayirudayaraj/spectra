@@ -1,0 +1,15 @@
+{"type": "header", "task": "Go to the new york times website and open the first article", "started_at": 1774759913.127677, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774759922.606406}
+{"type": "step", "step": 2, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774759927.812944}
+{"type": "step", "step": 3, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774759934.72959}
+{"type": "step", "step": 4, "action": "dismiss_paywall", "params": {}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774759939.7178319}
+{"type": "step", "step": 5, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774759974.668624}
+{"type": "step", "step": 6, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760003.123289}
+{"type": "step", "step": 7, "action": "wait", "params": {"seconds": 3}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760011.05553}
+{"type": "step", "step": 8, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760050.7603378}
+{"type": "step", "step": 9, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760082.838433}
+{"type": "step", "step": 10, "action": "type_text", "params": {"ref": 3, "text": "https://www.nytimes.com"}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200ereuters.com", "x": 154, "y": 806, "width": 95, "height": 21}, "tree_hash": "0a75f912", "timestamp": 1774760124.723944}
+{"type": "step", "step": 11, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760158.353438}
+{"type": "step", "step": 12, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760168.2883}
+{"type": "step", "step": 13, "action": "wait", "params": {"seconds": 3}, "target": null, "tree_hash": "0a75f912", "timestamp": 1774760176.217119}
+{"type": "step", "step": 14, "action": "type_text", "params": {"ref": 3, "text": "nytimes.com\n"}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200ereuters.com", "x": 154, "y": 806, "width": 95, "height": 21}, "tree_hash": "0a75f912", "timestamp": 1774760226.49195}

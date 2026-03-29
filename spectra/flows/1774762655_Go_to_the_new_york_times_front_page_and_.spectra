@@ -1,0 +1,27 @@
+{"type": "header", "task": "Go to the new york times front page and open the first article that you see", "started_at": 1774762655.782298, "version": 1}
+{"type": "step", "step": 1, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3dd4a899", "timestamp": 1774762667.337779}
+{"type": "step", "step": 2, "action": "wait", "params": {"seconds": 3}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762672.8571079}
+{"type": "step", "step": 3, "action": "dismiss_paywall", "params": {}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762675.334322}
+{"type": "step", "step": 4, "action": "tap_xy", "params": {"x": 917, "y": 213}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762683.389451}
+{"type": "step", "step": 5, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762690.785852}
+{"type": "step", "step": 6, "action": "tap_xy", "params": {"y": 213, "x": 917}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762700.764528}
+{"type": "step", "step": 7, "action": "tap_xy", "params": {"x": 500, "y": 100}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762705.516504}
+{"type": "step", "step": 8, "action": "dismiss_paywall", "params": {}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762710.610226}
+{"type": "step", "step": 9, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762717.242146}
+{"type": "step", "step": 10, "action": "tap_xy", "params": {"x": 917, "y": 213}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762725.500758}
+{"type": "step", "step": 11, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762733.0429811}
+{"type": "step", "step": 12, "action": "tap_xy", "params": {"y": 213, "x": 916}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762739.610795}
+{"type": "step", "step": 13, "action": "tap_xy", "params": {"x": 500, "y": 400}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762744.5585}
+{"type": "step", "step": 14, "action": "tap_xy", "params": {"y": 333, "x": 487}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762747.85695}
+{"type": "step", "step": 15, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762755.456169}
+{"type": "step", "step": 16, "action": "dismiss_paywall", "params": {}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762758.1309462}
+{"type": "step", "step": 17, "action": "tap_xy", "params": {"x": 916, "y": 213}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762766.152564}
+{"type": "step", "step": 18, "action": "tap_xy", "params": {"y": 100, "x": 500}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762769.892599}
+{"type": "step", "step": 19, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762776.8483899}
+{"type": "step", "step": 20, "action": "dismiss_paywall", "params": {}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762781.934995}
+{"type": "step", "step": 21, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762792.107394}
+{"type": "step", "step": 22, "action": "tap_xy", "params": {"y": 835, "x": 450}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762798.492193}
+{"type": "step", "step": 23, "action": "tap_xy", "params": {"y": 840, "x": 500}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762806.1665359}
+{"type": "step", "step": 24, "action": "tap_xy", "params": {"x": 500, "y": 400}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762815.3106382}
+{"type": "step", "step": 25, "action": "navigate", "params": {"url": "https://www.nytimes.com"}, "target": null, "tree_hash": "3a51e115", "timestamp": 1774762822.5639648}
+{"type": "footer", "total_steps": 25, "finished_at": 1774762825.0872571}

@@ -1,0 +1,19 @@
+{"type": "header", "task": "Go to reuters.com and open the first article on the site", "started_at": 1774760881.42734, "version": 1}
+{"type": "step", "step": 1, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": null, "timestamp": 1774760893.192731}
+{"type": "step", "step": 2, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": null, "timestamp": 1774760902.970442}
+{"type": "step", "step": 3, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774760914.824888}
+{"type": "step", "step": 4, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": null, "timestamp": 1774760927.585137}
+{"type": "step", "step": 5, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774760938.2788422}
+{"type": "step", "step": 6, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774760948.488368}
+{"type": "step", "step": 7, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": null, "timestamp": 1774760961.55321}
+{"type": "step", "step": 8, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774760977.25162}
+{"type": "step", "step": 9, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774760987.7414699}
+{"type": "step", "step": 10, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774760998.377239}
+{"type": "step", "step": 11, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": null, "timestamp": 1774761011.074917}
+{"type": "step", "step": 12, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774761019.348869}
+{"type": "step", "step": 13, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": null, "timestamp": 1774761031.854675}
+{"type": "step", "step": 14, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774761045.1027358}
+{"type": "step", "step": 15, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774761055.198946}
+{"type": "step", "step": 16, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774761065.518474}
+{"type": "step", "step": 17, "action": "tap", "params": {"ref": 1}, "target": null, "tree_hash": null, "timestamp": 1774761073.4488058}
+{"type": "footer", "total_steps": 17, "finished_at": 1774761107.980507}

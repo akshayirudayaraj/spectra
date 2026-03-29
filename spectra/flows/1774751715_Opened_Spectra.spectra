@@ -1,0 +1,4 @@
+{"type": "header", "task": "Opened Spectra", "started_at": 1774751715.069344, "version": 1}
+{"type": "step", "step": 1, "action": "type_text", "params": {"text": "irst article", "ref": 3}, "target": {"label": "", "type": "XCUIElementTypeTextField", "value": "Go to the reuters site and then open the f", "x": 48, "y": 754, "width": 264, "height": 44}, "tree_hash": "1d345176", "timestamp": 1774751721.640425}
+{"type": "step", "step": 2, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751725.433231}
+{"type": "footer", "total_steps": 2, "finished_at": 1774751727.62693}

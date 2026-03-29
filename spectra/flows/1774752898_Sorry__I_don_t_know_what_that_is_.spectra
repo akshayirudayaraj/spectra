@@ -1,0 +1,4 @@
+{"type": "header", "task": "Sorry, I don't know what that is.", "started_at": 1774752898.401252, "version": 1}
+{"type": "step", "step": 1, "action": "tap", "params": {"ref": 1}, "target": {"label": "Back", "type": "XCUIElementTypeButton", "value": "", "x": 20, "y": 80, "width": 14, "height": 20}, "tree_hash": "6524b88a", "timestamp": 1774752907.914093}
+{"type": "step", "step": 2, "action": "tap", "params": {"ref": 2}, "target": {"label": "Stop task", "type": "XCUIElementTypeButton", "value": "", "x": 32, "y": 783, "width": 338, "height": 41}, "tree_hash": "6524b88a", "timestamp": 1774752911.2710001}
+{"type": "footer", "total_steps": 2, "finished_at": 1774752913.9812312}

@@ -1,0 +1,27 @@
+{"type": "header", "task": "Go to the reuters site and click on the first article that you see", "started_at": 1774751804.543196, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751811.860745}
+{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 32, "text": "reuters.com"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751855.257319}
+{"type": "step", "step": 3, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751884.737837}
+{"type": "step", "step": 4, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751913.7530298}
+{"type": "step", "step": 5, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751944.931655}
+{"type": "step", "step": 6, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774751973.804495}
+{"type": "step", "step": 7, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752017.393893}
+{"type": "step", "step": 8, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752046.2346308}
+{"type": "step", "step": 9, "action": "go_home", "params": {}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752075.3759491}
+{"type": "step", "step": 10, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "dc973568", "timestamp": 1774752084.742461}
+{"type": "step", "step": 11, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "dc973568", "timestamp": 1774752114.5434072}
+{"type": "step", "step": 12, "action": "tap_xy", "params": {"x": 389, "y": 921}, "target": null, "tree_hash": "dc973568", "timestamp": 1774752133.831197}
+{"type": "step", "step": 13, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752138.498695}
+{"type": "step", "step": 14, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752145.574273}
+{"type": "step", "step": 15, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752157.2529888}
+{"type": "step", "step": 16, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752167.547926}
+{"type": "step", "step": 17, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752177.815679}
+{"type": "step", "step": 18, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774752185.3167412}
+{"type": "step", "step": 19, "action": "tap", "params": {"ref": 1}, "target": {"label": "close dialog", "type": "XCUIElementTypeButton", "value": "", "x": 298, "y": 113, "width": 88, "height": 88}, "tree_hash": "b572e428", "timestamp": 1774752188.027461}
+{"type": "step", "step": 20, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "b572e428", "timestamp": 1774752197.4126132}
+{"type": "step", "step": 21, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "b572e428", "timestamp": 1774752205.884665}
+{"type": "step", "step": 22, "action": "tap", "params": {"ref": 5}, "target": {"label": "refresh", "type": "XCUIElementTypeButton", "value": "", "x": 281, "y": 805, "width": 19, "height": 22}, "tree_hash": "b572e428", "timestamp": 1774752216.789739}
+{"type": "step", "step": 23, "action": "type_text", "params": {"text": "reuters.com\n", "ref": 4}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200ereuters.com", "x": 154, "y": 806, "width": 95, "height": 21}, "tree_hash": "b572e428", "timestamp": 1774752229.473134}
+{"type": "step", "step": 24, "action": "type_text", "params": {"text": "https://www.reuters.com\n", "ref": 4}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200ereuters.com", "x": 154, "y": 806, "width": 95, "height": 21}, "tree_hash": "b572e428", "timestamp": 1774752244.759556}
+{"type": "step", "step": 25, "action": "tap", "params": {"ref": 1}, "target": {"label": "close dialog", "type": "XCUIElementTypeButton", "value": "", "x": 298, "y": 113, "width": 88, "height": 88}, "tree_hash": "b572e428", "timestamp": 1774752259.3787808}
+{"type": "footer", "total_steps": 25, "finished_at": 1774752261.9528189}

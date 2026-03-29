@@ -1,0 +1,11 @@
+{"type": "header", "task": "Go to reuters.com and click on the first article", "started_at": 1774759276.676546, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774759284.4960058}
+{"type": "step", "step": 2, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759289.8216279}
+{"type": "step", "step": 3, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759303.877655}
+{"type": "step", "step": 4, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759316.643085}
+{"type": "step", "step": 5, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759330.670688}
+{"type": "step", "step": 6, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759345.262555}
+{"type": "step", "step": 7, "action": "type_text", "params": {"text": "https://www.reuters.com", "ref": 14}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200enytimes.com", "x": 151, "y": 806, "width": 101, "height": 21}, "tree_hash": "dcae2eb5", "timestamp": 1774759358.9281862}
+{"type": "step", "step": 8, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759381.3443651}
+{"type": "step", "step": 9, "action": "navigate", "params": {"url": "https://reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759393.649482}
+{"type": "step", "step": 10, "action": "navigate", "params": {"url": "https://www.reuters.com"}, "target": null, "tree_hash": "dcae2eb5", "timestamp": 1774759408.505373}
