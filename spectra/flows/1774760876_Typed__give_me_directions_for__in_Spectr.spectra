@@ -1,0 +1,3 @@
+{"type": "header", "task": "Typed 'give me directions for' in Spectra; Opened Home; Typed 'give me directions for' in Spectra", "started_at": 1774760876.744512, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Home"}, "target": null, "tree_hash": "7e4787f7", "timestamp": 1774760885.982261}
+{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 5, "text": "give me directions for"}, "target": {"label": "", "type": "XCUIElementTypeTextField", "value": "Or type a task\u2026", "x": 48, "y": 776, "width": 264, "height": 22}, "tree_hash": "436960f4", "timestamp": 1774760889.0146298}

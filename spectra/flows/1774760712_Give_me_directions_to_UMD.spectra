@@ -1,0 +1,17 @@
+{"type": "header", "task": "Give me directions to UMD", "started_at": 1774760712.0925682, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Maps"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774760720.279091}
+{"type": "step", "step": 2, "action": "tap", "params": {"ref": 15}, "target": {"label": "RoutePlanningWaypointCellTextField", "type": "XCUIElementTypeTextField", "value": "Brown University", "x": 69, "y": 582, "width": 265, "height": 51}, "tree_hash": "41787f33", "timestamp": 1774760722.992351}
+{"type": "step", "step": 3, "action": "batch", "params": {}, "target": null, "tree_hash": "4d21d41c", "timestamp": 1774760728.128835}
+{"type": "step", "step": 4, "action": "tap", "params": {"ref": 6}, "target": {"label": "UMD, 3972 Campus Dr, College Park", "type": "XCUIElementTypeButton", "value": "", "x": 76, "y": 217, "width": 210, "height": 43}, "tree_hash": "d455a188", "timestamp": 1774760732.17874}
+{"type": "step", "step": 5, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "e466c8a8", "timestamp": 1774760736.946811}
+{"type": "step", "step": 6, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760741.5212219}
+{"type": "step", "step": 7, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760747.037228}
+{"type": "step", "step": 8, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760751.456246}
+{"type": "step", "step": 9, "action": "tap", "params": {"ref": 4}, "target": {"label": "Drive", "type": "XCUIElementTypeButton", "value": "1", "x": 16, "y": 152, "width": 74, "height": 49}, "tree_hash": "c25e03a9", "timestamp": 1774760756.4841201}
+{"type": "step", "step": 10, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760760.441209}
+{"type": "step", "step": 11, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760765.709986}
+{"type": "step", "step": 12, "action": "tap", "params": {"ref": 11}, "target": {"label": "UMD", "type": "XCUIElementTypeCell", "value": "", "x": 16, "y": 260, "width": 370, "height": 52}, "tree_hash": "c25e03a9", "timestamp": 1774760772.4908302}
+{"type": "step", "step": 13, "action": "tap", "params": {"ref": 6}, "target": {"label": "UMD, 3972 Campus Dr, College Park", "type": "XCUIElementTypeButton", "value": "", "x": 76, "y": 217, "width": 210, "height": 43}, "tree_hash": "42e2ad91", "timestamp": 1774760775.788769}
+{"type": "step", "step": 14, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760780.911684}
+{"type": "step", "step": 15, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c25e03a9", "timestamp": 1774760790.881678}
+{"type": "footer", "total_steps": 15, "finished_at": 1774760792.708763}

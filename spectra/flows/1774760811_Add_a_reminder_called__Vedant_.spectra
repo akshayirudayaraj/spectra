@@ -1,0 +1,9 @@
+{"type": "header", "task": "Add a reminder called \u201cVedant\u201d", "started_at": 1774760811.3161979, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.reminders"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774760819.422789}
+{"type": "step", "step": 2, "action": "type_text", "params": {"text": "Vedant", "ref": 15}, "target": {"label": "New Reminder", "type": "XCUIElementTypeButton", "value": "", "x": 331, "y": 803, "width": 38, "height": 38}, "tree_hash": "afe2594f", "timestamp": 1774760823.20182}
+{"type": "step", "step": 3, "action": "tap", "params": {"ref": 15}, "target": {"label": "New Reminder", "type": "XCUIElementTypeButton", "value": "", "x": 331, "y": 803, "width": 38, "height": 38}, "tree_hash": "afe2594f", "timestamp": 1774760833.716479}
+{"type": "step", "step": 4, "action": "tap", "params": {"ref": 3}, "target": {"label": "Not Now", "type": "XCUIElementTypeButton", "value": "", "x": 57, "y": 513, "width": 288, "height": 48}, "tree_hash": "55443e47", "timestamp": 1774760837.300423}
+{"type": "step", "step": 5, "action": "tap", "params": {"ref": 3}, "target": {"label": "Done", "type": "XCUIElementTypeButton", "value": "", "x": 346, "y": 82, "width": 36, "height": 36}, "tree_hash": "cace4994", "timestamp": 1774760842.762388}
+{"type": "step", "step": 6, "action": "tap", "params": {"ref": 14}, "target": {"label": "Reminders, 1 reminder", "type": "XCUIElementTypeCell", "value": ", Blue", "x": 16, "y": 560, "width": 370, "height": 63}, "tree_hash": "65ce68b3", "timestamp": 1774760847.193389}
+{"type": "step", "step": 7, "action": "done", "params": {"summary": "The reminder \"Vedant\" has been successfully added and is visible on the screen."}, "target": null, "tree_hash": "aaf303eb", "timestamp": 1774760849.1470778}
+{"type": "footer", "total_steps": 7, "finished_at": 1774760849.795447}
