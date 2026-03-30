@@ -1,0 +1,6 @@
+{"type": "header", "task": "Send the gold price of $4,509.40 to the first person in iMessage.", "started_at": 1774794257.8596601, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "9875d0b0", "timestamp": 1774794270.7044852}
+{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 6, "text": "$4,509.40"}, "target": {"label": "Message", "type": "XCUIElementTypeTextField", "value": "iMessage", "x": 79, "y": 817, "width": 263, "height": 41}, "tree_hash": "d2e33fd4", "timestamp": 1774794275.06914}
+{"type": "step", "step": 3, "action": "tap", "params": {"ref": 7}, "target": {"label": "Send", "type": "XCUIElementTypeButton", "value": "", "x": 341, "y": 516, "width": 39, "height": 28}, "tree_hash": "f496be7e", "timestamp": 1774794278.753483}
+{"type": "step", "step": 4, "action": "done", "params": {"summary": "Sent the gold price of $4,509.40 via iMessage."}, "target": null, "tree_hash": "5d6ce240", "timestamp": 1774794281.263199}
+{"type": "footer", "total_steps": 4, "finished_at": 1774794282.381979}

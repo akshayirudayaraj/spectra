@@ -1,0 +1,12 @@
+{"type": "header", "task": "Send the price of apple stock to the first person in imessage", "started_at": 1774794620.26753, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.stocks"}, "target": null, "tree_hash": "1c8b0a3c", "timestamp": 1774794627.2305942}
+{"type": "step", "step": 2, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "1c8b0a3c", "timestamp": 1774794631.27909}
+{"type": "step", "step": 3, "action": "tap_xy", "params": {"x": 500, "y": 170}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794635.948975}
+{"type": "step", "step": 4, "action": "navigate", "params": {"url": "https://www.google.com/search?q=apple+stock+price"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794642.65096}
+{"type": "step", "step": 6, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794648.877388}
+{"type": "step", "step": 7, "action": "tap", "params": {"ref": 2}, "target": {"label": "Messages", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 61, "width": 44, "height": 45}, "tree_hash": "86ca3c4b", "timestamp": 1774794652.5647051}
+{"type": "step", "step": 8, "action": "tap", "params": {"ref": 2}, "target": {"label": "+1 (888) 555-1212, $4,509.40, 10:24 AM", "type": "XCUIElementTypeCell", "value": "", "x": 0, "y": 116, "width": 402, "height": 87}, "tree_hash": "f7d996ce", "timestamp": 1774794656.391243}
+{"type": "step", "step": 9, "action": "type_text", "params": {"ref": 6, "text": "248.80 USD"}, "target": {"label": "Message", "type": "XCUIElementTypeTextField", "value": "iMessage", "x": 90, "y": 805, "width": 240, "height": 41}, "tree_hash": "86ca3c4b", "timestamp": 1774794660.50003}
+{"type": "step", "step": 10, "action": "tap", "params": {"ref": 7}, "target": {"label": "Send", "type": "XCUIElementTypeButton", "value": "", "x": 341, "y": 516, "width": 39, "height": 28}, "tree_hash": "273d2348", "timestamp": 1774794665.6485481}
+{"type": "step", "step": 11, "action": "done", "params": {"summary": "I have successfully sent the Apple stock price (248.80 USD) to the first contact in Messages."}, "target": null, "tree_hash": "38d14ce6", "timestamp": 1774794668.4176261}
+{"type": "footer", "total_steps": 11, "finished_at": 1774794669.796479}

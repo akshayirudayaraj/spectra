@@ -1,0 +1,8 @@
+{"type": "header", "task": "Send price of nvidia to the first person in iMessage", "started_at": 1774795987.6708212, "version": 1}
+{"type": "step", "step": 1, "action": "navigate", "params": {"url": "https://www.google.com/search?q=nvidia+stock+price"}, "target": null, "tree_hash": "1c8b0a3c", "timestamp": 1774795998.457022}
+{"type": "step", "step": 3, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774796006.900171}
+{"type": "step", "step": 4, "action": "batch", "params": {}, "target": null, "tree_hash": "d43f976f", "timestamp": 1774796011.685343}
+{"type": "step", "step": 5, "action": "type_text", "params": {"text": "NVIDIA price is 167.52 USD", "ref": 6}, "target": {"label": "Message", "type": "XCUIElementTypeTextField", "value": "iMessage", "x": 90, "y": 805, "width": 240, "height": 41}, "tree_hash": "935997d3", "timestamp": 1774796018.292554}
+{"type": "step", "step": 6, "action": "tap", "params": {"ref": 7}, "target": {"label": "Send", "type": "XCUIElementTypeButton", "value": "", "x": 341, "y": 516, "width": 39, "height": 28}, "tree_hash": "6cb5554e", "timestamp": 1774796023.4164858}
+{"type": "step", "step": 7, "action": "done", "params": {"summary": "I've sent the NVIDIA stock price of 167.52 USD to the first contact in iMessage."}, "target": null, "tree_hash": "20510a4a", "timestamp": 1774796027.932223}
+{"type": "footer", "total_steps": 7, "finished_at": 1774796028.919861}

@@ -1,4 +1,0 @@
-{"type": "header", "task": "Opened Spectra", "started_at": 1774755286.808832, "version": 1}
-{"type": "step", "step": 3, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "be01278d", "timestamp": 1774755439.792465}
-{"type": "step", "step": 5, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": null, "timestamp": 1774755480.3005419}
-{"type": "footer", "total_steps": 5, "finished_at": 1774755482.563814}

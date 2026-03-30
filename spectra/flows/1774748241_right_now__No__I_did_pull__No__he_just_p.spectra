@@ -1,8 +1,0 @@
-{"type": "header", "task": "right now. No, I did pull. No, he just pushed like he's just pushed. I just pushed. Wait, we go back. What is-", "started_at": 1774748241.109855, "version": 1}
-{"type": "step", "step": 1, "action": "tap", "params": {"ref": 1}, "target": null, "tree_hash": null, "timestamp": 1774748252.194703}
-{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 5, "text": "right now. No, I did pull. No, he just pushed like he's just pushed. I just pushed. Wait, we go back. What is-"}, "target": {"label": "", "type": "XCUIElementTypeTextField", "value": "Type a task...", "x": 20, "y": 785, "width": 328, "height": 34}, "tree_hash": "5fbb4c9b", "timestamp": 1774748258.8961852}
-{"type": "step", "step": 3, "action": "tap_xy", "params": {"y": 603, "x": 917}, "target": null, "tree_hash": "119d965c", "timestamp": 1774748268.224341}
-{"type": "step", "step": 4, "action": "tap_xy", "params": {"y": 603, "x": 917}, "target": null, "tree_hash": "f0da5032", "timestamp": 1774748276.364301}
-{"type": "step", "step": 5, "action": "tap", "params": {"ref": 2}, "target": {"label": "Back", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 62, "width": 44, "height": 44}, "tree_hash": "382fc4a4", "timestamp": 1774748280.120182}
-{"type": "step", "step": 7, "action": "tap", "params": {"ref": 2}, "target": {"label": "Back", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 62, "width": 44, "height": 44}, "tree_hash": "382fc4a4", "timestamp": 1774748406.904634}
-{"type": "step", "step": 8, "action": "tap", "params": {"ref": 2}, "target": {"label": "Not now", "type": "XCUIElementTypeButton", "value": "", "x": 116, "y": 203, "width": 76, "height": 27}, "tree_hash": "47f5cb8c", "timestamp": 1774748412.963125}

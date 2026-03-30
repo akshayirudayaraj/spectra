@@ -1,0 +1,7 @@
+{"type": "header", "task": "Every 30 seconds send the price of gold to the first person in imessages", "started_at": 1774794330.154306, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "99e9cfc1", "timestamp": 1774794346.154662}
+{"type": "step", "step": 2, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794371.0542378}
+{"type": "step", "step": 3, "action": "navigate", "params": {"url": "https://www.google.com/search?q=current+gold+price"}, "target": null, "tree_hash": "86ca3c4b", "timestamp": 1774794377.746115}
+{"type": "step", "step": 4, "action": "schedule", "params": {"task": "Send the current price of gold to +1 (888) 555-1212 in Messages.", "recurrence": "every 30 seconds"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794381.480669}
+{"type": "step", "step": 5, "action": "done", "params": {"summary": "Scheduled a task to send the current gold price (4,521.30 USD) to +1 (888) 555-1212 in Messages every 30 seconds."}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794386.876482}
+{"type": "footer", "total_steps": 5, "finished_at": 1774794387.959567}

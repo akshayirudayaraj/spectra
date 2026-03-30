@@ -1,0 +1,9 @@
+{"type": "header", "task": "Send the stock price of Microsoft to the first person in iMessage", "started_at": 1774795180.890368, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "e745efa8", "timestamp": 1774795193.7515898}
+{"type": "step", "step": 2, "action": "navigate", "params": {"url": "https://www.google.com/search?q=microsoft+stock+price"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774795199.4994078}
+{"type": "step", "step": 4, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774795206.6632771}
+{"type": "step", "step": 5, "action": "tap", "params": {"ref": 2}, "target": {"label": "+1 (888) 555-1212, NVIDIA stock price is 167.52 USD, 10:34 AM", "type": "XCUIElementTypeCell", "value": "", "x": 0, "y": 116, "width": 402, "height": 87}, "tree_hash": "516c02c7", "timestamp": 1774795209.817322}
+{"type": "step", "step": 6, "action": "type_text", "params": {"ref": 6, "text": "356.77 USD"}, "target": {"label": "Message", "type": "XCUIElementTypeTextField", "value": "iMessage", "x": 90, "y": 805, "width": 240, "height": 41}, "tree_hash": "450e128f", "timestamp": 1774795215.6733398}
+{"type": "step", "step": 7, "action": "tap", "params": {"ref": 7}, "target": {"label": "Send", "type": "XCUIElementTypeButton", "value": "", "x": 341, "y": 516, "width": 39, "height": 28}, "tree_hash": "0494bd87", "timestamp": 1774795220.202}
+{"type": "step", "step": 8, "action": "done", "params": {"summary": "Sent the Microsoft stock price (356.77 USD) to the first contact in iMessage."}, "target": null, "tree_hash": "ff880e36", "timestamp": 1774795224.5653892}
+{"type": "footer", "total_steps": 8, "finished_at": 1774795226.3077672}

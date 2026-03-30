@@ -1,8 +1,0 @@
-{"type": "header", "task": "Go to the new york times website and then open the first article you see", "started_at": 1774757091.1490932, "version": 1}
-{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "a7f1410f", "timestamp": 1774757101.006347}
-{"type": "step", "step": 2, "action": "type_text", "params": {"ref": 3, "text": "nytimes.com\n"}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200enytimes.com", "x": 151, "y": 806, "width": 101, "height": 21}, "tree_hash": "d9469ae7", "timestamp": 1774757123.482819}
-{"type": "step", "step": 3, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "d9469ae7", "timestamp": 1774757131.129576}
-{"type": "step", "step": 4, "action": "wait", "params": {"seconds": 2}, "target": null, "tree_hash": "d9469ae7", "timestamp": 1774757138.770711}
-{"type": "step", "step": 5, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "d9469ae7", "timestamp": 1774757213.6202729}
-{"type": "step", "step": 6, "action": "type_text", "params": {"text": "nytimes.com\n", "ref": 3}, "target": {"label": "Address", "type": "XCUIElementTypeTextField", "value": "\u200enytimes.com", "x": 151, "y": 806, "width": 101, "height": 21}, "tree_hash": "d9469ae7", "timestamp": 1774757281.465696}
-{"type": "footer", "total_steps": 6, "finished_at": 1774757283.945249}

@@ -1,9 +1,0 @@
-{"type": "header", "task": "Could be directions to Brown University.", "started_at": 1774742149.4820108, "version": 1}
-{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.Maps"}, "target": null, "tree_hash": "5e9b18f6", "timestamp": 1774742156.293956}
-{"type": "step", "step": 2, "action": "tap", "params": {"ref": 7}, "target": {"label": "Directions", "type": "XCUIElementTypeButton", "value": "", "x": 23, "y": 565, "width": 84, "height": 52}, "tree_hash": "fb916ee4", "timestamp": 1774742159.46771}
-{"type": "step", "step": 3, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "c802d2a9", "timestamp": 1774742165.995264}
-{"type": "step", "step": 4, "action": "tap", "params": {"ref": 16}, "target": {"label": "1 day 19 hr, 3:17\u00a0ETA\u00a0\u00b7\u00a03,081 mi, Fastest", "type": "XCUIElementTypeCell", "value": "", "x": 0, "y": 432, "width": 402, "height": 156}, "tree_hash": "b1cf4eb9", "timestamp": 1774742172.156054}
-{"type": "step", "step": 5, "action": "scroll", "params": {"direction": "down"}, "target": null, "tree_hash": "3bd652c5", "timestamp": 1774742177.361654}
-{"type": "step", "step": 6, "action": "tap", "params": {"ref": 17}, "target": {"label": "Steps", "type": "XCUIElementTypeButton", "value": "", "x": 298, "y": 478, "width": 72, "height": 64}, "tree_hash": "b1cf4eb9", "timestamp": 1774742180.317756}
-{"type": "step", "step": 7, "action": "done", "params": {"summary": "I have successfully displayed the directions to Brown University, including the route and the specific steps."}, "target": null, "tree_hash": "42e411f3", "timestamp": 1774742183.655204}
-{"type": "footer", "total_steps": 7, "finished_at": 1774742185.076566}

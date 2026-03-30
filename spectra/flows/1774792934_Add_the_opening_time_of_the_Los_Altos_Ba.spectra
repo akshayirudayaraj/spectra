@@ -1,0 +1,14 @@
+{"type": "header", "task": "Add the opening time of the Los Altos Barbershop because i need a haircut", "started_at": 1774792934.9170702, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "1c8b0a3c", "timestamp": 1774792942.572404}
+{"type": "step", "step": 2, "action": "tap_xy", "params": {"y": 2403, "x": 603}, "target": null, "tree_hash": "dd358609", "timestamp": 1774792947.230366}
+{"type": "step", "step": 3, "action": "navigate", "params": {"url": "https://www.google.com/search?q=Los+Altos+Barbershop+opening+time"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774792953.457908}
+{"type": "step", "step": 4, "action": "open_app", "params": {"bundle_id": "com.apple.reminders"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774792970.17913}
+{"type": "step", "step": 5, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "4d7025f1", "timestamp": 1774792974.223265}
+{"type": "step", "step": 6, "action": "open_app", "params": {"bundle_id": "com.apple.reminders"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774792978.330285}
+{"type": "step", "step": 7, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "4d7025f1", "timestamp": 1774792982.2197309}
+{"type": "step", "step": 8, "action": "open_app", "params": {"bundle_id": "com.apple.reminders"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774792986.756592}
+{"type": "step", "step": 9, "action": "tap", "params": {"ref": 15}, "target": {"label": "New Reminder", "type": "XCUIElementTypeButton", "value": "", "x": 331, "y": 803, "width": 38, "height": 38}, "tree_hash": "4d7025f1", "timestamp": 1774792990.761843}
+{"type": "step", "step": 10, "action": "type_text", "params": {"ref": 5, "text": "Los Altos Barbershop: 8 AM Tue-Fri, 9 AM Sat"}, "target": {"label": "Title", "type": "XCUIElementTypeTextField", "value": "", "x": 36, "y": 157, "width": 330, "height": 35}, "tree_hash": "7bef20d1", "timestamp": 1774792997.670345}
+{"type": "step", "step": 11, "action": "tap", "params": {"ref": 3}, "target": {"label": "Done", "type": "XCUIElementTypeButton", "value": "", "x": 346, "y": 82, "width": 36, "height": 36}, "tree_hash": "9c08df6c", "timestamp": 1774793003.2276008}
+{"type": "step", "step": 12, "action": "done", "params": {"summary": "Added a reminder with the opening times for Los Altos Barbershop: 8 AM Tue-Fri and 9 AM Sat."}, "target": null, "tree_hash": "3d40386a", "timestamp": 1774793006.0394518}
+{"type": "footer", "total_steps": 12, "finished_at": 1774793007.06914}

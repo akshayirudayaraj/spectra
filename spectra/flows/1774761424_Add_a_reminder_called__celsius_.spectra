@@ -1,6 +1,0 @@
-{"type": "header", "task": "Add a reminder called \u201ccelsius\u201d", "started_at": 1774761424.111138, "version": 1}
-{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.reminders"}, "target": null, "tree_hash": "6524b88a", "timestamp": 1774761431.600438}
-{"type": "step", "step": 2, "action": "tap", "params": {"ref": 4}, "target": {"label": "New Reminder", "type": "XCUIElementTypeButton", "value": "", "x": 331, "y": 803, "width": 38, "height": 38}, "tree_hash": "aad4027f", "timestamp": 1774761434.289802}
-{"type": "step", "step": 3, "action": "batch", "params": {}, "target": null, "tree_hash": "8dbd690c", "timestamp": 1774761440.172092}
-{"type": "step", "step": 4, "action": "done", "params": {"summary": "The reminder \"celsius\" has been successfully added to the Reminders app."}, "target": null, "tree_hash": "ad23c674", "timestamp": 1774761441.916857}
-{"type": "footer", "total_steps": 4, "finished_at": 1774761442.751335}

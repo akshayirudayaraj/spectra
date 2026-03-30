@@ -1,0 +1,3 @@
+{"type": "header", "task": "Send the gold price of $4,509.40 to the first person in iMessage.", "started_at": 1774794188.5849311, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "adeb5330", "timestamp": 1774794198.6252642}
+{"type": "footer", "total_steps": 1, "finished_at": 1774794226.6007738}

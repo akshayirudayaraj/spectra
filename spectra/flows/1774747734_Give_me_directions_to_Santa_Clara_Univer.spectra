@@ -1,3 +1,0 @@
-{"type": "header", "task": "Give me directions to Santa Clara Universe.", "started_at": 1774747734.897762, "version": 1}
-{"type": "step", "step": 1, "action": "stuck", "params": {"reason": "Lost connection to WDA on iOS Simulator (screenshot failed)."}, "target": null, "tree_hash": "dc973568", "timestamp": 1774747738.385121}
-{"type": "footer", "total_steps": 1, "finished_at": 1774747740.567179}

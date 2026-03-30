@@ -1,0 +1,14 @@
+{"type": "header", "task": "Send the stock price of Nvidia to first person in imessage", "started_at": 1774794495.739085, "version": 1}
+{"type": "step", "step": 1, "action": "open_app", "params": {"bundle_id": "com.apple.stocks"}, "target": null, "tree_hash": "1c8b0a3c", "timestamp": 1774794503.062182}
+{"type": "step", "step": 2, "action": "open_app", "params": {"bundle_id": "com.apple.mobilesafari"}, "target": null, "tree_hash": "51f254ba", "timestamp": 1774794508.179256}
+{"type": "step", "step": 3, "action": "tap_xy", "params": {"x": 508, "y": 162}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794513.433165}
+{"type": "step", "step": 4, "action": "type_text", "params": {"text": "Nvidia stock price", "ref": 4}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794518.245449}
+{"type": "step", "step": 5, "action": "tap_xy", "params": {"x": 400, "y": 125}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794522.1715999}
+{"type": "step", "step": 6, "action": "navigate", "params": {"url": "https://www.google.com/search?q=nvidia+stock+price"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794528.216759}
+{"type": "step", "step": 8, "action": "open_app", "params": {"bundle_id": "com.apple.MobileSMS"}, "target": null, "tree_hash": "dd358609", "timestamp": 1774794533.934203}
+{"type": "step", "step": 9, "action": "tap", "params": {"ref": 2}, "target": {"label": "Messages", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 61, "width": 44, "height": 45}, "tree_hash": "86ca3c4b", "timestamp": 1774794538.8600829}
+{"type": "step", "step": 10, "action": "batch", "params": {}, "target": null, "tree_hash": "f7d996ce", "timestamp": 1774794545.993523}
+{"type": "step", "step": 11, "action": "tap", "params": {"ref": 2}, "target": {"label": "Messages", "type": "XCUIElementTypeButton", "value": "", "x": 16, "y": 61, "width": 44, "height": 45}, "tree_hash": "86ca3c4b", "timestamp": 1774794568.7481868}
+{"type": "step", "step": 12, "action": "batch", "params": {}, "target": null, "tree_hash": "f7d996ce", "timestamp": 1774794575.700428}
+{"type": "step", "step": 13, "action": "type_text", "params": {"text": "Nvidia is at 167.52 USD.", "ref": 6}, "target": {"label": "Message", "type": "XCUIElementTypeTextField", "value": "iMessage", "x": 90, "y": 805, "width": 240, "height": 41}, "tree_hash": "86ca3c4b", "timestamp": 1774794594.606816}
+{"type": "footer", "total_steps": 13, "finished_at": 1774794596.8392608}
