@@ -118,6 +118,7 @@ def run_agent(
     perception: str = 'tree',
     learn: bool = True,
     stats: dict | None = None,
+    model: str | None = None,
 ) -> bool:
     """Execute a natural language task on the iOS simulator.
 
@@ -138,6 +139,7 @@ def run_agent(
             one run can't teach the next.
         stats: Optional dict filled with outcome, steps, elapsed_s, history and
             planner token usage when the run ends.
+        model: Planner model override (default: Planner's default).
 
     Returns:
         True if task completed (done), False if stuck or timed out
@@ -148,7 +150,7 @@ def run_agent(
     except AttributeError:
         pass
     reader = TreeReader(wda_url, client=shared_client, perception=perception)
-    planner = Planner()
+    planner = Planner(model) if model else Planner()
     executor = Executor(wda_url, client=shared_client)
     detector = StuckDetector()
     episodic = EpisodicMemory()

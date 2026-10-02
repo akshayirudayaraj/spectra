@@ -1,0 +1,82 @@
+TASK: Create a new contact named Alan Hopper with mobile number 5559816033 and work number 4159860281
+MODE: screenshot_ocr
+
+    [timing] observe=1.42s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=37
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(182,38) | [2] "Contacts" @(499,96) | [3] "A" @(58,155) | [4] "GA" @(94,210) | [5] "Grace Allen" @(287,210) | 
+  Step 1: tap — Tap the "+" button to create a new contact.
+    [think] 2.80s | input={'reasoning': 'Tap the "+" button to create a new contact.', 'ref': 37}
+    → Tapped [37] '+' at (348,822)
+    [timing] observe=1.46s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=20
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(184,37) | [2] "New Contact" @(498,115) | [3] "Add Photo" @(499,393) | [4] "First name" @(189,477) | [5] "La
+  Step 2: type_text — Enter the contact's first name.
+    [think] 2.47s | input={'reasoning': "Enter the contact's first name.", 'ref': 4, 'text': 'Alan'}
+    → Typed 'Alan' into [4]
+    [timing] observe=1.35s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=27
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(184,37) | [2] "New Contact" @(499,114) | [3] "A" @(503,247) | [4] "Add Photo" @(500,393) | [5] "Alan" @(137
+  Step 3: type_text — Enter the contact's last name.
+    [think] 2.27s | input={'ref': 6, 'reasoning': "Enter the contact's last name.", 'text': 'Hopper'}
+    → Typed 'Hopper' into [6]
+    [timing] observe=1.28s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=26
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(184,37) | [2] "New Contact" @(498,115) | [3] "AH" @(493,252) | [4] "Add Photo" @(500,393) | [5] "Alan" @(13
+  Step 4: scroll — Scroll down to find phone number fields.
+    [think] 2.59s | input={'direction': 'down', 'reasoning': 'Scroll down to find phone number fields.'}
+    → Scrolled down
+    [timing] observe=1.43s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=21
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(182,38) | [2] "• • • •" @(738,42) | [3] "X" @(94,115) | [4] "New Contact" @(499,114) | [5] "ada pronouns" @
+  Step 5: scroll — I need to find the 'add phone' button, which I likely scrolled past.
+    [think] 3.24s | input={'reasoning': "I need to find the 'add phone' button, which I likely scrolled past.", 'direction': 'up'}
+    → Scrolled up
+    [timing] observe=1.37s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=16
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(184,37) | [2] "New Contact" @(498,115) | [3] "AH" @(493,252) | [4] "Add Photo" @(500,392) | [5] "Alan" @(13
+  Step 6: tap — Tap 'add phone' to start entering phone numbers.
+    [think] 4.74s | input={'ref': 9, 'reasoning': "Tap 'add phone' to start entering phone numbers."}
+    → Tapped [9] 'add phone' at (116,591)
+    [timing] observe=1.46s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=28
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(184,38) | [2] "New Contact" @(499,114) | [3] "Add Photo" @(499,279) | [4] "Alan" @(134,364) | [5] "Hopper" 
+  Step 7: type_text — Entering the mobile number into the 'Phone' field which is currently labeled as 'mobile'.
+    [think] 2.51s | input={'ref': 7, 'reasoning': "Entering the mobile number into the 'Phone' field which is currently labeled as 'mobile'.", 'text': '5559816033'}
+    → Typed '5559816033' into [7]
+    [timing] observe=1.37s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=28
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(184,38) | [2] "New Contact" @(499,114) | [3] "Add Photo" @(499,279) | [4] "Alan" @(134,364) | [5] "Hopper" 
+  Step 8: tap — The mobile number is already entered. I need to tap 'add phone' to enter the work number.
+    [think] 3.56s | input={'ref': 10, 'reasoning': "The mobile number is already entered. I need to tap 'add phone' to enter the work number."}
+    → Tapped [10] 'add phone' at (113,545)
+    [timing] observe=1.41s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=30
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(182,38) | [2] "New Contact" @(499,115) | [3] "Add Photo" @(500,218) | [4] "Alan" @(134,303) | [5] "Hopper" 
+  Step 9: tap — Change the phone label from 'home' to 'work' for the second phone number.
+    [think] 3.05s | input={'reasoning': "Change the phone label from 'home' to 'work' for the second phone number.", 'ref': 10}
+    → Tapped [10] 'home >' at (126,493)
+    [timing] observe=1.38s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=15
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:35" @(182,37) | [2] "..SO" @(810,37) | [3] "Label" @(499,114) | [4] "mobile" @(157,181) | [5] "home" @(146,240) | [
+  Step 10: tap — The second phone number should be labeled as 'work'. I'm selecting 'work' from the label menu.
+    [think] 3.25s | input={'ref': 6, 'reasoning': "The second phone number should be labeled as 'work'. I'm selecting 'work' from the label menu."}
+    → Tapped [6] 'work' at (55,262)
+    [timing] observe=1.48s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=31
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:36" @(182,38) | [2] "New Contact" @(499,115) | [3] "Add Photo" @(500,218) | [4] "Alan" @(134,303) | [5] "Hopper" 
+  Step 11: type_text — Entering the work phone number 4159860281 into the field labeled 'work'.
+    [think] 3.30s | input={'text': '4159860281', 'ref': 10, 'reasoning': "Entering the work phone number 4159860281 into the field labeled 'work'."}
+    → Typed '4159860281' into [10]
+    [timing] observe=1.40s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=30
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:36" @(182,38) | [2] "New Contact" @(499,115) | [3] "Add Photo" @(500,218) | [4] "Alan" @(134,303) | [5] "Hopper" 
+  Step 12: tap_xy — All contact details (Name: Alan Hopper, Mobile: 5559816033, Work: 4159860281) are correctly entered. Tapping the checkmark icon in the top right to save.
+    [think] 3.12s | input={'reasoning': 'All contact details (Name: Alan Hopper, Mobile: 5559816033, Work: 4159860281) are correctly entered. Tapping the checkmark icon in the top right to save.', 'y': 115, 'x': 907}
+    → Tapped (1094,302) → (364,100) [scaled @3.0x]
+    [timing] observe=1.59s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=11
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:36" @(184,37) | [2] "Edit" @(880,95) | [3] "AH" @(493,279) | [4] "Alan Hopper" @(499,462) | [5] "Contact Photo & 
+  Step 13: done — Created a new contact for Alan Hopper with mobile number 555-981-6033 and work number 415-986-0281.
+    [think] 3.53s | input={'summary': 'Created a new contact for Alan Hopper with mobile number 555-981-6033 and work number 415-986-0281.'}
+    → DONE: Created a new contact for Alan Hopper with mobile number 555-981-6033 and work number 415-986-0281.
+  Finished in 13 steps, 86.0s

@@ -6,6 +6,8 @@ import time
 
 import wda
 
+_TEXT_INPUTS = ('TextField', 'SearchField', 'TextView', 'SecureTextField')
+
 # simctl device for app launches; set SPECTRA_SIM_UDID when several simulators are booted.
 SIM_DEVICE = os.environ.get('SPECTRA_SIM_UDID', 'booted')
 
@@ -69,6 +71,10 @@ class Executor:
             return self._js_click(el['js_index'], el.get('label', ''))
         x = el['x'] + el['width'] // 2
         y = el['y'] + el['height'] // 2
+        if 'Switch' in el.get('type', '') and el['width'] > 3 * el['height']:
+            # A Switch row spans the whole cell; its center is the label, which
+            # doesn't toggle on iOS 26. Tap the knob at the trailing edge instead.
+            x = el['x'] + el['width'] - 50
         self.client.tap(x, y)
         return f"Tapped [{ref}] '{el.get('label', '')}' at ({x},{y})"
 
@@ -131,15 +137,20 @@ class Executor:
         return self._window_size
 
     def _type(self, ref: int, text: str, ref_map: dict) -> str:
-        if not ref_map:
-            # Screenshot mode has no refs: the planner focuses the field with
-            # tap_xy first, so type into whatever currently has focus.
+        if not ref_map or (ref == 0 and ref not in ref_map):
+            # Screenshot modes have no refs for fields: the planner focuses the field
+            # with tap_xy first, so type into whatever currently has focus.
             self.client.send_keys(text)
             return f"Typed '{text}' into focused field"
         tap_result = self._tap(ref, ref_map)
         if tap_result.startswith('Error'):
             return tap_result
         time.sleep(0.1)
+        el = ref_map[ref]
+        if el.get('value') and any(t in el.get('type', '') for t in _TEXT_INPUTS):
+            # type_text sets the field: clear what's there instead of appending to it.
+            # The tree knows the current value; deleting a placeholder is harmless.
+            self.client.send_keys('\b' * (len(el['value']) + 2))
         self.client.send_keys(text)
         return f"Typed '{text}' into [{ref}]"
 

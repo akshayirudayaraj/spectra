@@ -1,0 +1,94 @@
+TASK: Create a new contact named Donald Liskov with mobile number 5559828330 and work number 4159870994
+MODE: screenshot_raw@gemini-3.1-pro-preview
+
+    [timing] observe=1.19s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the add new contact button
+    [think] 3.86s | input={'reasoning': 'Tap the add new contact button', 'x': 870, 'y': 935}
+    → Tapped (1049,2452) → (349,817) [scaled @3.0x]
+    [timing] observe=1.14s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  [planner] Gemini error (attempt 1/6): Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidat... retrying in 1s
+  [planner] Gemini error (attempt 2/6): Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidat... retrying in 1s
+  [planner] Gemini error (attempt 3/6): Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidat... retrying in 1s
+  [planner] Gemini error (attempt 4/6): Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidat... retrying in 1s
+  [planner] Gemini error (attempt 5/6): Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidat... retrying in 1s
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 123, in run_one
+    _agent(prompt, item['mode'], max_steps, stats)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 99, in _agent
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True, wda_url=sim.WDA_URL,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=perception, learn=False, stats=stats, model=model or None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 287, in run_agent
+    action = planner.next_action_vision(
+        screenshot_b64=metadata['screenshot_b64'],
+    ...<7 lines>...
+        prev_trees=context_trees,
+    )
+  File "/Users/akshayirudayaraj/development/spectra/core/planner.py", line 569, in next_action_vision
+    return self._generate(contents)
+           ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/akshayirudayaraj/development/spectra/core/planner.py", line 505, in _generate
+    return self._extract_action(response)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/akshayirudayaraj/development/spectra/core/planner.py", line 607, in _extract_action
+    raise RuntimeError(f"Gemini returned no function call: {response}")
+RuntimeError: Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidates=[Candidate(
+  content=Content(
+    parts=[
+      Part(
+        text='',
+        thought_signature=b'\x12\xfc\x15\n\xf9\x15\x01i\x14}\x13\\"q\x98\\q\x96=\xe6\xe2\x94\x0c\x03P\x85\x95Z|\xa33rQX]W\x99u\xcaW\xff\x0b\xf3qu\xc68:\x96\xea=\xa3\x19\xb2\xea;\x91\xb9\xbfg\r\xa4\xc2\xcb=\xe2N\xcd\xdaq\xb2\xd7\xbe7B\xea\x84\xcf|\xdf\xe5\xc4\xb9T\x95;`9\xfe\x1d\xc7Y9\xc4,\xfe....'
+      ),
+    ],
+    role='model'
+  ),
+  finish_reason=<FinishReason.MALFORMED_FUNCTION_CALL: 'MALFORMED_FUNCTION_CALL'>,
+  index=0
+)] create_time=None model_version='gemini-3.1-pro-preview' prompt_feedback=None response_id='u7O_atrlL6e1_PUPmv6Y2Ao' usage_metadata=GenerateContentResponseUsageMetadata(
+  cache_tokens_details=[
+    ModalityTokenCount(
+      modality=<MediaModality.TEXT: 'TEXT'>,
+      token_count=3617
+    ),
+  ],
+  cached_content_token_count=3617,
+  candidates_token_count=17,
+  prompt_token_count=5051,
+  prompt_tokens_details=[
+    ModalityTokenCount(
+      modality=<MediaModality.TEXT: 'TEXT'>,
+      token_count=3973
+    ),
+    ModalityTokenCount(
+      modality=<MediaModality.IMAGE: 'IMAGE'>,
+      token_count=1078
+    ),
+  ],
+  thoughts_token_count=984,
+  total_token_count=6052
+) model_status=None automatic_function_calling_history=[] parsed=None

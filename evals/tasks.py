@@ -263,3 +263,155 @@ TASKS: list[Task] = [
 ]
 
 TASKS_BY_ID = {t.id: t for t in TASKS}
+
+
+# ---------------------------------------------------------------------------
+# Hard suite: multi-step and multi-field tasks. Fixed before any runs on it.
+# ---------------------------------------------------------------------------
+
+_COMPANIES = ['Acme Robotics', 'Blue Harbor Labs', 'Cedar Analytics', 'Delta Foundry', 'Evergreen Systems',
+              'Firefly Studio', 'Granite Works', 'Helios Energy', 'Indigo Health', 'Juniper Logistics',
+              'Kestrel Aero', 'Lumen Optics']
+_NOTES = ['bring the receipt', 'ask about the warranty', 'use the side entrance', 'call ahead first',
+          'pay with the gift card', 'check the expiry date']
+_A11Y_RESET = ('EnhancedTextLegibilityEnabled', 'ReduceMotionEnabled', 'DarkenSystemColors', 'QuickSpeak')
+
+
+def _reset_a11y(p):
+    for key in _A11Y_RESET:
+        sim.defaults_write_bool(A11Y, key, False)
+    sim.simctl('ui', sim.UDID, 'appearance', 'light')
+
+
+def _all_keys_on(*keys, dark=False):
+    def check(p, stats):
+        got = {k: sim.defaults_read(A11Y, k) for k in keys}
+        ok = all(v == '1' for v in got.values())
+        if dark:
+            got['appearance'] = sim.appearance()
+            ok = ok and got['appearance'] == 'dark'
+        return ok, str(got)
+    return check
+
+
+def _digits(v: str) -> str:
+    return ''.join(ch for ch in v if ch.isdigit())
+
+
+def _check_contact_full(p, stats):
+    for pid in sim.contacts_named(p['first'], p['last']):
+        phones = [_digits(v) for v in sim.contact_values(pid, 3)]
+        emails = [v.lower() for v in sim.contact_values(pid, 4)]
+        org = sim.contact_organization(pid)
+        if _digits(p['phone']) in phones and p['email'] in emails and org == p['company']:
+            return True, f'contact {pid} complete'
+        detail = f'phones={phones} emails={emails} org={org!r}'
+    return False, detail if sim.contacts_named(p['first'], p['last']) else 'no contact'
+
+
+def _check_two_phones(p, stats):
+    for pid in sim.contacts_named(p['first'], p['last']):
+        phones = [_digits(v) for v in sim.contact_values(pid, 3)]
+        if _digits(p['mobile']) in phones and _digits(p['work']) in phones:
+            return True, f'contact {pid} has both numbers'
+    return False, 'missing contact or number'
+
+
+def _check_added_email(p, stats):
+    ids = sim.contacts_named(p['first'], p['last'])
+    ok = any(p['email'] in [v.lower() for v in sim.contact_values(pid, 4)] for pid in ids)
+    return ok, f'{len(ids)} contact(s), email {"found" if ok else "missing"}'
+
+
+def _check_company(p, stats):
+    orgs = [sim.contact_organization(pid) for pid in sim.contacts_named(p['first'], p['last'])]
+    return p['company'] in orgs, f'orgs={orgs}'
+
+
+def _ensure_contacts(*pairs_keys):
+    def setup(p):
+        for fk, lk in pairs_keys:
+            if not sim.contacts_named(p[fk], p[lk]):
+                sim.import_contact(p[fk], p[lk], p.get('old_company'))
+    return setup
+
+
+def _check_reminder(pred, desc):
+    def check(p, stats):
+        rows = sim.reminders_titled(p['title'])
+        return any(pred(r, p) for r in rows), f'{desc}: {rows}'
+    return check
+
+
+def _check_allday(p, stats):
+    tomorrow = dt.date.today() + dt.timedelta(days=1)
+    events = sim.events_titled(p['title'])
+    # All-day events are stored at UTC midnight, so compare dates in UTC.
+    ok = any(e['all_day'] and dt.datetime.fromtimestamp(e['start'], dt.timezone.utc).date() == tomorrow for e in events)
+    return ok, f'events={events}'
+
+
+HARD_TASKS: list[Task] = [
+    Task(id='h_contact_full', app=CONTACTS, category='hard-form',
+         prompt='Create a new contact named {first} {last} with phone number {phone}, email {email}, and company {company}',
+         params=lambda k: (lambda f, l: dict(first=f, last=l, phone=f'555{(3_141_592 + k * 6_151) % 10_000_000:07d}',
+                                             email=f'{f}.{l}.{k}@example.org'.lower(), company=_COMPANIES[k % 12]))(*_person(k, 20)),
+         check=_check_contact_full),
+    Task(id='h_contact_two_phones', app=CONTACTS, category='hard-form',
+         prompt='Create a new contact named {first} {last} with mobile number {mobile} and work number {work}',
+         params=lambda k: (lambda f, l: dict(first=f, last=l, mobile=f'555{(1_618_033 + k * 4_099) % 10_000_000:07d}',
+                                             work=f'415{(2_718_281 + k * 3_571) % 10_000_000:07d}'))(*_person(k, 30)),
+         check=_check_two_phones),
+    Task(id='h_contact_add_email', app=CONTACTS, category='hard-edit',
+         prompt="Add the email address {email} to {first} {last}'s existing contact",
+         params=lambda k: dict(first=_FIRST[(k + 3) % 12], last=f'Editor{k}', email=f'editor{k}@example.net'),
+         setup=_ensure_contacts(('first', 'last')),
+         check=_check_added_email),
+    Task(id='h_contact_company', app=CONTACTS, category='hard-edit',
+         prompt="Change the company on {first} {last}'s contact to {company}",
+         params=lambda k: dict(first=_FIRST[(k + 5) % 12], last=f'Mover{k}', old_company='Placeholder Inc',
+                               company=_COMPANIES[(k + 4) % 12]),
+         setup=_ensure_contacts(('first', 'last')),
+         check=_check_company),
+    Task(id='h_contact_delete_two', app=CONTACTS, category='hard-delete',
+         prompt='Delete the contacts {first} {last} and {first2} {last2}',
+         params=lambda k: dict(first=_FIRST[(k + 1) % 12], last=f'Gone{k}', first2=_FIRST[(k + 8) % 12], last2=f'Gone{k}b'),
+         setup=_ensure_contacts(('first', 'last'), ('first2', 'last2')),
+         check=lambda p, s: (not sim.contacts_named(p['first'], p['last']) and not sim.contacts_named(p['first2'], p['last2']),
+                             f"{len(sim.contacts_named(p['first'], p['last']))}+{len(sim.contacts_named(p['first2'], p['last2']))} left")),
+    Task(id='h_reminder_in_list', app=REMINDERS, category='hard-multi',
+         prompt='Create a new reminders list called "{name}" and add a reminder "{title}" to it',
+         params=lambda k: dict(name=f'{_LIST_A[(k + 3) % 8]} {_LIST_B[(k + 1) % 4]} L{k}',
+                               title=f'{_ERRAND_VERB[k % 3]} {_ERRAND_OBJ[(k + 7) % 12]} in-list {k}'),
+         check=_check_reminder(lambda r, p: r['list'] == p['name'], 'reminders')),
+    Task(id='h_reminder_two', app=REMINDERS, category='hard-multi',
+         prompt='Create two reminders: "{title}" and "{title2}"',
+         params=lambda k: dict(title=f'{_ERRAND_VERB[(k + 2) % 3]} {_ERRAND_OBJ[(k + 3) % 12]} first {k}',
+                               title2=f'{_ERRAND_VERB[k % 3]} {_ERRAND_OBJ[(k + 9) % 12]} second {k}'),
+         check=lambda p, s: (bool(sim.reminders_titled(p['title'])) and bool(sim.reminders_titled(p['title2'])),
+                             f"{len(sim.reminders_titled(p['title']))}+{len(sim.reminders_titled(p['title2']))} found")),
+    Task(id='h_reminder_flagged', app=REMINDERS, category='hard-form',
+         prompt='Create a reminder called "{title}" and flag it',
+         params=lambda k: dict(title=f'{_ERRAND_VERB[(k + 1) % 3]} {_ERRAND_OBJ[(k + 5) % 12]} flag {k}'),
+         check=_check_reminder(lambda r, p: r['flagged'] == 1, 'reminders')),
+    Task(id='h_reminder_note', app=REMINDERS, category='hard-form',
+         prompt='Create a reminder called "{title}" with the note "{note}"',
+         params=lambda k: dict(title=f'{_ERRAND_VERB[k % 3]} {_ERRAND_OBJ[(k + 2) % 12]} note {k}', note=_NOTES[k % 6]),
+         check=_check_reminder(lambda r, p: p['note'].lower() in r['notes'].lower(), 'reminders')),
+    Task(id='h_settings_two_pages', app=SETTINGS, category='hard-multi',
+         prompt='Turn on Bold Text and Reduce Motion',
+         setup=_reset_a11y, check=_all_keys_on('EnhancedTextLegibilityEnabled', 'ReduceMotionEnabled')),
+    Task(id='h_settings_three_pages', app=SETTINGS, category='hard-multi',
+         prompt='Turn on Increase Contrast, turn on Speak Selection, and turn on Dark Appearance in the Developer settings',
+         setup=_reset_a11y, check=_all_keys_on('DarkenSystemColors', 'QuickSpeak', dark=True)),
+    Task(id='h_calendar_allday', app=CALENDAR, category='hard-form',
+         prompt='Create an all-day calendar event called "{title}" for tomorrow',
+         params=lambda k: dict(title=f'{_EVENT_A[(k + 2) % 8]} day {_EVENT_B[k % 4]} {k}'),
+         check=_check_allday),
+    Task(id='h_daniel_phones', app=CONTACTS, category='hard-lookup',
+         prompt='How many phone numbers does Daniel Higgins have? Report the count.',
+         check=lambda p, s: ((lambda t: ('3' in t or 'three' in t.lower()))(_summary(s)), f'summary={_summary(s)[:100]!r}')),
+]
+
+TASKS_BY_ID.update({t.id: t for t in HARD_TASKS})
+SUITES = {'base': TASKS, 'hard': HARD_TASKS, 'all': TASKS + HARD_TASKS}

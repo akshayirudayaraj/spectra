@@ -1,0 +1,62 @@
+TASK: Create a new contact named Barbara Shannon with phone number 5555443592, email barbara.shannon.2000@example.org, and company Indigo Health
+MODE: screenshot_ocr
+
+    [timing] observe=1.53s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=12
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:31" @(182,37) | [2] "Edit" @(880,95) | [3] "FR" @(500,279) | [4] "ACME ROBOTICS" @(498,442) | [5] "Frances Ritchi
+  Step 1: tap_xy — Tap the back button to return to the contacts list.
+    [think] 2.46s | input={'x': 92, 'y': 95, 'reasoning': 'Tap the back button to return to the contacts list.'}
+    → Tapped (111,249) → (37,83) [scaled @3.0x]
+    [timing] observe=1.55s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=42
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:31" @(182,38) | [2] "Contacts" @(499,96) | [3] "H" @(61,154) | [4] "DH" @(94,213) | [5] "Daniel Higgins Jr." @(35
+  Step 2: tap — Tap the "+" button to add a new contact.
+    [think] 2.14s | input={'ref': 42, 'reasoning': 'Tap the "+" button to add a new contact.'}
+    → Tapped [42] '+' at (347,822)
+    [timing] observe=1.46s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=20
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:31" @(182,37) | [2] "New Contact" @(498,115) | [3] "Add Photo" @(499,393) | [4] "First name" @(189,477) | [5] "La
+  Step 3: batch — Type the name and company into the respective fields.
+    [think] 2.34s | input={'actions': [{'action': 'type_text', 'text': 'Barbara', 'ref': 4}, {'action': 'type_text', 'ref': 5, 'text': 'Shannon'}, {'ref': 6, 'action': 'type_text', 'text': 'Indigo Health'}], 'reasoning': 'Type the name and company into the respective fields.', 'checkpoint_reason': 'First name, last name, and company are filled.'}
+    [1/3] Typed 'Barbara' into [4]
+    [2/3] Typed 'Shannon' into [5]
+    [3/3] Typed 'Indigo Health' into [6]
+    [timing] observe=1.65s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=29
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:31" @(182,37) | [2] "New Contact" @(498,115) | [3] "BS" @(496,219) | [4] "Add Photo" @(500,358) | [5] "Barbara" @
+  Step 4: batch — Tapping 'add phone' to focus the field and then typing the provided phone number.
+    [think] 3.06s | input={'checkpoint_reason': 'Phone number field is filled.', 'reasoning': "Tapping 'add phone' to focus the field and then typing the provided phone number.", 'actions': [{'action': 'tap', 'ref': 8}, {'text': '5555443592', 'ref': 0, 'action': 'type_text'}]}
+    [1/2] Tapped [8] 'add phone' at (114,560)
+    [2/2] Typed '5555443592' into focused field
+    [timing] observe=1.62s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=28
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:32" @(184,37) | [2] "New Contact" @(498,115) | [3] "Add Photo" @(500,279) | [4] "Barbara" @(167,365) | [5] "Shann
+  Step 5: scroll — The email field is not visible on the current screen, so I need to scroll down to find the 'add email' button.
+    [think] 2.67s | input={'direction': 'down', 'reasoning': "The email field is not visible on the current screen, so I need to scroll down to find the 'add email' button."}
+    → Scrolled down
+    [timing] observe=1.38s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=18
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:324" @(182,37) | [2] "New Contact" @(499,115) | [3] "Ringtone" @(176,189) | [4] "Default" @(362,186) | [5] "Text 
+  Step 6: scroll — I scrolled too far down and missed the 'add email' field. I'm scrolling up to find it.
+    [think] 4.31s | input={'direction': 'up', 'reasoning': "I scrolled too far down and missed the 'add email' field. I'm scrolling up to find it."}
+    → Scrolled up
+    [timing] observe=1.33s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=17
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:324" @(181,38) | [2] "New Contact" @(498,115) | [3] "Add Photo" @(499,287) | [4] "Barbara" @(168,372) | [5] "Shan
+  Step 7: batch — I need to add the email address to complete the contact creation.
+    [think] 3.50s | input={'reasoning': 'I need to add the email address to complete the contact creation.', 'checkpoint_reason': 'Verify the email address is typed into the field.', 'actions': [{'ref': 12, 'action': 'tap'}, {'action': 'type_text', 'ref': 0, 'text': 'barbara.shannon.2000@example.org'}]}
+    [1/2] Tapped [12] 'add email' at (113,619)
+    [2/2] Typed 'barbara.shannon.2000@example.org' into focused field
+    [timing] observe=1.67s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=36
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:32" @(182,38) | [2] "• • • •" @(738,42) | [3] "New Contact" @(499,115) | [4] "Barbara" @(168,226) | [5] "Shannon"
+  Step 8: tap_xy — The contact details have been entered. I am tapping the blue checkmark button at the top right to save the contact.
+    [think] 5.23s | input={'x': 910, 'y': 115, 'reasoning': 'The contact details have been entered. I am tapping the blue checkmark button at the top right to save the contact.'}
+    → Tapped (1097,302) → (365,100) [scaled @3.0x]
+    [timing] observe=1.48s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=11
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "9:32" @(186,37) | [2] "Edit" @(880,95) | [3] "BS" @(501,279) | [4] "INDIGO HEALTH" @(496,442) | [5] "Barbara Shanno
+  Step 9: done — Successfully created contact for Barbara Shannon with phone number 5555443592, email barbara.shannon.2000@example.org, and company Indigo Health.
+    [think] 3.33s | input={'summary': 'Successfully created contact for Barbara Shannon with phone number 5555443592, email barbara.shannon.2000@example.org, and company Indigo Health.'}
+    → DONE: Successfully created contact for Barbara Shannon with phone number 5555443592, email barbara.shannon.2000@example.org, and company Indigo Health.
+  Finished in 9 steps, 70.8s

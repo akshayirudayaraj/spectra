@@ -1,0 +1,48 @@
+TASK: Add the email address editor2000@example.net to Claude Editor2000's existing contact
+MODE: screenshot_raw
+
+    [timing] observe=1.17s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap on Claude Editor2000 to open the contact details.
+    [think] 3.53s | input={'x': 400, 'y': 685, 'reasoning': 'Tap on Claude Editor2000 to open the contact details.'}
+    → Tapped (482,1796) → (160,598) [scaled @3.0x]
+    [timing] observe=1.26s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap the 'Edit' button to enter edit mode and add the email address.
+    [think] 2.52s | input={'y': 98, 'reasoning': "Tap the 'Edit' button to enter edit mode and add the email address.", 'x': 905}
+    → Tapped (1091,257) → (363,85) [scaled @3.0x]
+    [timing] observe=1.06s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tap 'add email' to reveal the email input field.
+    [think] 3.40s | input={'reasoning': "Tap 'add email' to reveal the email input field.", 'y': 735, 'x': 500}
+    → Tapped (603,1927) → (201,642) [scaled @3.0x]
+    [timing] observe=1.07s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: batch — The email field is visible and focused; I will tap it to ensure focus and then type the required email address.
+    [think] 3.93s | input={'checkpoint_reason': 'Type the email address into the focused email field.', 'actions': [{'y': 630, 'action': 'tap_xy'}, {'ref': 0, 'action': 'type_text', 'text': 'editor2000@example.net'}], 'reasoning': 'The email field is visible and focused; I will tap it to ensure focus and then type the required email address.'}
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 123, in run_one
+    _agent(prompt, item['mode'], max_steps, stats)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 99, in _agent
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True, wda_url=sim.WDA_URL,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=perception, learn=False, stats=stats, model=model or None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 405, in run_agent
+    item = _to_screenshot_pixels(item, metadata)
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 103, in _to_screenshot_pixels
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+                                 ~~~~~~^^^^^
+KeyError: 'x'

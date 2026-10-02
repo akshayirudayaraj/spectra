@@ -41,7 +41,7 @@ from core.gates import ConfirmationGate   # noqa: E402
 from core.takeover import TakeoverManager  # noqa: E402
 from core.tree_reader import PERCEPTION_MODES  # noqa: E402
 from evals import sim                      # noqa: E402
-from evals.tasks import TASKS, TASKS_BY_ID, SETTINGS  # noqa: E402
+from evals.tasks import SUITES, TASKS_BY_ID, SETTINGS  # noqa: E402
 
 
 class _AutoApproveGate(ConfirmationGate):
@@ -85,11 +85,29 @@ def build_plan(task_ids: list[str], modes: list[str], trials: int, seed: int, k_
     return plan
 
 
+def _run_id(item: dict) -> str:
+    return f"{item['task']}-{item['mode'].replace('@', '__')}-t{item['trial']}"
+
+
+def _agent(prompt: str, mode: str, max_steps: int, stats: dict) -> None:
+    """Run one task under a mode spec: '<perception>[@<model>]' or 'computer_use'."""
+    if mode == 'computer_use':
+        from evals.computer_use_agent import run_computer_use
+        run_computer_use(prompt, max_steps=max_steps, stats=stats, wda_url=sim.WDA_URL)
+        return
+    perception, _, model = mode.partition('@')
+    run_agent(
+        prompt, max_steps=max_steps, verbose=True, wda_url=sim.WDA_URL,
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        perception=perception, learn=False, stats=stats, model=model or None,
+    )
+
+
 def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
     task = TASKS_BY_ID[item['task']]
     params = task.params(item['k'])
     prompt = task.render(params)
-    run_id = f"{item['task']}-{item['mode']}-t{item['trial']}"
+    run_id = _run_id(item)
     record = {**item, 'run_id': run_id, 'prompt': prompt, 'params': params,
               'started_at': dt.datetime.now().isoformat(timespec='seconds')}
 
@@ -102,11 +120,7 @@ def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
         try:
             with open(log_path, 'w') as log, contextlib.redirect_stdout(log):
                 print(f'TASK: {prompt}\nMODE: {item["mode"]}\n')
-                run_agent(
-                    prompt, max_steps=max_steps, verbose=True,
-                    gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
-                    perception=item['mode'], learn=False, stats=stats,
-                )
+                _agent(prompt, item['mode'], max_steps, stats)
             break
         except Exception as e:
             msg = f'{type(e).__name__}: {e}'
@@ -133,7 +147,7 @@ def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
         success=bool(success), check_detail=detail,
         outcome=stats.get('outcome'), steps=stats.get('steps'),
         elapsed_s=stats.get('elapsed_s'), planner_calls=stats.get('calls'),
-        prompt_tokens=stats.get('prompt_tokens'), output_tokens=stats.get('output_tokens'),
+        prompt_tokens=stats.get('prompt_tokens'), output_tokens=stats.get('output_tokens'), thought_tokens=stats.get('thought_tokens'),
         error=stats.get('error'), history=stats.get('history', []),
     )
     return record
@@ -142,7 +156,10 @@ def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--modes', default='tree,screenshot',
-                    help=f'comma-separated, from {PERCEPTION_MODES}')
+                    help=f'comma-separated: <perception>[@<model>] with perception from {PERCEPTION_MODES}, '
+                         'or computer_use')
+    ap.add_argument('--suite', default='base', choices=sorted(SUITES))
+    ap.add_argument('--shard', default='0/1', help='i/n: run every n-th plan item starting at i (parallel simulators)')
     ap.add_argument('--trials', type=int, default=3)
     ap.add_argument('--tasks', default='', help='comma-separated task ids (default: all)')
     ap.add_argument('--max-steps', type=int, default=20)
@@ -150,14 +167,18 @@ def main() -> None:
     ap.add_argument('--k-offset', type=int, default=0,
                     help='shift the per-run name/number pool, e.g. 1000 for a run after pilots')
     ap.add_argument('--resume', help='append to this JSONL and skip runs already in it')
+    ap.add_argument('--skip-done-in', nargs='*', default=[],
+                    help='also skip runs recorded in these JSONL files (e.g. the other shard)')
     args = ap.parse_args()
 
     modes = args.modes.split(',')
-    bad = [m for m in modes if m not in PERCEPTION_MODES]
+    bad = [m for m in modes if m != 'computer_use' and m.partition('@')[0] not in PERCEPTION_MODES]
     if bad:
         ap.error(f'unknown modes {bad}')
-    task_ids = args.tasks.split(',') if args.tasks else [t.id for t in TASKS]
+    task_ids = args.tasks.split(',') if args.tasks else [t.id for t in SUITES[args.suite]]
     plan = build_plan(task_ids, modes, args.trials, args.seed, args.k_offset)
+    shard_i, shard_n = (int(x) for x in args.shard.split('/'))
+    plan = plan[shard_i::shard_n]
 
     out = args.resume or os.path.join(ROOT, 'evals', 'results',
                                       dt.datetime.now().strftime('%Y%m%d-%H%M%S') + '.jsonl')
@@ -166,12 +187,13 @@ def main() -> None:
     os.makedirs(log_dir, exist_ok=True)
 
     done = set()
-    if os.path.exists(out):
-        done = {json.loads(l)['run_id'] for l in open(out) if l.strip()}
+    for path in [out, *args.skip_done_in]:
+        if os.path.exists(path):
+            done |= {json.loads(l)['run_id'] for l in open(path) if l.strip()}
 
     print(f'{len(plan)} runs ({len(done)} already done) -> {out}', flush=True)
     for i, item in enumerate(plan, 1):
-        run_id = f"{item['task']}-{item['mode']}-t{item['trial']}"
+        run_id = _run_id(item)
         if run_id in done:
             continue
         rec = run_one(item, args.max_steps, log_dir)

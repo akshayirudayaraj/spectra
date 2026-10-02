@@ -1,6 +1,6 @@
 """Summarize a perception-eval JSONL: success rate per mode with 95% CIs, cost, per-task table.
 
-    python -m evals.report evals/results/<run>.jsonl [--md out.md]
+    python -m evals.report evals/results/<run>.jsonl [more.jsonl ...] [--md out.md]
 """
 from __future__ import annotations
 
@@ -106,10 +106,10 @@ def summarize(rows: list[dict]) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument('jsonl')
+    ap.add_argument('jsonl', nargs='+', help='one or more result files, combined')
     ap.add_argument('--md', help='also write the summary to this markdown file')
     args = ap.parse_args()
-    rows = [json.loads(l) for l in open(args.jsonl) if l.strip()]
+    rows = [json.loads(l) for path in args.jsonl for l in open(path) if l.strip()]
     text = summarize(rows)
     print(text)
     if args.md:

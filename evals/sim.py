@@ -137,8 +137,14 @@ def contact_values(person_id: int, prop: int) -> list[str]:
             'SELECT value FROM ABMultiValue WHERE record_id = ? AND property = ?', (person_id, prop))]
 
 
-def import_contact(first: str, last: str) -> None:
-    vcf = f'BEGIN:VCARD\nVERSION:3.0\nN:{last};{first};;;\nFN:{first} {last}\nEND:VCARD\n'
+def contact_organization(person_id: int) -> str:
+    rows = _query(_addressbook(), 'SELECT Organization FROM ABPerson WHERE ROWID = ?', (person_id,))
+    return (rows[0][0] or '') if rows else ''
+
+
+def import_contact(first: str, last: str, org: str | None = None) -> None:
+    extra = f'ORG:{org}\n' if org else ''
+    vcf = f'BEGIN:VCARD\nVERSION:3.0\nN:{last};{first};;;\nFN:{first} {last}\n{extra}END:VCARD\n'
     with tempfile.NamedTemporaryFile('w', suffix='.vcf', delete=False) as f:
         f.write(vcf)
     simctl('addmedia', UDID, f.name)
@@ -154,10 +160,12 @@ def reminders_titled(title: str) -> list[dict]:
     rows = []
     for store in _reminder_stores():
         try:
-            for title_, prio, flagged in _query(store,
-                    'SELECT ZTITLE, ZPRIORITY, ZFLAGGED FROM ZREMCDREMINDER '
-                    'WHERE ZTITLE = ? AND ZMARKEDFORDELETION = 0', (title,)):
-                rows.append({'title': title_, 'priority': prio, 'flagged': flagged})
+            for title_, prio, flagged, notes, list_name in _query(store,
+                    'SELECT r.ZTITLE, r.ZPRIORITY, r.ZFLAGGED, r.ZNOTES, l.ZNAME FROM ZREMCDREMINDER r '
+                    'LEFT JOIN ZREMCDBASELIST l ON r.ZLIST = l.Z_PK '
+                    'WHERE r.ZTITLE = ? AND r.ZMARKEDFORDELETION = 0', (title,)):
+                rows.append({'title': title_, 'priority': prio, 'flagged': flagged,
+                             'notes': notes or '', 'list': list_name or ''})
         except sqlite3.OperationalError:
             continue
     return rows
