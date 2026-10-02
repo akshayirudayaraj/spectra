@@ -1,0 +1,24 @@
+TASK: Create a reminder called "Pick up coffee beans note 4000" with the note "pay with the gift card"
+MODE: tree
+
+    [timing] observe=1.14s
+  [see] app=Reminders mode=tree refs=18
+  [see] tree: [1] NavBar "Reminders.TTRIAccountsListsView" |   [2] Button "Search" |   [3] Button "Add List" |   [4] Button "Edit" | [5] Cell "5536ACD9-4459-4A03-9253-E7D6D0ECD7BF" |   [6] Button "Today, 0 reminders, October
+  Step 1: tap — Start creating a new reminder.
+    [think] 0.98s | input={'ref': 18, 'reasoning': 'Start creating a new reminder.'}
+    → Tapped [18] 'New Reminder' at (350,822)
+    [timing] observe=3.67s
+  [see] app=Reminders mode=tree refs=20
+  [see] tree: [1] NavBar "New Reminder" |   [2] Button "Cancel" |   [3] Button "Done" [disabled] | [4] Cell |   [5] TextField "Title" | [6] Cell |   [7] TextField "Notes" | [8] Cell "Date" → "Off, Collapsed" |   [9] Switch "Date" 
+  Step 2: batch — Entering the reminder details and saving in one batch is more efficient.
+    [think] 1.70s | input={'checkpoint_reason': 'The reminder should be saved and the screen should return to the main list view.', 'actions': [{'ref': 5, 'action': 'type_text', 'text': 'Pick up coffee beans note 4000'}, {'text': 'pay with the gift card', 'ref': 7, 'action': 'type_text'}, {'action': 'tap', 'ref': 3}], 'reasoning': 'Entering the reminder details and saving in one batch is more efficient.'}
+    [1/3] Typed 'Pick up coffee beans note 4000' into [5]
+    [2/3] Typed 'pay with the gift card' into [7]
+    [3/3] Tapped [3] 'Done' at (364,100)
+    [timing] observe=1.15s
+  [see] app=Reminders mode=tree refs=18
+  [see] tree: [1] NavBar "Reminders.TTRIAccountsListsView" |   [2] Button "Search" |   [3] Button "Add List" |   [4] Button "Edit" | [5] Cell "5536ACD9-4459-4A03-9253-E7D6D0ECD7BF" |   [6] Button "Today, 0 reminders, October
+  Step 3: done — Created a reminder titled "Pick up coffee beans note 4000" with the note "pay with the gift card".
+    [think] 1.54s | input={'summary': 'Created a reminder titled "Pick up coffee beans note 4000" with the note "pay with the gift card".'}
+    → DONE: Created a reminder titled "Pick up coffee beans note 4000" with the note "pay with the gift card".
+  Finished in 3 steps, 18.0s

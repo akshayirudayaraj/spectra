@@ -1,0 +1,40 @@
+TASK: Create a new reminders list called "Gift Plans L4001" and add a reminder "Return milk in-list 4001" to it
+MODE: tree
+
+    [timing] observe=1.28s
+  [see] app=Reminders mode=tree refs=18
+  [see] tree: [1] NavBar "Reminders.TTRIAccountsListsView" |   [2] Button "Search" |   [3] Button "Add List" |   [4] Button "Edit" | [5] Cell "205DD023-694C-467C-9E23-7BC825AAFDBE" |   [6] Button "Today, 0 reminders, October
+  Step 1: tap — Tap 'Add List' to create the new 'Gift Plans L4001' list.
+    [think] 1.16s | input={'reasoning': "Tap 'Add List' to create the new 'Gift Plans L4001' list.", 'ref': 3}
+    → Tapped [3] 'Add List' at (287,84)
+    [timing] observe=3.40s
+  [see] app=Reminders mode=tree refs=10
+  [see] tree: [1] NavBar "New List" |   [2] Button "Cancel" |   [3] Button "Done" [disabled] | [4] Cell | [5] Cell |   [6] TextField "List Name" | [7] Cell | [8] Button "Emoji" | [9] Button "Dictate" | [10] Button "Dictate"
+  Step 2: type_text — Type the name for the new reminders list and then I will tap 'Done' to create it.
+    [think] 1.42s | input={'text': 'Gift Plans L4001', 'ref': 6, 'reasoning': "Type the name for the new reminders list and then I will tap 'Done' to create it."}
+    → Typed 'Gift Plans L4001' into [6]
+    [timing] observe=3.02s
+  [see] app=Reminders mode=tree refs=11
+  [see] tree: [1] NavBar "New List" |   [2] Button "Cancel" |   [3] Button "Done" | [4] Cell | [5] Cell |   [6] TextField "List Name" → "Gift Plans L4001" |     [7] Button "Clear text" | [8] Cell | [9] Button "Emoji" | [10] Button "
+  Step 3: tap — Tap 'Done' to create the 'Gift Plans L4001' reminders list.
+    [think] 2.78s | input={'reasoning': "Tap 'Done' to create the 'Gift Plans L4001' reminders list.", 'ref': 3}
+    → Tapped [3] 'Done' at (364,100)
+    [timing] observe=0.36s
+  [see] app=Reminders mode=tree refs=4
+  [see] tree: [1] NavBar "Gift Plans L4001" |   [2] Button "Back" |   [3] Button "More" | [4] Button "New Reminder"
+  Step 4: type_text — The list 'Gift Plans L4001' has been created; now I will add the reminder 'Return milk in-list 4001' to it by typing into the 'New Reminder' field and then tapping 'Done'.
+    [think] 1.46s | input={'ref': 4, 'reasoning': "The list 'Gift Plans L4001' has been created; now I will add the reminder 'Return milk in-list 4001' to it by typing into the 'New Reminder' field and then tapping 'Done'.", 'text': 'Return milk in-list 4001'}
+    → Typed 'Return milk in-list 4001' into [4]
+    [timing] observe=1.01s
+  [see] app=Reminders mode=tree refs=16
+  [see] tree: [1] NavBar "Gift Plans L4001" |   [2] Button "Back" |   [3] Button "More" |   [4] Button "Done" | [5] Cell "Incomplete" |   [6] Button "circle" |   [7] TextField "Title" → "Return milk in-list 4001" |   [8] Button 
+  Step 5: tap — The reminder text has been entered; tapping 'Done' will save it and finish the task.
+    [think] 2.05s | input={'reasoning': "The reminder text has been entered; tapping 'Done' will save it and finish the task.", 'ref': 4}
+    → Tapped [4] 'Done' at (364,84)
+    [timing] observe=0.48s
+  [see] app=Reminders mode=tree refs=7
+  [see] tree: [1] NavBar "Gift Plans L4001" |   [2] Button "Back" |   [3] Button "More" | [4] Cell "Return milk in-list 4001, Incomplete" |   [5] Button "circle" |   [6] TextField "Title" → "Return milk in-list 4001" | [7] But
+  Step 6: done — Created the reminders list 'Gift Plans L4001' and added the reminder 'Return milk in-list 4001' to it.
+    [think] 1.51s | input={'summary': "Created the reminders list 'Gift Plans L4001' and added the reminder 'Return milk in-list 4001' to it."}
+    → DONE: Created the reminders list 'Gift Plans L4001' and added the reminder 'Return milk in-list 4001' to it.
+  Finished in 6 steps, 31.1s

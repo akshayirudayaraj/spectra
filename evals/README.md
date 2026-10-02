@@ -53,3 +53,32 @@ python -m evals.report evals/results/<run>.jsonl --md report.md
 Runs append to the JSONL as they finish; `--resume <file>` continues an interrupted run. Runs lost to API rate limits or 5xx are redone, not scored. Tasks that create records draw a fresh name per run, so give separate invocations different `--k-offset` values.
 
 Before the first run, open each app once and clear its onboarding and permission prompts, so first-launch screens don't land on whichever mode runs first. Settings toggles are reset with `defaults write`. Keyboard settings are left out because writing their defaults doesn't change what Settings shows.
+
+## Round 2: stronger baselines and a hard suite (2026-10-02)
+
+Added three screenshot baselines: **screenshot + OCR** (macOS Vision text boxes as tappable refs, AppAgent / Mobile-Agent style), **raw screenshots on Gemini 3.1 Pro**, and Google's **Computer Use** model. Computer Use returned 503 for over an hour and was never run. Also added a 13-task **hard suite**: multi-field forms, edits, two-contact deletes, lists, flags and notes, and settings across several pages. Its tasks were written before any runs. Tree runs use Gemini 3 Flash.
+
+Hard-suite failures exposed two bugs in the tree executor. Tapping a `Switch` row hit its center, which is the label and doesn't toggle on iOS 26. `type_text` appended to a field's existing text. Both were fixed and the tree was re-run, and the old-executor runs are kept for comparison. Gemini credits ran out partway through, so the baseline modes have 16–20 hard runs each instead of 39. Runs lost to billing errors were removed, not scored. Full tables: [`results/hard_report.md`](results/hard_report.md).
+
+| Hard suite (13 tasks) | Success | 95% CI |
+|---|---|---|
+| tree (fixed executor) | 28/39 (72%) | 56–83% |
+| tree (old executor) | 11/20 (55%) | 34–74% |
+| screenshot_raw (Flash) | 17/20 (85%) | 64–95% |
+| screenshot_ocr (Flash) | 13/18 (72%) | 49–88% |
+| screenshot_raw (Gemini 3.1 Pro) | 15/18 (83%) | 61–94% |
+
+None of the hard-suite success differences is significant. In paired McNemar tests, every p-value is 0.45 or above.
+
+**Efficiency on matched runs** (same task and trial, both passed; median of per-pair ratios vs tree):
+
+| Baseline | Pairs | Time vs tree | Tokens vs tree |
+|---|---|---|---|
+| Gemini 3.1 Pro screenshots (hard) | 12 | 1.97× (129 s vs 50 s) | 1.57× |
+| Screenshot + OCR (hard) | 12 | 1.01× | 1.41× |
+| Raw screenshots (hard) | 11 | 0.98× | 1.25× |
+| Raw screenshots (base) | 50 | 1.19× | 1.16× |
+
+**Crash rate** (malformed model action: `tap_xy` with no `x`, or no function call), across all 295 scored runs: tree 1/99 (1%), raw screenshots 8/80 (10%), OCR 2/18 (11%), Pro 2/18 (11%).
+
+What this round says: **trees don't beat a strong screenshot agent on success** in this harness. Their advantages are speed relative to a frontier screenshot model, lower token use, and far fewer crashes, because acting on element refs avoids malformed coordinate calls. Remaining tree-executor weaknesses are noted, not fixed, to avoid tuning only the treatment: tapping a Notes field by its frame center doesn't always move focus, and clearing a field fails when the tree reports placeholder text as its value.
