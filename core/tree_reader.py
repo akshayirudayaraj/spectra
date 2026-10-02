@@ -15,6 +15,10 @@ from core.tree_parser import parse_tree
 _GRID_COLS = 3
 _GRID_ROWS = 6
 
+# Perception modes. 'tree' is the normal path (screenshot only as fallback);
+# the screenshot modes skip the tree entirely so the two can be compared.
+PERCEPTION_MODES = ('tree', 'screenshot', 'screenshot_raw')
+
 def _add_grid_overlay(png_bytes: bytes) -> tuple[bytes, str]:
     """Draw a numbered grid on a screenshot. Returns (annotated_png, grid_text).
     grid_text is a string describing each cell for the LLM prompt."""
@@ -215,7 +219,11 @@ class TreeReader:
     For native apps: uses WDA source() XML as before.
     """
 
-    def __init__(self, wda_url: str = 'http://localhost:8100', client=None):
+    def __init__(self, wda_url: str = 'http://localhost:8100', client=None,
+                 perception: str = 'tree'):
+        if perception not in PERCEPTION_MODES:
+            raise ValueError(f'perception must be one of {PERCEPTION_MODES}, got {perception!r}')
+        self.perception = perception
         self.client = client if client is not None else wda.Client(wda_url)
         if client is None:
             try:
@@ -238,12 +246,15 @@ class TreeReader:
                        perception_mode, current_url, ...}
         """
         # Fast check: which app is in foreground?
+        app_info = {}
         try:
             app_info = self.client.app_current()
             self._in_safari = app_info.get('bundleId', '') == 'com.apple.mobilesafari'
         except Exception:
             pass  # keep cached value
 
+        if self.perception != 'tree':
+            return self._forced_screenshot_snapshot(app_info.get('bundleId', ''))
         if self._in_safari:
             return self._safari_js_snapshot()
         return self._native_snapshot()
@@ -287,6 +298,25 @@ class TreeReader:
             'current_url':      url,
             'paywall_detected': False,
             'page_articles':    articles,
+        }
+        return tree_msg, {}, metadata
+
+    # ------------------------------------------------------------------
+    # Forced screenshot path — no tree at all (for perception evals)
+    # ------------------------------------------------------------------
+
+    def _forced_screenshot_snapshot(self, bundle_id: str) -> tuple[str, dict, dict]:
+        if self.perception == 'screenshot':
+            screenshot_b64, grid_text = self._gridded_screenshot()
+            tree_msg = '[screenshot mode]\n' + grid_text
+        else:
+            screenshot_b64 = self._try_screenshot()
+            tree_msg = '[screenshot mode]'
+        metadata = {
+            'app_name': bundle_id, 'app_bundle_id': bundle_id,
+            'keyboard_visible': False, 'alert_present': False,
+            'current_url': None,
+            'perception_mode': 'screenshot', 'screenshot_b64': screenshot_b64,
         }
         return tree_msg, {}, metadata
 

@@ -384,7 +384,8 @@ def build_message(
                      "\n".join(f"  {i+1}. {a}" for i, a in enumerate(metadata["page_articles"][:10])))
 
     if metadata.get('perception_mode') == 'screenshot':
-        parts.append("⚠️ SCREENSHOT MODE: No accessibility tree available. Use tap_xy with PIXEL coordinates from the screenshot image (1206x2622 pixels). Be precise — estimate the center of the element you want to tap.")
+        w, h = metadata.get('screenshot_size') or (1206, 2622)
+        parts.append(f"⚠️ SCREENSHOT MODE: No accessibility tree available. Use tap_xy with PIXEL coordinates from the screenshot image ({w}x{h} pixels). Be precise — estimate the center of the element you want to tap. To enter text, tap_xy the field first, then call type_text with ref 0 — the text goes into the focused field.")
 
     # Previous screens for context — shows what the agent saw and did at each past step
     if prev_trees:
@@ -442,6 +443,8 @@ class Planner:
         self.client = genai.Client(api_key=api_key)
         self.model = model
         self._cache_name = self._create_cache()
+        # Running totals across calls, read by the perception eval.
+        self.usage = {'calls': 0, 'prompt_tokens': 0, 'output_tokens': 0}
 
     def _create_cache(self) -> str | None:
         """Create a content cache for the system prompt + tools.
@@ -489,6 +492,7 @@ class Planner:
                     contents=contents,
                     config=config,
                 )
+                self._record_usage(response)
                 return self._extract_action(response)
             except RuntimeError as e:
                 if '429' in str(e) or 'RESOURCE_EXHAUSTED' in str(e):
@@ -536,11 +540,19 @@ class Planner:
         prev_trees: list[str] | None = None,
     ) -> dict:
         """Screenshot fallback mode. Sends image + sparse tree to Gemini vision."""
+        png = base64.b64decode(screenshot_b64)
+        if not metadata.get('screenshot_size'):
+            try:
+                from PIL import Image
+                import io
+                metadata = {**metadata, 'screenshot_size': Image.open(io.BytesIO(png)).size}
+            except Exception:
+                pass
         message = build_message(task, tree, history, metadata, warning, memory, plan, prev_trees=prev_trees)
         image_part = types.Part(
             inline_data=types.Blob(
                 mime_type="image/png",
-                data=base64.b64decode(screenshot_b64),
+                data=png,
             )
         )
         text_part = types.Part(text=message)
@@ -565,6 +577,13 @@ class Planner:
             config=config,
         )
         return response.text.strip()
+
+    def _record_usage(self, response) -> None:
+        self.usage['calls'] += 1
+        meta = getattr(response, 'usage_metadata', None)
+        if meta:
+            self.usage['prompt_tokens'] += meta.prompt_token_count or 0
+            self.usage['output_tokens'] += meta.candidates_token_count or 0
 
     @staticmethod
     def _extract_action(response) -> dict:

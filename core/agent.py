@@ -100,6 +100,9 @@ def run_agent(
     takeover: TakeoverManager | None = None,
     step_callback=None,
     ask_user_fn=None,
+    perception: str = 'tree',
+    learn: bool = True,
+    stats: dict | None = None,
 ) -> bool:
     """Execute a natural language task on the iOS simulator.
 
@@ -114,6 +117,12 @@ def run_agent(
         gate: ConfirmationGate instance (injectable for WebSocket server).
         takeover: TakeoverManager instance (injectable for WebSocket server).
         step_callback: Optional callable(step, max_steps, action_name, action_input, result, current_app, ref_map, tree) per step.
+        perception: 'tree' (default; screenshot only as fallback), or 'screenshot' /
+            'screenshot_raw' to skip the tree entirely (with / without grid overlay).
+        learn: Read and write episodic lessons and episodes. Evals turn this off so
+            one run can't teach the next.
+        stats: Optional dict filled with outcome, steps, elapsed_s, history and
+            planner token usage when the run ends.
 
     Returns:
         True if task completed (done), False if stuck or timed out
@@ -123,7 +132,7 @@ def run_agent(
         shared_client.http.timeout = 5
     except AttributeError:
         pass
-    reader = TreeReader(wda_url, client=shared_client)
+    reader = TreeReader(wda_url, client=shared_client, perception=perception)
     planner = Planner()
     executor = Executor(wda_url, client=shared_client)
     detector = StuckDetector()
@@ -149,11 +158,19 @@ def run_agent(
     snap_pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
     # Retrieve lessons from past failures
-    lessons_text = episodic.retrieve(task)
+    lessons_text = episodic.retrieve(task) if learn else None
     if lessons_text and verbose:
         print(f'  {lessons_text}')
 
     t_start = time.monotonic()
+
+    def _finish(outcome: str, steps: int) -> None:
+        if stats is not None:
+            stats.update(
+                outcome=outcome, steps=steps,
+                elapsed_s=round(time.monotonic() - t_start, 1),
+                history=list(history), **planner.usage,
+            )
     
     # Capture ContextSnapshot at task start for episode logging
     local_t = time.localtime(time.time())
@@ -233,7 +250,9 @@ def run_agent(
             elapsed = time.monotonic() - t_start
             if step_callback:
                 step_callback(step, max_steps, 'done', {'summary': 'Task likely completed but agent got stuck in a loop'}, 'forced done', current_app, ref_map, tree)
-            _reflect_and_store(planner, episodic, task, history, 'loop', current_app, verbose)
+            if learn:
+                _reflect_and_store(planner, episodic, task, history, 'loop', current_app, verbose)
+            _finish('hard_stuck', step)
             return True  # assume task was completed since actions were executing
 
         # --- Build combined memory ---
@@ -423,6 +442,9 @@ def run_agent(
             elapsed = time.monotonic() - t_start
             if verbose:
                 print(f'  Finished in {step} steps, {elapsed:.1f}s')
+            _finish(action_name, step)
+            if not learn:
+                return action_name == 'done'
             if action_name == 'stuck':
                 _reflect_and_store(planner, episodic, task, history, 'stuck', current_app, verbose)
             elif action_name == 'done':
@@ -457,7 +479,9 @@ def run_agent(
     elapsed = time.monotonic() - t_start
     if verbose:
         print(f'  Timed out after {max_steps} steps, {elapsed:.1f}s')
-    _reflect_and_store(planner, episodic, task, history, 'timeout', current_app, verbose)
+    _finish('timeout', max_steps)
+    if learn:
+        _reflect_and_store(planner, episodic, task, history, 'timeout', current_app, verbose)
     agent_memory.clear()
     return False
 
