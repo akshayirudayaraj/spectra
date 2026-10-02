@@ -126,6 +126,11 @@ def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
             msg = f'{type(e).__name__}: {e}'
             with open(log_path, 'a') as log:
                 log.write('\n' + traceback.format_exc())
+            if 'prepayment' in msg or '402' in msg:
+                # Out of API credit: nothing after this can run. Stop without
+                # recording the run, so billing never shows up as an agent failure.
+                print('    API credits exhausted, stopping without recording this run', flush=True)
+                raise SystemExit(2)
             if attempt < 2 and _is_api_outage(msg):
                 print(f'    API error ({msg[:60]}), redoing run in 60s', flush=True)
                 time.sleep(60)
