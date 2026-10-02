@@ -1,0 +1,28 @@
+TASK: Turn on Reduce Motion
+MODE: screenshot_raw
+
+    [timing] observe=1.18s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping 'Accessibility' to find motion settings.
+    [think] 2.97s | input={'y': 525, 'x': 500, 'reasoning': "Tapping 'Accessibility' to find motion settings."}
+    → Tapped (603,1377) → (201,459) [scaled @3.0x]
+    [timing] observe=1.11s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tapping 'Motion' to access motion-related accessibility settings.
+    [think] 2.01s | input={'x': 492, 'y': 622, 'reasoning': "Tapping 'Motion' to access motion-related accessibility settings."}
+    → Tapped (593,1631) → (197,543) [scaled @3.0x]
+    [timing] observe=1.06s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tapping the 'Reduce Motion' switch to enable it.
+    [think] 2.36s | input={'reasoning': "Tapping the 'Reduce Motion' switch to enable it.", 'y': 183, 'x': 839}
+    → Tapped (1012,480) → (337,160) [scaled @3.0x]
+    [timing] observe=1.05s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Reduce Motion is already enabled (green switch).
+    [think] 2.71s | input={'summary': 'Reduce Motion is already enabled (green switch).'}
+    → DONE: Reduce Motion is already enabled (green switch).
+  Finished in 4 steps, 20.2s

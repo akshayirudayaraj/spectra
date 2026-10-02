@@ -56,6 +56,15 @@ def summarize(rows: list[dict]) -> str:
                    f'{_fmt(median(ok_steps) if ok_steps else None)} | {_fmt(median(times) if times else None)} | '
                    f'{_fmt(median(toks) if toks else None, 0)} | {errs} |')
 
+    # Sensitivity: drop runs that crashed (malformed model output, not a wrong
+    # action), to show the conclusion doesn't hinge on how those are scored.
+    out += ['', '## Excluding errored runs', '', '| Mode | Success | Rate (95% CI) |', '|---|---|---|']
+    for m in modes:
+        rs = [r for r in by_mode[m] if r['outcome'] != 'error']
+        k, n = sum(r['success'] for r in rs), len(rs)
+        lo, hi = wilson(k, n)
+        out.append(f'| {m} | {k}/{n} | {100*k/max(n,1):.0f}% ({100*lo:.0f}–{100*hi:.0f}%) |')
+
     # Paired comparison against tree on the same (task, trial).
     if 'tree' in by_mode:
         key = lambda r: (r['task'], r['trial'])

@@ -1,0 +1,28 @@
+TASK: Turn on Increase Contrast
+MODE: screenshot_raw
+
+    [timing] observe=1.19s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap Accessibility to access display settings.
+    [think] 2.32s | input={'y': 520, 'reasoning': 'Tap Accessibility to access display settings.', 'x': 500}
+    → Tapped (603,1363) → (201,454) [scaled @3.0x]
+    [timing] observe=1.13s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap "Display & Text Size" to find the Increase Contrast setting.
+    [think] 2.16s | input={'x': 500, 'y': 560, 'reasoning': 'Tap "Display & Text Size" to find the Increase Contrast setting.'}
+    → Tapped (603,1468) → (201,489) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — The "Increase Contrast" switch is located on the right side of its row. I'm tapping the switch to turn it on.
+    [think] 5.59s | input={'y': 635, 'x': 837, 'reasoning': 'The "Increase Contrast" switch is located on the right side of its row. I\'m tapping the switch to turn it on.'}
+    → Tapped (1009,1665) → (336,555) [scaled @3.0x]
+    [timing] observe=1.21s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Increase Contrast is already turned on.
+    [think] 3.04s | input={'summary': 'Increase Contrast is already turned on.'}
+    → DONE: Increase Contrast is already turned on.
+  Finished in 4 steps, 23.3s

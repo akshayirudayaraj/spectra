@@ -1,0 +1,22 @@
+TASK: Look up Kate Bell's email address and report it
+MODE: screenshot_raw
+
+    [timing] observe=1.23s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Clearing the current search to look for Kate Bell.
+    [think] 3.01s | input={'reasoning': 'Clearing the current search to look for Kate Bell.', 'x': 750, 'y': 606}
+    → Tapped (904,1589) → (301,529) [scaled @3.0x]
+    [timing] observe=1.10s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap on Kate Bell to view her contact details.
+    [think] 1.82s | input={'y': 330, 'reasoning': 'Tap on Kate Bell to view her contact details.', 'x': 325}
+    → Tapped (392,865) → (130,288) [scaled @3.0x]
+    [timing] observe=1.26s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: done — Kate Bell's email address is kate-bell@mac.com.
+    [think] 2.54s | input={'summary': "Kate Bell's email address is kate-bell@mac.com."}
+    → DONE: Kate Bell's email address is kate-bell@mac.com.
+  Finished in 3 steps, 18.2s

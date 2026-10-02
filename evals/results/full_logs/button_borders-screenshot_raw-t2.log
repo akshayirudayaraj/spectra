@@ -1,0 +1,28 @@
+TASK: Turn on button borders in the accessibility settings
+MODE: screenshot_raw
+
+    [timing] observe=1.19s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap on Accessibility to access accessibility settings.
+    [think] 2.40s | input={'reasoning': 'Tap on Accessibility to access accessibility settings.', 'x': 500, 'y': 520}
+    → Tapped (603,1363) → (201,454) [scaled @3.0x]
+    [timing] observe=1.12s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap on "Display & Text Size" to find the button borders setting.
+    [think] 2.09s | input={'reasoning': 'Tap on "Display & Text Size" to find the button borders setting.', 'y': 560, 'x': 500}
+    → Tapped (603,1468) → (201,489) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tapping the 'Show Borders' toggle to turn on button borders as requested.
+    [think] 3.24s | input={'reasoning': "Tapping the 'Show Borders' toggle to turn on button borders as requested.", 'x': 831, 'y': 306}
+    → Tapped (1002,802) → (334,267) [scaled @3.0x]
+    [timing] observe=1.04s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Button borders (Show Borders) have been turned on in the Accessibility settings.
+    [think] 2.26s | input={'summary': 'Button borders (Show Borders) have been turned on in the Accessibility settings.'}
+    → DONE: Button borders (Show Borders) have been turned on in the Accessibility settings.
+  Finished in 4 steps, 21.0s

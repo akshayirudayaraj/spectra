@@ -1,0 +1,22 @@
+TASK: Find out which iOS version this phone is running and report it
+MODE: screenshot_raw
+
+    [timing] observe=1.18s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Navigate to General settings to find the iOS version information.
+    [think] 2.18s | input={'x': 500, 'reasoning': 'Navigate to General settings to find the iOS version information.', 'y': 470}
+    → Tapped (603,1232) → (201,410) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — The iOS version is located in the 'About' section within General settings.
+    [think] 2.80s | input={'reasoning': "The iOS version is located in the 'About' section within General settings.", 'x': 500, 'y': 475}
+    → Tapped (603,1245) → (201,415) [scaled @3.0x]
+    [timing] observe=1.07s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: done — The iPhone is running iOS version 26.5.
+    [think] 2.04s | input={'summary': 'The iPhone is running iOS version 26.5.'}
+    → DONE: The iPhone is running iOS version 26.5.
+  Finished in 3 steps, 13.8s

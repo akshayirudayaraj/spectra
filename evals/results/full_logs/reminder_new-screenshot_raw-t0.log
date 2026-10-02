@@ -1,0 +1,28 @@
+TASK: Create a reminder called "Buy light bulbs #1002"
+MODE: screenshot_raw
+
+    [timing] observe=1.18s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the plus button to create a new reminder.
+    [think] 2.34s | input={'reasoning': 'Tap the plus button to create a new reminder.', 'x': 887, 'y': 937}
+    → Tapped (1070,2457) → (356,819) [scaled @3.0x]
+    [timing] observe=1.12s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — The cursor is already in the new reminder field, so I will type the text directly.
+    [think] 4.53s | input={'ref': 0, 'reasoning': 'The cursor is already in the new reminder field, so I will type the text directly.', 'text': 'Buy light bulbs #1002'}
+    → Typed 'Buy light bulbs #1002' into focused field
+    [timing] observe=1.03s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — The reminder text has been entered; now I will tap the blue checkmark button in the top right to save and complete the task.
+    [think] 3.05s | input={'reasoning': 'The reminder text has been entered; now I will tap the blue checkmark button in the top right to save and complete the task.', 'y': 95, 'x': 908}
+    → Tapped (1095,249) → (365,83) [scaled @3.0x]
+    [timing] observe=1.05s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — I have successfully created the reminder "Buy light bulbs #1002" as seen on the current screen.
+    [think] 2.77s | input={'summary': 'I have successfully created the reminder "Buy light bulbs #1002" as seen on the current screen.'}
+    → DONE: I have successfully created the reminder "Buy light bulbs #1002" as seen on the current screen.
+  Finished in 4 steps, 22.7s

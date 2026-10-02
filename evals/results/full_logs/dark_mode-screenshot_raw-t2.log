@@ -1,0 +1,28 @@
+TASK: Turn on Dark Appearance in the Developer settings
+MODE: screenshot_raw
+
+    [timing] observe=1.18s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: scroll — Scrolling to find the Developer settings section.
+    [think] 2.12s | input={'direction': 'down', 'reasoning': 'Scrolling to find the Developer settings section.'}
+    → Scrolled down
+    [timing] observe=1.00s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tapping the Developer settings menu item.
+    [think] 2.23s | input={'reasoning': 'Tapping the Developer settings menu item.', 'x': 491, 'y': 847}
+    → Tapped (592,2221) → (197,740) [scaled @3.0x]
+    [timing] observe=1.39s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Turning on the Dark Appearance switch in the Developer settings.
+    [think] 2.11s | input={'y': 226, 'x': 835, 'reasoning': 'Turning on the Dark Appearance switch in the Developer settings.'}
+    → Tapped (1007,593) → (335,197) [scaled @3.0x]
+    [timing] observe=1.11s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Dark Appearance is already turned on in the Developer settings.
+    [think] 3.29s | input={'summary': 'Dark Appearance is already turned on in the Developer settings.'}
+    → DONE: Dark Appearance is already turned on in the Developer settings.
+  Finished in 4 steps, 21.4s

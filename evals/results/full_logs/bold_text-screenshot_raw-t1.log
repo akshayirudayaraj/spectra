@@ -1,0 +1,28 @@
+TASK: Turn on Bold Text
+MODE: screenshot_raw
+
+    [timing] observe=1.20s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Bold Text is an accessibility setting, so I'll start by tapping the Accessibility menu.
+    [think] 2.11s | input={'reasoning': "Bold Text is an accessibility setting, so I'll start by tapping the Accessibility menu.", 'x': 500, 'y': 523}
+    → Tapped (603,1371) → (201,457) [scaled @3.0x]
+    [timing] observe=1.11s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Bold Text is located within the Display & Text Size settings in Accessibility.
+    [think] 2.19s | input={'reasoning': 'Bold Text is located within the Display & Text Size settings in Accessibility.', 'x': 500, 'y': 560}
+    → Tapped (603,1468) → (201,489) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tap the switch to turn on Bold Text.
+    [think] 2.08s | input={'x': 840, 'y': 183, 'reasoning': 'Tap the switch to turn on Bold Text.'}
+    → Tapped (1013,480) → (337,160) [scaled @3.0x]
+    [timing] observe=1.06s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Bold Text is already turned on.
+    [think] 3.54s | input={'summary': 'Bold Text is already turned on.'}
+    → DONE: Bold Text is already turned on.
+  Finished in 4 steps, 20.3s

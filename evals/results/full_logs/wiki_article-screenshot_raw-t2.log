@@ -1,0 +1,28 @@
+TASK: In Safari, open the Wikipedia article about Radia Perlman
+MODE: screenshot_raw
+
+    [timing] observe=1.26s
+  [see] app=com.apple.mobilesafari mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping the Wikipedia search icon to search for Radia Perlman.
+    [think] 3.73s | input={'x': 831, 'reasoning': 'Tapping the Wikipedia search icon to search for Radia Perlman.', 'y': 398}
+    → Tapped (1002,1044) → (334,348) [scaled @3.0x]
+    [timing] observe=1.06s
+  [see] app=com.apple.mobilesafari mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — I am typing 'Radia Perlman' into the Wikipedia search bar to find her article.
+    [think] 3.43s | input={'ref': 0, 'text': 'Radia Perlman', 'reasoning': "I am typing 'Radia Perlman' into the Wikipedia search bar to find her article."}
+    → Typed 'Radia Perlman' into focused field
+    [timing] observe=1.00s
+  [see] app=com.apple.mobilesafari mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tapping the Wikipedia search suggestion for 'Radia Perlman' to open her article.
+    [think] 3.50s | input={'y': 162, 'reasoning': "Tapping the Wikipedia search suggestion for 'Radia Perlman' to open her article.", 'x': 490}
+    → Tapped (591,425) → (197,141) [scaled @3.0x]
+    [timing] observe=1.41s
+  [see] app=com.apple.mobilesafari mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — The Wikipedia article about Radia Perlman is already open in Safari.
+    [think] 2.83s | input={'summary': 'The Wikipedia article about Radia Perlman is already open in Safari.'}
+    → DONE: The Wikipedia article about Radia Perlman is already open in Safari.
+  Finished in 4 steps, 22.4s

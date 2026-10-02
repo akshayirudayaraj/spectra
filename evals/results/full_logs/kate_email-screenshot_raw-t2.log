@@ -1,0 +1,10 @@
+TASK: Look up Kate Bell's email address and report it
+MODE: screenshot_raw
+
+    [timing] observe=1.28s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: done — Kate Bell's email address is kate-bell@mac.com.
+    [think] 2.43s | input={'summary': "Kate Bell's email address is kate-bell@mac.com."}
+    → DONE: Kate Bell's email address is kate-bell@mac.com.
+  Finished in 1 steps, 5.0s
