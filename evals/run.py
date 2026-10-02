@@ -63,7 +63,12 @@ def _no_answer(question, options) -> str:
     return 'No one is available to answer. Use your best judgment and continue.'
 
 
-def build_plan(task_ids: list[str], modes: list[str], trials: int, seed: int) -> list[dict]:
+def _is_api_outage(msg: str) -> bool:
+    """Rate limits and 5xx are infrastructure, not agent failures: redo the run."""
+    return any(x in msg for x in ('429', 'rate limit', 'RESOURCE_EXHAUSTED', '503', '500', 'UNAVAILABLE', 'ServerError'))
+
+
+def build_plan(task_ids: list[str], modes: list[str], trials: int, seed: int, k_offset: int = 0) -> list[dict]:
     """Interleave modes inside each (trial, task) in a seeded random order, so drift
     over the run (network, simulator state, API latency) lands on every mode alike."""
     plan = []
@@ -73,8 +78,9 @@ def build_plan(task_ids: list[str], modes: list[str], trials: int, seed: int) ->
             random.Random(f'{seed}-{trial}-{tid}').shuffle(order)
             for pos, mode in enumerate(order):
                 # k indexes the task's parameter pool; unique per run so created
-                # records never collide across runs.
-                k = trial * len(modes) + pos
+                # records never collide across runs. Give separate invocations
+                # different --k-offset values so they can't collide either.
+                k = k_offset + trial * len(modes) + pos
                 plan.append({'trial': trial, 'task': tid, 'mode': mode, 'k': k})
     return plan
 
@@ -92,7 +98,7 @@ def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
 
     stats: dict = {}
     log_path = os.path.join(log_dir, f'{run_id}.log')
-    for attempt in range(2):
+    for attempt in range(3):
         try:
             with open(log_path, 'w') as log, contextlib.redirect_stdout(log):
                 print(f'TASK: {prompt}\nMODE: {item["mode"]}\n')
@@ -106,8 +112,8 @@ def run_one(item: dict, max_steps: int, log_dir: str) -> dict:
             msg = f'{type(e).__name__}: {e}'
             with open(log_path, 'a') as log:
                 log.write('\n' + traceback.format_exc())
-            if attempt == 0 and ('429' in msg or 'rate limit' in msg.lower()):
-                print(f'    rate limited, sleeping 60s', flush=True)
+            if attempt < 2 and _is_api_outage(msg):
+                print(f'    API error ({msg[:60]}), redoing run in 60s', flush=True)
                 time.sleep(60)
                 task.setup(params)
                 sim.reset_to_app(task.app, also_terminate=(SETTINGS,))
@@ -141,6 +147,8 @@ def main() -> None:
     ap.add_argument('--tasks', default='', help='comma-separated task ids (default: all)')
     ap.add_argument('--max-steps', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
+    ap.add_argument('--k-offset', type=int, default=0,
+                    help='shift the per-run name/number pool, e.g. 1000 for a run after pilots')
     ap.add_argument('--resume', help='append to this JSONL and skip runs already in it')
     args = ap.parse_args()
 
@@ -149,7 +157,7 @@ def main() -> None:
     if bad:
         ap.error(f'unknown modes {bad}')
     task_ids = args.tasks.split(',') if args.tasks else [t.id for t in TASKS]
-    plan = build_plan(task_ids, modes, args.trials, args.seed)
+    plan = build_plan(task_ids, modes, args.trials, args.seed, args.k_offset)
 
     out = args.resume or os.path.join(ROOT, 'evals', 'results',
                                       dt.datetime.now().strftime('%Y%m%d-%H%M%S') + '.jsonl')

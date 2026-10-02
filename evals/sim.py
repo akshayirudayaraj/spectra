@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import glob
 import os
-import re
 import sqlite3
 import subprocess
 import tempfile
@@ -109,17 +108,6 @@ def screen_text() -> str:
         return client().source()
     except Exception:
         return ''
-
-
-def safari_url() -> str:
-    try:
-        url = client().execute_script('return window.location.href')
-        if isinstance(url, str):
-            return url
-    except Exception:
-        pass
-    m = re.search(r'name="Address"[^>]*value="([^"]+)"', screen_text())
-    return m.group(1) if m else ''
 
 
 # ---------------------------------------------------------------------------

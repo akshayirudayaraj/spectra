@@ -8,6 +8,7 @@ can't find the previous run's record and stop early.
 from __future__ import annotations
 
 import datetime as dt
+import time
 from dataclasses import dataclass, field
 from typing import Callable
 
@@ -21,7 +22,6 @@ SAFARI = 'com.apple.mobilesafari'
 MAPS = 'com.apple.Maps'
 
 A11Y = 'com.apple.Accessibility'
-PREFS = 'com.apple.Preferences'
 
 _FIRST = ['Ada', 'Grace', 'Alan', 'Edsger', 'Barbara', 'Donald', 'Margaret', 'Dennis',
           'Frances', 'Ken', 'Radia', 'Claude']
@@ -35,15 +35,19 @@ _LIST_B = ['Ideas', 'Tasks', 'Plans', 'Errands']
 _EVENT_A = ['Dentist', 'Haircut', 'Yoga', 'Piano lesson', 'Car service', 'Vet visit',
             'Book club', 'Tennis']
 _EVENT_B = ['with Sam', 'with Priya', 'with Leo', 'with Mei']
-_WIKI = [('Alan Turing', 'Alan_Turing'), ('Grace Hopper', 'Grace_Hopper'),
-         ('Ada Lovelace', 'Ada_Lovelace'), ('Claude Shannon', 'Claude_Shannon'),
-         ('Edsger W. Dijkstra', 'Dijkstra'), ('Margaret Hamilton', 'Margaret_Hamilton'),
-         ('Donald Knuth', 'Donald_Knuth'), ('Barbara Liskov', 'Barbara_Liskov'),
-         ('Dennis Ritchie', 'Dennis_Ritchie'), ('Ken Thompson', 'Ken_Thompson'),
-         ('Radia Perlman', 'Radia_Perlman'), ('Frances Allen', 'Frances_Allen')]
+_WIKI = [('Alan Turing',), ('Grace Hopper',), ('Ada Lovelace',), ('Claude Shannon',),
+         ('Edsger W. Dijkstra',), ('Margaret Hamilton',), ('Donald Knuth',), ('Barbara Liskov',),
+         ('Dennis Ritchie',), ('Ken Thompson',), ('Radia Perlman',), ('Frances Allen',)]
 _PLACES = ['Golden Gate Bridge', 'Coit Tower', 'Ferry Building', 'Palace of Fine Arts',
            'Oracle Park', 'Pier 39', 'Alcatraz Island', 'Lombard Street', 'Salesforce Tower',
            'Twin Peaks', 'Dolores Park', 'Union Square']
+
+
+_BIGGER_THAN_LARGE = {
+    'extra-large', 'extra-extra-large', 'extra-extra-extra-large',
+    'accessibility-medium', 'accessibility-large', 'accessibility-extra-large',
+    'accessibility-extra-extra-large', 'accessibility-extra-extra-extra-large',
+}
 
 
 def _person(k: int, offset: int = 0) -> tuple[str, str]:
@@ -130,8 +134,11 @@ def _check_event(p, stats):
 
 
 def _check_wiki(p, stats):
-    url = sim.safari_url()
-    return ('wikipedia.org' in url and p['slug'].lower() in url.lower()), f'url={url}'
+    # Safari's address bar only shows the domain and page JS isn't always reachable,
+    # so match the document title WebKit exposes in the tree.
+    xml = sim.screen_text()
+    ok = f'{p["topic"]} - Wikipedia' in xml
+    return ok, 'article open' if ok else 'article title not on screen'
 
 
 def _check_place(p, stats):
@@ -162,20 +169,21 @@ TASKS: list[Task] = [
     _defaults_task('button_borders', 'Turn on button borders in the accessibility settings',
                    A11Y, 'ButtonShapesEnabled', True),
     _defaults_task('reduce_motion', 'Turn on Reduce Motion', A11Y, 'ReduceMotionEnabled', True),
-    _defaults_task('autocorrect_on', 'Turn on keyboard Auto-Correction', PREFS, 'KeyboardAutocorrection', True),
-    _defaults_task('predictive_off', 'Turn off Predictive Text for the keyboard', PREFS, 'KeyboardPrediction', False),
+    # Keyboard settings aren't here: writing their defaults doesn't change what Settings shows,
+    # so they can't be reset between runs.
+    _defaults_task('reduce_transparency', 'Turn on Reduce Transparency', A11Y, 'EnhancedBackgroundContrastEnabled', True),
+    _defaults_task('speak_selection', 'Turn on Speak Selection in the Spoken Content settings', A11Y, 'QuickSpeak', True),
     Task(
-        id='dark_mode', app=SETTINGS, prompt='Switch the phone to Dark Mode', category='settings',
+        # The simulator's Settings has no Display & Brightness page; Dark Mode lives under Developer.
+        id='dark_mode', app=SETTINGS, prompt='Turn on Dark Appearance in the Developer settings', category='settings',
         setup=lambda p: sim.simctl('ui', sim.UDID, 'appearance', 'light'),
         check=lambda p, s: (sim.appearance() == 'dark', f'appearance={sim.appearance()}'),
     ),
     Task(
-        id='text_size_max', app=SETTINGS, category='settings',
-        prompt='Set the text size to the largest setting in Display & Brightness (not the accessibility sizes)',
+        id='text_size_up', app=SETTINGS, category='settings',
+        prompt='Make the system text size larger using the Larger Text accessibility setting',
         setup=lambda p: sim.simctl('ui', sim.UDID, 'content_size', 'large'),
-        check=lambda p, s: (sim.content_size() in ('extra-extra-extra-large',) or
-                            sim.content_size().startswith('accessibility'),
-                            f'content_size={sim.content_size()}'),
+        check=lambda p, s: (sim.content_size() in _BIGGER_THAN_LARGE, f'content_size={sim.content_size()}'),
     ),
     # --- Information lookup, verified against known values ---
     Task(id='ios_version', app=SETTINGS, category='lookup',
@@ -236,7 +244,9 @@ TASKS: list[Task] = [
     Task(
         id='wiki_article', app=SAFARI, category='web',
         prompt='In Safari, open the Wikipedia article about {topic}',
-        params=lambda k: dict(topic=_WIKI[k % 12][0], slug=_WIKI[k % 12][1]),
+        params=lambda k: dict(topic=_WIKI[k % 12][0]),
+        # Safari reopens its last page, so park it on a neutral one first.
+        setup=lambda p: (sim.simctl('openurl', sim.UDID, 'https://example.com'), time.sleep(3)),
         check=_check_wiki,
     ),
     Task(

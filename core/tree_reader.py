@@ -5,6 +5,7 @@ import base64
 import json
 import re
 import threading
+import time
 import wda
 
 from core.tree_parser import parse_tree
@@ -18,6 +19,7 @@ _GRID_ROWS = 6
 # Perception modes. 'tree' is the normal path (screenshot only as fallback);
 # the screenshot modes skip the tree entirely so the two can be compared.
 PERCEPTION_MODES = ('tree', 'screenshot', 'screenshot_raw')
+_SCREENSHOT_SETTLE_S = 1.0
 
 def _add_grid_overlay(png_bytes: bytes) -> tuple[bytes, str]:
     """Draw a numbered grid on a screenshot. Returns (annotated_png, grid_text).
@@ -306,6 +308,10 @@ class TreeReader:
     # ------------------------------------------------------------------
 
     def _forced_screenshot_snapshot(self, bundle_id: str) -> tuple[str, dict, dict]:
+        # The agent prefetches the next observation right after acting. A tree read
+        # takes 1-4s, so the UI has settled by the time it lands; a screenshot is
+        # instant and would capture the screen mid-transition. Wait for it to settle.
+        time.sleep(_SCREENSHOT_SETTLE_S)
         if self.perception == 'screenshot':
             screenshot_b64, grid_text = self._gridded_screenshot()
             tree_msg = '[screenshot mode]\n' + grid_text
@@ -318,6 +324,11 @@ class TreeReader:
             'current_url': None,
             'perception_mode': 'screenshot', 'screenshot_b64': screenshot_b64,
         }
+        if self.perception == 'screenshot_raw':
+            # Gemini places points far more reliably on its native 0-1000 scale than
+            # in raw pixels; the agent converts back to pixels before executing.
+            metadata['coord_space'] = 'norm1000'
+            metadata['screenshot_size'] = _png_size(screenshot_b64)
         return tree_msg, {}, metadata
 
     # ------------------------------------------------------------------
@@ -393,6 +404,17 @@ class TreeReader:
 # ------------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------------
+
+def _png_size(b64: str | None) -> tuple[int, int] | None:
+    if not b64:
+        return None
+    try:
+        from PIL import Image
+        import io
+        return Image.open(io.BytesIO(base64.b64decode(b64))).size
+    except Exception:
+        return None
+
 
 def _build_tree_from_js(page: dict) -> tuple[str, dict]:
     """Convert JS page data into a compact tree string + ref_map.

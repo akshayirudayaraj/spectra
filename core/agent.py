@@ -39,6 +39,12 @@ def _summarize_task(history, task, planner) -> str:
 # Terminal actions that end the loop
 _TERMINAL = {'done', 'stuck'}
 
+# How long to wait for a screen snapshot before reusing the previous one. WDA's
+# source() regularly takes ~4s on busy screens (forms, open keyboard); a shorter
+# wait silently hands the planner a stale screen, so it re-taps toggles it already
+# flipped. TreeReader gives up on source() at 20s and falls back to a screenshot.
+_OBSERVE_TIMEOUT = 25.0
+
 # Non-UI actions that don't change the screen — skip re-snapshot after these
 _NO_UI_ACTIONS = {'remember', 'plan', 'ask_user', 'schedule'}
 
@@ -86,6 +92,15 @@ def _build_combined_memory(lessons_text: str | None, agent_memory: AgentMemory) 
     if agent_mem_text:
         parts.append(agent_mem_text)
     return '\n\n'.join(parts) or None
+
+
+def _to_screenshot_pixels(action: dict, metadata: dict) -> dict:
+    """Convert a tap_xy given on Gemini's 0-1000 scale to screenshot pixels for the executor."""
+    size = metadata.get('screenshot_size')
+    if metadata.get('coord_space') != 'norm1000' or not size:
+        return action
+    w, h = size
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
 
 
 def run_agent(
@@ -203,7 +218,7 @@ def run_agent(
         elif prefetch_future is not None:
             # Wait for the in-flight prefetch (started at end of previous step)
             try:
-                tree, ref_map, metadata = prefetch_future.result(timeout=4.0)
+                tree, ref_map, metadata = prefetch_future.result(timeout=_OBSERVE_TIMEOUT)
                 cached_snapshot = (tree, ref_map, metadata)
             except Exception:
                 if cached_snapshot is not None:
@@ -215,7 +230,7 @@ def run_agent(
         else:
             _snap_future = snap_pool.submit(reader.snapshot)
             try:
-                tree, ref_map, metadata = _snap_future.result(timeout=4.0)
+                tree, ref_map, metadata = _snap_future.result(timeout=_OBSERVE_TIMEOUT)
             except Exception:
                 if cached_snapshot is not None:
                     tree, ref_map, metadata = cached_snapshot
@@ -384,6 +399,8 @@ def run_agent(
                     if not gate.request_confirmation({'name': sub_action, 'input': item}, ref_map):
                         history.append(f'Step {step}: batch sub-action {sub_action} → REJECTED by user')
                         break
+                if sub_action == 'tap_xy':
+                    item = _to_screenshot_pixels(item, metadata)
                 result = executor.run(sub_action, item, ref_map)
                 results.append(f'{sub_action} → {result}')
                 if verbose:
@@ -411,6 +428,8 @@ def run_agent(
                 continue
 
         # --- Act ---
+        if action_name == 'tap_xy':
+            action_input = _to_screenshot_pixels(action_input, metadata)
         result = executor.run(action_name, action_input, ref_map)
         history.append(f'Step {step}: {action_name} → {result}')
 
