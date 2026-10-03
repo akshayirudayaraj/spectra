@@ -1,0 +1,22 @@
+TASK: Open the page in Settings that shows the phone model name and serial number
+MODE: screenshot_raw
+
+    [timing] observe=1.20s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap on 'General' to access the About section.
+    [think] 2.21s | input={'reasoning': "Tap on 'General' to access the About section.", 'x': 500, 'y': 460}
+    → Tapped (603,1206) → (201,402) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tapping 'About' to view phone model and serial number information.
+    [think] 2.30s | input={'reasoning': "Tapping 'About' to view phone model and serial number information.", 'x': 480, 'y': 475}
+    → Tapped (579,1245) → (193,415) [scaled @3.0x]
+    [timing] observe=1.10s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: done — I have opened the 'About' page in Settings, which displays the iPhone's model name (iPhone 17 Pro) and serial number (PFWFPG742P).
+    [think] 2.29s | input={'summary': "I have opened the 'About' page in Settings, which displays the iPhone's model name (iPhone 17 Pro) and serial number (PFWFPG742P)."}
+    → DONE: I have opened the 'About' page in Settings, which displays the iPhone's model name (iPhone 17 Pro) and serial number (PFWFPG742P).
+  Finished in 3 steps, 13.8s

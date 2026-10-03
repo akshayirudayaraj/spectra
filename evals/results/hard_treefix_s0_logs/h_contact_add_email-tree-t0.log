@@ -1,0 +1,41 @@
+TASK: Add the email address editor4000@example.net to Dennis Editor4000's existing contact
+MODE: tree
+
+    [timing] observe=1.80s
+  [see] app=Contacts mode=tree refs=28
+  [see] tree: [1] NavBar "Contacts" |   [2] Button "Back" | [3] Cell "a" | [4] Cell "Grace Allen" |   [5] Button "Contact photo for Grace Allen" | [6] Cell "John Appleseed" |   [7] Button "Contact photo for John Appleseed" | [8]
+  Step 1: type_text — I need to find Dennis Editor4000's contact to add the email address. I'll search for 'Dennis Editor4000'.
+    [think] 1.08s | input={'text': 'Dennis Editor4000', 'ref': 25, 'reasoning': "I need to find Dennis Editor4000's contact to add the email address. I'll search for 'Dennis Editor4000'."}
+    → Typed 'Dennis Editor4000' into [25]
+    [timing] observe=3.19s
+  [see] app=Contacts mode=tree refs=10
+  [see] tree: [1] Cell "top name matches" | [2] Cell "Dennis Editor4000" |   [3] Button "Contact photo for Dennis Editor4000" | [4] Cell | [5] SearchField "Search" → "Dennis Editor4000" |   [6] Button "Clear text" | [7] Button
+  Step 2: tap — I've found the contact 'Dennis Editor4000' in the search results, so I'll tap it to open the contact details.
+    [think] 1.37s | input={'ref': 2, 'reasoning': "I've found the contact 'Dennis Editor4000' in the search results, so I'll tap it to open the contact details."}
+    → Tapped [2] 'Dennis Editor4000' at (194,130)
+    [timing] observe=2.61s
+  [see] app=Contacts mode=tree refs=15
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Search" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell | [7] Cell |   [8] Button "Contact Photo & Poster" | [9] Cell | [10] Cell |   [11] Button "Share Contact" | [12] Cel
+  Step 3: tap — I need to enter edit mode to add the email address to the contact.
+    [think] 1.69s | input={'reasoning': 'I need to enter edit mode to add the email address to the contact.', 'ref': 3}
+    → Tapped [3] 'Edit' at (354,84)
+    [timing] observe=1.43s
+  [see] app=Contacts mode=tree refs=19
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "close" |   [3] Button "Done" [disabled] | [4] Button "Add photo" | [5] Button "Add Photo" | [6] Cell |   [7] TextField "First name" → "Dennis" | [8] Cell |   [9] TextField "
+  Step 4: tap — I need to add a new email field for the contact.
+    [think] 2.00s | input={'reasoning': 'I need to add a new email field for the contact.', 'ref': 15}
+    → Tapped [15] 'Insert add email' at (52,641)
+    [timing] observe=2.26s
+  [see] app=Contacts mode=tree refs=20
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "close" |   [3] Button "Done" | [4] Button "Add photo" | [5] Button "Add Photo" | [6] Cell |   [7] TextField "First name" → "Dennis" | [8] Cell |   [9] TextField "Last name" 
+  Step 5: batch — I'll type the email address into the new email field and then tap Done to save the contact.
+    [think] 1.70s | input={'actions': [{'ref': 17, 'text': 'editor4000@example.net', 'action': 'type_text'}, {'ref': 3, 'action': 'tap'}], 'checkpoint_reason': 'Verify that the email was added and the contact was saved.', 'reasoning': "I'll type the email address into the new email field and then tap Done to save the contact."}
+    [1/2] Typed 'editor4000@example.net' into [17]
+    [2/2] Tapped [3] 'Done' at (364,84)
+    [timing] observe=3.08s
+  [see] app=Contacts mode=tree refs=17
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Search" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Mail" | [9] Cell |   [10] Button "Contact Photo & Poster" | [11] Cell |   [
+  Step 6: done — I have successfully added the email address editor4000@example.net to Dennis Editor4000's contact and saved the changes.
+    [think] 2.28s | input={'summary': "I have successfully added the email address editor4000@example.net to Dennis Editor4000's contact and saved the changes."}
+    → DONE: I have successfully added the email address editor4000@example.net to Dennis Editor4000's contact and saved the changes.
+  Finished in 6 steps, 38.1s

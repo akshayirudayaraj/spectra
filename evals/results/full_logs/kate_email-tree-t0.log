@@ -1,0 +1,52 @@
+TASK: Look up Kate Bell's email address and report it
+MODE: tree
+
+    [timing] observe=1.52s
+  [see] app=Contacts mode=tree refs=17
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Call" | [9] Cell |   [10] Button "Contact Photo & Poster" | [11] Cell |  
+  Step 1: scroll — Email address is likely further down on the contact details page.
+    [think] 0.99s | input={'direction': 'down', 'reasoning': 'Email address is likely further down on the contact details page.'}
+    → Scrolled down
+    [timing] observe=2.11s
+  [see] app=Contacts mode=tree refs=23
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell |   [5] Button "Message" |   [6] Button "Call" | [7] Cell |   [8] Button "Contact Photo & Poster" | [9] Cell |   [10] Button "mobile
+  Step 2: scroll — The email address might be at the top of the contact card, which I might have scrolled past or missed.
+    [think] 2.28s | input={'reasoning': 'The email address might be at the top of the contact card, which I might have scrolled past or missed.', 'direction': 'up'}
+    → Scrolled up
+    [timing] observe=1.26s
+  [see] app=Contacts mode=tree refs=17
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Call" | [9] Cell |   [10] Button "Contact Photo & Poster" | [11] Cell |  
+  Step 3: scroll — Checking the bottom of the contact card to see if the email address is listed there.
+    [think] 2.72s | input={'reasoning': 'Checking the bottom of the contact card to see if the email address is listed there.', 'direction': 'down'}
+    → Scrolled down
+    [timing] observe=2.15s
+  [see] app=Contacts mode=tree refs=23
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell |   [5] Button "Message" |   [6] Button "Call" | [7] Cell |   [8] Button "Contact Photo & Poster" | [9] Cell |   [10] Button "mobile
+  Step 4: tap — The email address is not visible on the main contact view, so I will check the Edit screen to see all fields.
+    [think] 2.87s | input={'ref': 3, 'reasoning': 'The email address is not visible on the main contact view, so I will check the Edit screen to see all fields.'}
+    → Tapped [3] 'Edit' at (354,84)
+    [timing] observe=1.42s
+  [see] app=Contacts mode=tree refs=23
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "close" |   [3] Button "Done" [disabled] | [4] Button "Add photo" | [5] Button "Add Photo" | [6] Cell |   [7] TextField "First name" → "Grace" | [8] Cell |   [9] TextField "L
+  Step 5: tap — The current contact is 'Grace Allen', but the task is to find 'Kate Bell'. I need to go back to the contact list to find the correct contact.
+    [think] 1.39s | input={'ref': 2, 'reasoning': "The current contact is 'Grace Allen', but the task is to find 'Kate Bell'. I need to go back to the contact list to find the correct contact."}
+    → Tapped [2] 'close' at (38,84)
+    [timing] observe=2.20s
+  [see] app=Contacts mode=tree refs=23
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell |   [5] Button "Message" |   [6] Button "Call" | [7] Cell |   [8] Button "Contact Photo & Poster" | [9] Cell |   [10] Button "mobile
+  Step 6: tap — I am currently looking at Grace Allen's contact details, but I need Kate Bell's. I will go back to the contact list to find the correct contact.
+    [think] 1.62s | input={'reasoning': "I am currently looking at Grace Allen's contact details, but I need Kate Bell's. I will go back to the contact list to find the correct contact.", 'ref': 2}
+    → Tapped [2] 'Contacts' at (38,84)
+    [timing] observe=1.08s
+  [see] app=Contacts mode=tree refs=28
+  [see] tree: [1] NavBar "Contacts" |   [2] Button "Back" | [3] Cell "a" | [4] Cell "Grace Allen" |   [5] Button "Contact photo for Grace Allen" | [6] Cell "John Appleseed" |   [7] Button "Contact photo for John Appleseed" | [8]
+  Step 7: tap — I found Kate Bell in the contact list and need to view her details to find her email address.
+    [think] 1.16s | input={'reasoning': 'I found Kate Bell in the contact list and need to view her details to find her email address.', 'ref': 9}
+    → Tapped [9] 'Kate Bell' at (194,342)
+    [timing] observe=2.74s
+  [see] app=Contacts mode=tree refs=19
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Call" |   [9] Button "Mail" | [10] Cell |   [11] Button "Contact Photo 
+  Step 8: done — Kate Bell's email address is kate-bell@mac.com.
+    [think] 1.32s | input={'summary': "Kate Bell's email address is kate-bell@mac.com."}
+    → DONE: Kate Bell's email address is kate-bell@mac.com.
+  Finished in 8 steps, 42.6s

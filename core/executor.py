@@ -1,9 +1,15 @@
 """Translate tool calls from the LLM Planner into WDA commands."""
 
+import os
 import subprocess
 import time
 
 import wda
+
+_TEXT_INPUTS = ('TextField', 'SearchField', 'TextView', 'SecureTextField')
+
+# simctl device for app launches; set SPECTRA_SIM_UDID when several simulators are booted.
+SIM_DEVICE = os.environ.get('SPECTRA_SIM_UDID', 'booted')
 
 
 class Executor:
@@ -65,6 +71,10 @@ class Executor:
             return self._js_click(el['js_index'], el.get('label', ''))
         x = el['x'] + el['width'] // 2
         y = el['y'] + el['height'] // 2
+        if 'Switch' in el.get('type', '') and el['width'] > 3 * el['height']:
+            # A Switch row spans the whole cell; its center is the label, which
+            # doesn't toggle on iOS 26. Tap the knob at the trailing edge instead.
+            x = el['x'] + el['width'] - 50
         self.client.tap(x, y)
         return f"Tapped [{ref}] '{el.get('label', '')}' at ({x},{y})"
 
@@ -95,22 +105,14 @@ class Executor:
 
     def _tap_xy(self, x: int, y: int) -> str:
         # The LLM outputs pixel coordinates from the screenshot (e.g., 1206x2622).
-        # WDA needs point coordinates (e.g., 402x874). Scale down.
+        # WDA needs point coordinates (e.g., 402x874). Always scale: a pixel tap in
+        # the top-left third of the screen also "fits" in point space, so guessing
+        # the coordinate space from the values misplaces those taps.
         scale = self._get_scale_factor()
-        win_w, win_h = self._get_window_size()
-
-        # Detect if LLM already output point-space coordinates
-        # (values fit within window bounds = already in points, don't scale)
-        if x <= win_w and y <= win_h:
-            tap_x, tap_y = x, y
-            note = 'already in points'
-        else:
-            tap_x = int(x / scale)
-            tap_y = int(y / scale)
-            note = f'scaled @{scale}x'
-
+        tap_x = int(x / scale)
+        tap_y = int(y / scale)
         self.client.tap(tap_x, tap_y)
-        return f'Tapped ({x},{y}) → ({tap_x},{tap_y}) [{note}]'
+        return f'Tapped ({x},{y}) → ({tap_x},{tap_y}) [scaled @{scale}x]'
 
     def _get_scale_factor(self) -> float:
         if not hasattr(self, '_scale_factor') or self._scale_factor is None:
@@ -135,8 +137,20 @@ class Executor:
         return self._window_size
 
     def _type(self, ref: int, text: str, ref_map: dict) -> str:
-        self._tap(ref, ref_map)
+        if not ref_map or (ref == 0 and ref not in ref_map):
+            # Screenshot modes have no refs for fields: the planner focuses the field
+            # with tap_xy first, so type into whatever currently has focus.
+            self.client.send_keys(text)
+            return f"Typed '{text}' into focused field"
+        tap_result = self._tap(ref, ref_map)
+        if tap_result.startswith('Error'):
+            return tap_result
         time.sleep(0.1)
+        el = ref_map[ref]
+        if el.get('value') and any(t in el.get('type', '') for t in _TEXT_INPUTS):
+            # type_text sets the field: clear what's there instead of appending to it.
+            # The tree knows the current value; deleting a placeholder is harmless.
+            self.client.send_keys('\b' * (len(el['value']) + 2))
         self.client.send_keys(text)
         return f"Typed '{text}' into [{ref}]"
 
@@ -227,7 +241,7 @@ class Executor:
                 return f'{bundle_id} already in foreground'
         except Exception:
             pass
-        result = subprocess.run(['xcrun', 'simctl', 'launch', 'booted', bundle_id],
+        result = subprocess.run(['xcrun', 'simctl', 'launch', SIM_DEVICE, bundle_id],
                                capture_output=True, text=True)
         if result.returncode != 0:
             return f'Error: {bundle_id} is not installed on this device. Use Safari or another installed app instead.'

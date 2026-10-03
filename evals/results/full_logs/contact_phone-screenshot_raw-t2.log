@@ -1,0 +1,46 @@
+TASK: Create a new contact named Ada Dijkstra with phone number 5550328030
+MODE: screenshot_raw
+
+    [timing] observe=1.30s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the back button to return to the contact list.
+    [think] 2.97s | input={'x': 84, 'y': 96, 'reasoning': 'Tap the back button to return to the contact list.'}
+    → Tapped (101,252) → (33,84) [scaled @3.0x]
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap the '+' button in the bottom right corner to start creating a new contact.
+    [think] 2.62s | input={'reasoning': "Tap the '+' button in the bottom right corner to start creating a new contact.", 'y': 934, 'x': 858}
+    → Tapped (1035,2449) → (345,816) [scaled @3.0x]
+    [timing] observe=1.14s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: batch — Tapping the 'First name' field to enter the first name.
+    [think] 3.19s | input={'reasoning': "Tapping the 'First name' field to enter the first name.", 'checkpoint_reason': 'Entering first name', 'actions': [{'ref': 0, 'x': 500, 'action': 'tap_xy', 'y': 473}, {'text': 'Ada', 'action': 'type_text', 'ref': 0}]}
+    [1/2] Tapped (603,1240) → (201,413) [scaled @3.0x]
+    [2/2] Typed 'Ada' into focused field
+    [timing] observe=1.26s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: batch — Tapping the last name field and typing 'Dijkstra' to continue filling out the contact details.
+    [think] 3.00s | input={'reasoning': "Tapping the last name field and typing 'Dijkstra' to continue filling out the contact details.", 'checkpoint_reason': 'Entering last name', 'actions': [{'y': 530, 'action': 'tap_xy'}, {'text': 'Dijkstra', 'ref': 0, 'action': 'type_text'}]}
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 105, in run_one
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=item['mode'], learn=False, stats=stats,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 403, in run_agent
+    item = _to_screenshot_pixels(item, metadata)
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 103, in _to_screenshot_pixels
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+                                 ~~~~~~^^^^^
+KeyError: 'x'

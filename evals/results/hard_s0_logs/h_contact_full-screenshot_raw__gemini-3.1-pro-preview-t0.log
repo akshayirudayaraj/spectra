@@ -1,0 +1,88 @@
+TASK: Create a new contact named Margaret Thompson with phone number 5555455894, email margaret.thompson.2002@example.org, and company Kestrel Aero
+MODE: screenshot_raw@gemini-3.1-pro-preview
+
+    [timing] observe=1.19s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping the plus button to create a new contact
+    [think] 6.35s | input={'reasoning': 'Tapping the plus button to create a new contact', 'y': 940, 'x': 860}
+    → Tapped (1037,2465) → (345,821) [scaled @3.0x]
+    [timing] observe=1.13s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — Typing first name as the cursor is already in the First name field
+    [think] 4.35s | input={'text': 'Margaret', 'reasoning': 'Typing first name as the cursor is already in the First name field', 'ref': 0}
+    → Typed 'Margaret' into focused field
+    [timing] observe=1.03s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tapping the Last name field to focus it
+    [think] 7.78s | input={'y': 540, 'reasoning': 'Tapping the Last name field to focus it', 'x': 300}
+    → Tapped (362,1416) → (120,472) [scaled @3.0x]
+    [timing] observe=1.10s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: type_text — Typing the last name 'Thompson' since the field is already focused
+    [think] 6.91s | input={'text': 'Thompson', 'ref': 0, 'reasoning': "Typing the last name 'Thompson' since the field is already focused"}
+    → Typed 'Thompson' into focused field
+    [timing] observe=1.06s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: tap_xy — Tapping the 'Company' field to focus it
+    [think] 6.28s | input={'y': 600, 'x': 200, 'reasoning': "Tapping the 'Company' field to focus it"}
+    → Tapped (241,1573) → (80,524) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 6: type_text — Typing the company name 'Kestrel Aero' into the focused 'Company' field
+    [think] 4.41s | input={'text': 'Kestrel Aero', 'ref': 0, 'reasoning': "Typing the company name 'Kestrel Aero' into the focused 'Company' field"}
+    → Typed 'Kestrel Aero' into focused field
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 7: tap_xy — Tapping the 'add phone' button to add the phone number
+    [think] 5.45s | input={'x': 200, 'reasoning': "Tapping the 'add phone' button to add the phone number", 'y': 640}
+    → Tapped (241,1678) → (80,559) [scaled @3.0x]
+    [timing] observe=1.12s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 8: type_text — Typing the phone number into the currently focused phone field
+    [think] 4.97s | input={'ref': 0, 'text': '5555455894', 'reasoning': 'Typing the phone number into the currently focused phone field'}
+    → Typed '5555455894' into focused field
+    [timing] observe=1.03s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 9: scroll — Scrolling down to find the 'add email' button
+    [think] 4.45s | input={'reasoning': "Scrolling down to find the 'add email' button", 'direction': 'down'}
+    → Scrolled down
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 10: scroll — Scrolling up to find the add email button, since I scrolled too far down.
+    [think] 4.69s | input={'direction': 'up', 'reasoning': 'Scrolling up to find the add email button, since I scrolled too far down.'}
+    → Scrolled up
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 11: tap_xy — Tapping 'add email' button to input the email address
+    [think] 4.52s | input={'reasoning': "Tapping 'add email' button to input the email address", 'y': 690, 'x': 500}
+    → Tapped (603,1809) → (201,603) [scaled @3.0x]
+    [timing] observe=1.11s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 12: type_text — Typing the email address into the focused email field.
+    [think] 5.53s | input={'text': 'margaret.thompson.2002@example.org', 'reasoning': 'Typing the email address into the focused email field.', 'ref': 0}
+    → Typed 'margaret.thompson.2002@example.org' into focused field
+    [timing] observe=1.06s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 13: tap_xy — Tapping the blue checkmark button at the top right to save the new contact.
+    [think] 8.93s | input={'x': 900, 'reasoning': 'Tapping the blue checkmark button at the top right to save the new contact.', 'y': 115}
+    → Tapped (1085,302) → (361,100) [scaled @3.0x]
+    [timing] observe=1.20s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 14: done — Created a new contact named Margaret Thompson with phone number 5555455894, email margaret.thompson.2002@example.org, and company Kestrel Aero.
+    [think] 4.95s | input={'summary': 'Created a new contact named Margaret Thompson with phone number 5555455894, email margaret.thompson.2002@example.org, and company Kestrel Aero.'}
+    → DONE: Created a new contact named Margaret Thompson with phone number 5555455894, email margaret.thompson.2002@example.org, and company Kestrel Aero.
+  Finished in 14 steps, 117.9s

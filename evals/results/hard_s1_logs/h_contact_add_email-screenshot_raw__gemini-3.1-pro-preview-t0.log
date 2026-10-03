@@ -1,0 +1,58 @@
+TASK: Add the email address editor2003@example.net to Alan Editor2003's existing contact
+MODE: screenshot_raw@gemini-3.1-pro-preview
+
+    [timing] observe=1.25s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping the back button to return to the Contacts list
+    [think] 7.42s | input={'y': 98, 'reasoning': 'Tapping the back button to return to the Contacts list', 'x': 94}
+    → Tapped (113,257) → (37,85) [scaled @3.0x]
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tapping the Search bar to find Alan Editor2003
+    [think] 56.26s | input={'reasoning': 'Tapping the Search bar to find Alan Editor2003', 'x': 300, 'y': 935}
+    → Tapped (362,2452) → (120,817) [scaled @3.0x]
+    [timing] observe=1.05s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: type_text — Typing 'Alan Editor2003' into the search bar to find the contact
+    [think] 4.23s | input={'text': 'Alan Editor2003', 'ref': 0, 'reasoning': "Typing 'Alan Editor2003' into the search bar to find the contact"}
+    → Typed 'Alan Editor2003' into focused field
+    [timing] observe=1.00s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: tap_xy — Tapping on the search result for 'Alan Editor2003' to open the contact details.
+    [think] 7.07s | input={'y': 150, 'x': 500, 'reasoning': "Tapping on the search result for 'Alan Editor2003' to open the contact details."}
+    → Tapped (603,393) → (201,131) [scaled @3.0x]
+    [timing] observe=1.37s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: tap_xy — Tapping the Edit button to modify the contact's details
+    [think] 4.73s | input={'y': 100, 'reasoning': "Tapping the Edit button to modify the contact's details", 'x': 880}
+    → Tapped (1061,262) → (353,87) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 6: tap_xy — Tapping the 'add email' button to add an email address to the contact
+    [think] 6.33s | input={'y': 730, 'x': 300, 'reasoning': "Tapping the 'add email' button to add an email address to the contact"}
+    → Tapped (362,1914) → (120,638) [scaled @3.0x]
+    [timing] observe=1.07s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 7: type_text — Typing the email address into the currently focused Email field
+    [think] 9.87s | input={'reasoning': 'Typing the email address into the currently focused Email field', 'text': 'editor2003@example.net', 'ref': 0}
+    → Typed 'editor2003@example.net' into focused field
+    [timing] observe=1.01s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 8: tap_xy — Tapping the checkmark (Done) button to save the updated contact details
+    [think] 5.15s | input={'y': 95, 'x': 905, 'reasoning': 'Tapping the checkmark (Done) button to save the updated contact details'}
+    → Tapped (1091,249) → (363,83) [scaled @3.0x]
+    [timing] observe=1.13s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 9: done — Added the email address editor2003@example.net to Alan Editor2003's contact and verified it is saved.
+    [think] 6.86s | input={'summary': "Added the email address editor2003@example.net to Alan Editor2003's contact and verified it is saved."}
+    → DONE: Added the email address editor2003@example.net to Alan Editor2003's contact and verified it is saved.
+  Finished in 9 steps, 130.3s

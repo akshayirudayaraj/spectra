@@ -1,0 +1,58 @@
+TASK: Change the company on Alan Mover2001's contact to Blue Harbor Labs
+MODE: screenshot_raw@gemini-3.1-pro-preview
+
+    [timing] observe=1.19s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the search bar to find the contact
+    [think] 4.91s | input={'x': 400, 'y': 930, 'reasoning': 'Tap the search bar to find the contact'}
+    → Tapped (482,2438) → (160,812) [scaled @3.0x]
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — Type the contact name to search for Alan Mover2001.
+    [think] 3.78s | input={'text': 'Alan Mover2001', 'reasoning': 'Type the contact name to search for Alan Mover2001.', 'ref': 0}
+    → Typed 'Alan Mover2001' into focused field
+    [timing] observe=1.01s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tap on the search result for Alan Mover2001 to open their contact details.
+    [think] 5.08s | input={'x': 300, 'y': 150, 'reasoning': 'Tap on the search result for Alan Mover2001 to open their contact details.'}
+    → Tapped (362,393) → (120,131) [scaled @3.0x]
+    [timing] observe=1.27s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: tap_xy — Tap 'Edit' to modify the contact details
+    [think] 4.27s | input={'x': 880, 'y': 95, 'reasoning': "Tap 'Edit' to modify the contact details"}
+    → Tapped (1061,249) → (353,83) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: tap_xy — Tap the company field ('Placeholder Inc') to edit it
+    [think] 8.82s | input={'reasoning': "Tap the company field ('Placeholder Inc') to edit it", 'y': 580, 'x': 200}
+    → Tapped (241,1521) → (80,507) [scaled @3.0x]
+    [timing] observe=1.06s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 6: tap_xy — Tap the 'x' button to clear the existing company name
+    [think] 20.04s | input={'y': 582, 'reasoning': "Tap the 'x' button to clear the existing company name", 'x': 875}
+    → Tapped (1055,1526) → (351,508) [scaled @3.0x]
+    [timing] observe=1.07s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 7: type_text — Entering the new company name
+    [think] 47.41s | input={'ref': 0, 'reasoning': 'Entering the new company name', 'text': 'Blue Harbor Labs'}
+    → Typed 'Blue Harbor Labs' into focused field
+    [timing] observe=1.06s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 8: tap_xy — Tap the checkmark button to save the contact changes
+    [think] 4.58s | input={'y': 98, 'reasoning': 'Tap the checkmark button to save the contact changes', 'x': 905}
+    → Tapped (1091,257) → (363,85) [scaled @3.0x]
+    [timing] observe=1.19s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 9: done — The company name on Alan Mover2001's contact has been successfully changed to Blue Harbor Labs
+    [think] 6.26s | input={'summary': "The company name on Alan Mover2001's contact has been successfully changed to Blue Harbor Labs"}
+    → DONE: The company name on Alan Mover2001's contact has been successfully changed to Blue Harbor Labs
+  Finished in 9 steps, 127.6s

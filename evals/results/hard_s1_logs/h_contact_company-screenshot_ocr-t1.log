@@ -1,0 +1,53 @@
+TASK: Change the company on Frances Mover2007's contact to Helios Energy
+MODE: screenshot_ocr
+
+    [timing] observe=1.47s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=11
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:31" @(184,37) | [2] "Edit" @(881,96) | [3] "ME" @(498,279) | [4] "FIREFLY STUDIO" @(500,442) | [5] "Margaret" @(
+  Step 1: tap_xy — Go back to the contact list to search for Frances Mover2007.
+    [think] 3.59s | input={'x': 83, 'y': 96, 'reasoning': 'Go back to the contact list to search for Frances Mover2007.'}
+    → Tapped (100,252) → (33,84) [scaled @3.0x]
+    [timing] observe=1.44s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=44
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:31" @(184,37) | [2] "<" @(89,97) | [3] "Contacts" @(498,96) | [4] "X" @(870,162) | [5] "6 Duplicates Found" @(26
+  Step 2: type_text — Searching for the contact 'Frances Mover2007' to update their company information.
+    [think] 2.75s | input={'text': 'Frances Mover2007', 'reasoning': "Searching for the contact 'Frances Mover2007' to update their company information.", 'ref': 44}
+    → Typed 'Frances Mover2007' into [44]
+    [timing] observe=1.38s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=28
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:32" @(184,37) | [2] "Top Name Matches" @(206,94) | [3] "FM" @(96,148) | [4] "Frances Mover2007" @(364,148) | [5]
+  Step 3: tap — Tap the search result for Frances Mover2007 to open their contact card.
+    [think] 2.35s | input={'reasoning': 'Tap the search result for Frances Mover2007 to open their contact card.', 'ref': 4}
+    → Tapped [4] 'Frances Mover2007' at (145,128)
+    [timing] observe=1.35s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=10
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:32" @(184,37) | [2] "Edit" @(881,96) | [3] "FM" @(493,279) | [4] "PLACEHOLDER INC" @(499,442) | [5] "Frances" @(
+  Step 4: tap — Tapping 'Edit' to enter the editing mode for the contact 'Frances Mover2007'.
+    [think] 7.20s | input={'reasoning': "Tapping 'Edit' to enter the editing mode for the contact 'Frances Mover2007'.", 'ref': 2}
+    → Tapped [2] 'Edit' at (353,84)
+    [timing] observe=1.47s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=14
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:32" @(184,37) | [2] "FM" @(495,234) | [3] "Add Photo" @(500,374) | [4] "Frances" @(164,460) | [5] "Mover2007" @(
+  Step 5: type_text — The company field currently says 'Placeholder Inc'. I will tap it and type 'Helios Energy' to update the company name.
+    [think] 3.11s | input={'ref': 6, 'reasoning': "The company field currently says 'Placeholder Inc'. I will tap it and type 'Helios Energy' to update the company name.", 'text': 'Helios Energy'}
+    → Typed 'Helios Energy' into [6]
+    [timing] observe=1.39s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=22
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:321" @(181,38) | [2] "FM" @(495,234) | [3] "Add Photo" @(499,374) | [4] "Frances" @(164,460) | [5] "Mover2007" @
+  Step 6: tap_xy — The company field contains 'PlaceholderHelios Energy Inc'. I need to clear it using the 'X' button before typing 'Helios Energy'.
+    [think] 5.49s | input={'x': 874, 'y': 578, 'reasoning': "The company field contains 'PlaceholderHelios Energy Inc'. I need to clear it using the 'X' button before typing 'Helios Energy'."}
+    → Tapped (1054,1516) → (351,505) [scaled @3.0x]
+    [timing] observe=1.43s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=28
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:32" @(171,37) | [2] "FM" @(495,234) | [3] "Add Photo" @(499,374) | [4] "Frances" @(164,460) | [5] "Mover2007" @(
+  Step 7: batch — The company field is cleared, so I will type 'Helios Energy' and then tap the blue checkmark in the top right to save the changes.
+    [think] 5.68s | input={'reasoning': "The company field is cleared, so I will type 'Helios Energy' and then tap the blue checkmark in the top right to save the changes.", 'actions': [{'action': 'type_text', 'ref': 6, 'text': 'Helios Energy'}, {'x': 908, 'y': 95, 'action': 'tap_xy'}], 'checkpoint_reason': 'Verify company is saved and contact view is updated.'}
+    [1/2] Typed 'Helios Energy' into [6]
+    [2/2] Tapped (1095,249) → (365,83) [scaled @3.0x]
+    [timing] observe=1.59s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=10
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:32" @(184,37) | [2] "Edit" @(881,96) | [3] "FM" @(493,279) | [4] "HELIOS ENERGY" @(499,442) | [5] "Frances" @(49
+  Step 8: done — The company for Frances Mover2007 has been successfully changed to Helios Energy.
+    [think] 4.04s | input={'summary': 'The company for Frances Mover2007 has been successfully changed to Helios Energy.'}
+    → DONE: The company for Frances Mover2007 has been successfully changed to Helios Energy.
+  Finished in 8 steps, 60.5s

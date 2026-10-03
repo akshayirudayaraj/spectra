@@ -1,0 +1,40 @@
+TASK: Add the email address editor2007@example.net to Margaret Editor2007's existing contact
+MODE: screenshot_ocr
+
+    [timing] observe=1.47s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=44
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:30 1" @(184,38) | [2] "<" @(89,97) | [3] "Contacts" @(500,96) | [4] "A" @(56,156) | [5] "GA" @(94,210) | [6] "Grac
+  Step 1: tap — Open Margaret Editor2007's contact card to add her email address.
+    [think] 2.65s | input={'ref': 42, 'reasoning': "Open Margaret Editor2007's contact card to add her email address."}
+    → Tapped [42] 'Margaret Editor2007' at (149,778)
+    [timing] observe=1.66s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=10
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:30" @(182,37) | [2] "Edit" @(881,96) | [3] "ME" @(498,279) | [4] "Margaret" @(501,462) | [5] "Editor2007" @(503,
+  Step 2: tap — Tap Edit to enter the contact editing mode and add an email address.
+    [think] 3.51s | input={'ref': 2, 'reasoning': 'Tap Edit to enter the contact editing mode and add an email address.'}
+    → Tapped [2] 'Edit' at (353,84)
+    [timing] observe=1.38s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=14
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:30" @(182,37) | [2] "ME" @(501,234) | [3] "Add Photo" @(500,374) | [4] "Margaret" @(175,461) | [5] "Editor2007" 
+  Step 3: tap — Tap 'add email' to reveal the email input field.
+    [think] 2.29s | input={'reasoning': "Tap 'add email' to reveal the email input field.", 'ref': 9}
+    → Tapped [9] 'add email' at (112,641)
+    [timing] observe=1.30s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=26
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:30" @(182,37) | [2] "• • • O" @(739,42) | [3] "IVIC" @(493,149) | [4] "Add Photo" @(496,273) | [5] "Margaret" @(
+  Step 4: type_text — Entering the email address into the focused email field.
+    [think] 5.94s | input={'reasoning': 'Entering the email address into the focused email field.', 'text': 'editor2007@example.net', 'ref': 9}
+    → Typed 'editor2007@example.net' into [9]
+    [timing] observe=1.37s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=26
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:30" @(182,37) | [2] "••••" @(739,42) | [3] "IVIC" @(493,149) | [4] "Add Photo" @(498,273) | [5] "Margaret" @(175
+  Step 5: tap_xy — The email address has been typed, and now I need to tap the checkmark icon in the top right to save the contact.
+    [think] 2.68s | input={'x': 905, 'y': 95, 'reasoning': 'The email address has been typed, and now I need to tap the checkmark icon in the top right to save the contact.'}
+    → Tapped (1091,249) → (363,83) [scaled @3.0x]
+    [timing] observe=1.51s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=11
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:31" @(184,37) | [2] "Edit" @(881,96) | [3] "ME" @(498,279) | [4] "Margaret" @(501,462) | [5] "Editor2007" @(503,
+  Step 6: done — I have successfully added the email address editor2007@example.net to Margaret Editor2007's contact.
+    [think] 3.07s | input={'summary': "I have successfully added the email address editor2007@example.net to Margaret Editor2007's contact."}
+    → DONE: I have successfully added the email address editor2007@example.net to Margaret Editor2007's contact.
+  Finished in 6 steps, 39.5s

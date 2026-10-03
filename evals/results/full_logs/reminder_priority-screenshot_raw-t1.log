@@ -1,0 +1,51 @@
+TASK: Create a reminder called "Buy light bulbs @1004" with high priority
+MODE: screenshot_raw
+
+    [timing] observe=1.17s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the add button to create a new reminder.
+    [think] 2.36s | input={'y': 934, 'reasoning': 'Tap the add button to create a new reminder.', 'x': 871}
+    → Tapped (1050,2449) → (350,816) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — Type the reminder title into the focused text field.
+    [think] 2.96s | input={'ref': 0, 'reasoning': 'Type the reminder title into the focused text field.', 'text': 'Buy light bulbs @1004'}
+    → Typed 'Buy light bulbs @1004' into focused field
+    [timing] observe=1.06s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tap the info icon to open the details for the new reminder and set its priority.
+    [think] 3.28s | input={'x': 928, 'reasoning': 'Tap the info icon to open the details for the new reminder and set its priority.', 'y': 407}
+    → Tapped (1119,1067) → (373,355) [scaled @3.0x]
+    [timing] observe=1.07s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: tap_xy — Tap the Priority row to change the priority to high.
+    [think] 157.01s | input={'y': 615, 'x': 500, 'reasoning': 'Tap the Priority row to change the priority to high.'}
+    → Tapped (603,1613) → (201,537) [scaled @3.0x]
+    [timing] observe=1.12s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: batch — Selecting 'High' priority from the open menu and then tapping the checkmark to save the reminder.
+    [think] 3.61s | input={'checkpoint_reason': 'Priority selected and reminder saved.', 'reasoning': "Selecting 'High' priority from the open menu and then tapping the checkmark to save the reminder.", 'actions': [{'y': 594, 'action': 'tap_xy'}, {'y': 114, 'action': 'tap_xy'}]}
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 105, in run_one
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=item['mode'], learn=False, stats=stats,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 403, in run_agent
+    item = _to_screenshot_pixels(item, metadata)
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 103, in _to_screenshot_pixels
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+                                 ~~~~~~^^^^^
+KeyError: 'x'

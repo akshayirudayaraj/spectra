@@ -1,0 +1,39 @@
+TASK: Create a new contact named Frances Ritchie with email frances.ritchie1002@example.com
+MODE: screenshot_raw
+
+    [timing] observe=1.27s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping the back button to return to the contact list so I can add a new contact.
+    [think] 2.97s | input={'reasoning': 'Tapping the back button to return to the contact list so I can add a new contact.', 'y': 94, 'x': 94}
+    → Tapped (113,246) → (37,82) [scaled @3.0x]
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tapping the plus button to create a new contact.
+    [think] 2.92s | input={'x': 854, 'reasoning': 'Tapping the plus button to create a new contact.', 'y': 934}
+    → Tapped (1030,2449) → (343,816) [scaled @3.0x]
+    [timing] observe=1.14s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: batch — Tapping the 'First name' field to focus it and then typing 'Frances'.
+    [think] 2.53s | input={'reasoning': "Tapping the 'First name' field to focus it and then typing 'Frances'.", 'checkpoint_reason': "Type the first name 'Frances' into the focused field.", 'actions': [{'y': 475, 'action': 'tap_xy'}, {'action': 'type_text', 'ref': 0, 'text': 'Frances'}]}
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 105, in run_one
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=item['mode'], learn=False, stats=stats,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 403, in run_agent
+    item = _to_screenshot_pixels(item, metadata)
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 103, in _to_screenshot_pixels
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+                                 ~~~~~~^^^^^
+KeyError: 'x'

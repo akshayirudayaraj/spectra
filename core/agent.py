@@ -39,6 +39,12 @@ def _summarize_task(history, task, planner) -> str:
 # Terminal actions that end the loop
 _TERMINAL = {'done', 'stuck'}
 
+# How long to wait for a screen snapshot before reusing the previous one. WDA's
+# source() regularly takes ~4s on busy screens (forms, open keyboard); a shorter
+# wait silently hands the planner a stale screen, so it re-taps toggles it already
+# flipped. TreeReader gives up on source() at 20s and falls back to a screenshot.
+_OBSERVE_TIMEOUT = 25.0
+
 # Non-UI actions that don't change the screen — skip re-snapshot after these
 _NO_UI_ACTIONS = {'remember', 'plan', 'ask_user', 'schedule'}
 
@@ -88,6 +94,15 @@ def _build_combined_memory(lessons_text: str | None, agent_memory: AgentMemory) 
     return '\n\n'.join(parts) or None
 
 
+def _to_screenshot_pixels(action: dict, metadata: dict) -> dict:
+    """Convert a tap_xy given on Gemini's 0-1000 scale to screenshot pixels for the executor."""
+    size = metadata.get('screenshot_size')
+    if metadata.get('coord_space') != 'norm1000' or not size:
+        return action
+    w, h = size
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+
+
 def run_agent(
     task: str,
     max_steps: int = 15,
@@ -100,6 +115,10 @@ def run_agent(
     takeover: TakeoverManager | None = None,
     step_callback=None,
     ask_user_fn=None,
+    perception: str = 'tree',
+    learn: bool = True,
+    stats: dict | None = None,
+    model: str | None = None,
 ) -> bool:
     """Execute a natural language task on the iOS simulator.
 
@@ -114,6 +133,13 @@ def run_agent(
         gate: ConfirmationGate instance (injectable for WebSocket server).
         takeover: TakeoverManager instance (injectable for WebSocket server).
         step_callback: Optional callable(step, max_steps, action_name, action_input, result, current_app, ref_map, tree) per step.
+        perception: 'tree' (default; screenshot only as fallback), or 'screenshot' /
+            'screenshot_raw' to skip the tree entirely (with / without grid overlay).
+        learn: Read and write episodic lessons and episodes. Evals turn this off so
+            one run can't teach the next.
+        stats: Optional dict filled with outcome, steps, elapsed_s, history and
+            planner token usage when the run ends.
+        model: Planner model override (default: Planner's default).
 
     Returns:
         True if task completed (done), False if stuck or timed out
@@ -123,8 +149,8 @@ def run_agent(
         shared_client.http.timeout = 5
     except AttributeError:
         pass
-    reader = TreeReader(wda_url, client=shared_client)
-    planner = Planner()
+    reader = TreeReader(wda_url, client=shared_client, perception=perception)
+    planner = Planner(model) if model else Planner()
     executor = Executor(wda_url, client=shared_client)
     detector = StuckDetector()
     episodic = EpisodicMemory()
@@ -149,11 +175,19 @@ def run_agent(
     snap_pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 
     # Retrieve lessons from past failures
-    lessons_text = episodic.retrieve(task)
+    lessons_text = episodic.retrieve(task) if learn else None
     if lessons_text and verbose:
         print(f'  {lessons_text}')
 
     t_start = time.monotonic()
+
+    def _finish(outcome: str, steps: int) -> None:
+        if stats is not None:
+            stats.update(
+                outcome=outcome, steps=steps,
+                elapsed_s=round(time.monotonic() - t_start, 1),
+                history=list(history), **planner.usage,
+            )
     
     # Capture ContextSnapshot at task start for episode logging
     local_t = time.localtime(time.time())
@@ -186,7 +220,7 @@ def run_agent(
         elif prefetch_future is not None:
             # Wait for the in-flight prefetch (started at end of previous step)
             try:
-                tree, ref_map, metadata = prefetch_future.result(timeout=4.0)
+                tree, ref_map, metadata = prefetch_future.result(timeout=_OBSERVE_TIMEOUT)
                 cached_snapshot = (tree, ref_map, metadata)
             except Exception:
                 if cached_snapshot is not None:
@@ -198,7 +232,7 @@ def run_agent(
         else:
             _snap_future = snap_pool.submit(reader.snapshot)
             try:
-                tree, ref_map, metadata = _snap_future.result(timeout=4.0)
+                tree, ref_map, metadata = _snap_future.result(timeout=_OBSERVE_TIMEOUT)
             except Exception:
                 if cached_snapshot is not None:
                     tree, ref_map, metadata = cached_snapshot
@@ -233,7 +267,9 @@ def run_agent(
             elapsed = time.monotonic() - t_start
             if step_callback:
                 step_callback(step, max_steps, 'done', {'summary': 'Task likely completed but agent got stuck in a loop'}, 'forced done', current_app, ref_map, tree)
-            _reflect_and_store(planner, episodic, task, history, 'loop', current_app, verbose)
+            if learn:
+                _reflect_and_store(planner, episodic, task, history, 'loop', current_app, verbose)
+            _finish('hard_stuck', step)
             return True  # assume task was completed since actions were executing
 
         # --- Build combined memory ---
@@ -365,6 +401,8 @@ def run_agent(
                     if not gate.request_confirmation({'name': sub_action, 'input': item}, ref_map):
                         history.append(f'Step {step}: batch sub-action {sub_action} → REJECTED by user')
                         break
+                if sub_action == 'tap_xy':
+                    item = _to_screenshot_pixels(item, metadata)
                 result = executor.run(sub_action, item, ref_map)
                 results.append(f'{sub_action} → {result}')
                 if verbose:
@@ -392,6 +430,8 @@ def run_agent(
                 continue
 
         # --- Act ---
+        if action_name == 'tap_xy':
+            action_input = _to_screenshot_pixels(action_input, metadata)
         result = executor.run(action_name, action_input, ref_map)
         history.append(f'Step {step}: {action_name} → {result}')
 
@@ -423,6 +463,9 @@ def run_agent(
             elapsed = time.monotonic() - t_start
             if verbose:
                 print(f'  Finished in {step} steps, {elapsed:.1f}s')
+            _finish(action_name, step)
+            if not learn:
+                return action_name == 'done'
             if action_name == 'stuck':
                 _reflect_and_store(planner, episodic, task, history, 'stuck', current_app, verbose)
             elif action_name == 'done':
@@ -457,7 +500,9 @@ def run_agent(
     elapsed = time.monotonic() - t_start
     if verbose:
         print(f'  Timed out after {max_steps} steps, {elapsed:.1f}s')
-    _reflect_and_store(planner, episodic, task, history, 'timeout', current_app, verbose)
+    _finish('timeout', max_steps)
+    if learn:
+        _reflect_and_store(planner, episodic, task, history, 'timeout', current_app, verbose)
     agent_memory.clear()
     return False
 

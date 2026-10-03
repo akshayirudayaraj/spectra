@@ -1,0 +1,61 @@
+TASK: Create a reminder called "Buy batteries flag 2000" and flag it
+MODE: screenshot_raw
+
+    [timing] observe=1.20s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the New Reminder button at the bottom right to start creating a new reminder.
+    [think] 2.43s | input={'y': 940, 'x': 870, 'reasoning': 'Tap the New Reminder button at the bottom right to start creating a new reminder.'}
+    → Tapped (1049,2465) → (349,821) [scaled @3.0x]
+    [timing] observe=1.11s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — Typing the reminder title into the focused field.
+    [think] 2.69s | input={'text': 'Buy batteries flag 2000', 'reasoning': 'Typing the reminder title into the focused field.', 'ref': 0}
+    → Typed 'Buy batteries flag 2000' into focused field
+    [timing] observe=1.10s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: batch — Flagging the reminder using the toolbar button and then tapping the checkmark to save.
+    [think] 3.24s | input={'reasoning': 'Flagging the reminder using the toolbar button and then tapping the checkmark to save.', 'checkpoint_reason': 'Reminder should be flagged and saved.', 'actions': [{'action': 'tap_xy', 'x': 625, 'ref': 0, 'y': 611}, {'x': 905, 'action': 'tap_xy', 'ref': 0, 'y': 107}]}
+    [1/2] Tapped (754,1602) → (251,534) [scaled @3.0x]
+    [2/2] Tapped (1091,281) → (363,93) [scaled @3.0x]
+    [timing] observe=1.26s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: tap_xy — Start creating the new reminder by tapping the blue plus button at the bottom right.
+    [think] 3.99s | input={'reasoning': 'Start creating the new reminder by tapping the blue plus button at the bottom right.', 'x': 870, 'y': 940}
+    → Tapped (1049,2465) → (349,821) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: type_text — Typing the reminder title into the 'Title' field which is currently empty on the New Reminder screen.
+    [think] 4.15s | input={'ref': 0, 'reasoning': "Typing the reminder title into the 'Title' field which is currently empty on the New Reminder screen.", 'text': 'Buy batteries flag 2000'}
+    → Typed 'Buy batteries flag 2000' into focused field
+    [timing] observe=1.03s
+  [see] app=com.apple.reminders mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 6: batch — I will tap the flag icon on the toolbar to flag the reminder, then tap the blue checkmark to save it.
+    [think] 4.94s | input={'reasoning': 'I will tap the flag icon on the toolbar to flag the reminder, then tap the blue checkmark to save it.', 'actions': [{'y': 615, 'action': 'tap_xy'}, {'y': 110, 'action': 'tap_xy'}], 'checkpoint_reason': 'The reminder should be flagged and saved.'}
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 123, in run_one
+    _agent(prompt, item['mode'], max_steps, stats)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 99, in _agent
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True, wda_url=sim.WDA_URL,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=perception, learn=False, stats=stats, model=model or None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 405, in run_agent
+    item = _to_screenshot_pixels(item, metadata)
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 103, in _to_screenshot_pixels
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+                                 ~~~~~~^^^^^
+KeyError: 'x'

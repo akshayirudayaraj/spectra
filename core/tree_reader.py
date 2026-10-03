@@ -5,6 +5,7 @@ import base64
 import json
 import re
 import threading
+import time
 import wda
 
 from core.tree_parser import parse_tree
@@ -14,6 +15,11 @@ from core.tree_parser import parse_tree
 # ---------------------------------------------------------------------------
 _GRID_COLS = 3
 _GRID_ROWS = 6
+
+# Perception modes. 'tree' is the normal path (screenshot only as fallback);
+# the screenshot modes skip the tree entirely so the two can be compared.
+PERCEPTION_MODES = ('tree', 'screenshot', 'screenshot_raw', 'screenshot_ocr')
+_SCREENSHOT_SETTLE_S = 1.0
 
 def _add_grid_overlay(png_bytes: bytes) -> tuple[bytes, str]:
     """Draw a numbered grid on a screenshot. Returns (annotated_png, grid_text).
@@ -215,7 +221,11 @@ class TreeReader:
     For native apps: uses WDA source() XML as before.
     """
 
-    def __init__(self, wda_url: str = 'http://localhost:8100', client=None):
+    def __init__(self, wda_url: str = 'http://localhost:8100', client=None,
+                 perception: str = 'tree'):
+        if perception not in PERCEPTION_MODES:
+            raise ValueError(f'perception must be one of {PERCEPTION_MODES}, got {perception!r}')
+        self.perception = perception
         self.client = client if client is not None else wda.Client(wda_url)
         if client is None:
             try:
@@ -238,12 +248,15 @@ class TreeReader:
                        perception_mode, current_url, ...}
         """
         # Fast check: which app is in foreground?
+        app_info = {}
         try:
             app_info = self.client.app_current()
             self._in_safari = app_info.get('bundleId', '') == 'com.apple.mobilesafari'
         except Exception:
             pass  # keep cached value
 
+        if self.perception != 'tree':
+            return self._forced_screenshot_snapshot(app_info.get('bundleId', ''))
         if self._in_safari:
             return self._safari_js_snapshot()
         return self._native_snapshot()
@@ -289,6 +302,57 @@ class TreeReader:
             'page_articles':    articles,
         }
         return tree_msg, {}, metadata
+
+    # ------------------------------------------------------------------
+    # Forced screenshot path — no tree at all (for perception evals)
+    # ------------------------------------------------------------------
+
+    def _forced_screenshot_snapshot(self, bundle_id: str) -> tuple[str, dict, dict]:
+        # The agent prefetches the next observation right after acting. A tree read
+        # takes 1-4s, so the UI has settled by the time it lands; a screenshot is
+        # instant and would capture the screen mid-transition. Wait for it to settle.
+        time.sleep(_SCREENSHOT_SETTLE_S)
+        if self.perception == 'screenshot':
+            screenshot_b64, grid_text = self._gridded_screenshot()
+            tree_msg = '[screenshot mode]\n' + grid_text
+        else:
+            screenshot_b64 = self._try_screenshot()
+            tree_msg = '[screenshot mode]'
+        ref_map: dict = {}
+        if self.perception == 'screenshot_ocr' and screenshot_b64:
+            tree_msg, ref_map = self._ocr_refs(screenshot_b64)
+        metadata = {
+            'app_name': bundle_id, 'app_bundle_id': bundle_id,
+            'keyboard_visible': False, 'alert_present': False,
+            'current_url': None,
+            'perception_mode': 'screenshot', 'screenshot_b64': screenshot_b64,
+        }
+        if self.perception in ('screenshot_raw', 'screenshot_ocr'):
+            # Gemini places points far more reliably on its native 0-1000 scale than
+            # in raw pixels; the agent converts back to pixels before executing.
+            metadata['coord_space'] = 'norm1000'
+            metadata['screenshot_size'] = _png_size(screenshot_b64)
+        if self.perception == 'screenshot_ocr':
+            metadata['ocr'] = True
+        return tree_msg, ref_map, metadata
+
+    def _ocr_refs(self, screenshot_b64: str) -> tuple[str, dict]:
+        """OCR the screenshot (macOS Vision) into numbered text boxes, the classic
+        screenshot + OCR perception of AppAgent / Mobile-Agent style pipelines."""
+        boxes = ocr_text_boxes(base64.b64decode(screenshot_b64))
+        if not hasattr(self, '_window_pts'):
+            try:
+                size = self.client.window_size()
+                self._window_pts = (size.width, size.height)
+            except Exception:
+                self._window_pts = (402, 874)
+        w, h = self._window_pts
+        lines, ref_map = ['[screenshot mode]', 'OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text):'], {}
+        for i, (text, x, y, bw, bh) in enumerate(boxes, 1):
+            ref_map[i] = {'type': 'text', 'label': text, 'value': '',
+                          'x': int(x * w), 'y': int(y * h), 'width': max(1, int(bw * w)), 'height': max(1, int(bh * h))}
+            lines.append(f'[{i}] "{text}" @({int((x + bw / 2) * 1000)},{int((y + bh / 2) * 1000)})')
+        return '\n'.join(lines), ref_map
 
     # ------------------------------------------------------------------
     # Native app path — WDA source() XML
@@ -363,6 +427,39 @@ class TreeReader:
 # ------------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------------
+
+def ocr_text_boxes(png: bytes) -> list[tuple[str, float, float, float, float]]:
+    """Text boxes from macOS Vision as (text, x, y, w, h), normalized with a top-left origin."""
+    import Quartz
+    import Vision
+    from Foundation import NSData
+    data = NSData.dataWithBytes_length_(png, len(png))
+    src = Quartz.CGImageSourceCreateWithData(data, None)
+    img = Quartz.CGImageSourceCreateImageAtIndex(src, 0, None)
+    req = Vision.VNRecognizeTextRequest.alloc().init()
+    req.setRecognitionLevel_(Vision.VNRequestTextRecognitionLevelAccurate)
+    handler = Vision.VNImageRequestHandler.alloc().initWithCGImage_options_(img, None)
+    handler.performRequests_error_([req], None)
+    boxes = []
+    for obs in req.results() or []:
+        bb = obs.boundingBox()  # normalized, bottom-left origin
+        text = obs.topCandidates_(1)[0].string()
+        top = 1.0 - bb.origin.y - bb.size.height
+        boxes.append((text, bb.origin.x, top, bb.size.width, bb.size.height))
+    boxes.sort(key=lambda b: (round(b[2], 2), b[1]))
+    return boxes
+
+
+def _png_size(b64: str | None) -> tuple[int, int] | None:
+    if not b64:
+        return None
+    try:
+        from PIL import Image
+        import io
+        return Image.open(io.BytesIO(base64.b64decode(b64))).size
+    except Exception:
+        return None
+
 
 def _build_tree_from_js(page: dict) -> tuple[str, dict]:
     """Convert JS page data into a compact tree string + ref_map.

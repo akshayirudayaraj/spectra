@@ -1,0 +1,61 @@
+TASK: Create a new contact named Margaret Thompson with phone number 5550280516
+MODE: screenshot_raw
+
+    [timing] observe=1.27s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the back button to return to the contact list.
+    [think] 5.47s | input={'reasoning': 'Tap the back button to return to the contact list.', 'y': 95, 'x': 95}
+    → Tapped (115,249) → (38,83) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap the plus button to add a new contact.
+    [think] 2.72s | input={'x': 853, 'reasoning': 'Tap the plus button to add a new contact.', 'y': 940}
+    → Tapped (1029,2465) → (343,821) [scaled @3.0x]
+    [timing] observe=1.19s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: batch — Enter the first name 'Margaret' into the first name field.
+    [think] 2.97s | input={'actions': [{'x': 500, 'y': 475, 'action': 'tap_xy'}, {'text': 'Margaret', 'ref': 0, 'action': 'type_text'}], 'checkpoint_reason': 'First name field should contain Margaret', 'reasoning': "Enter the first name 'Margaret' into the first name field."}
+    [1/2] Tapped (603,1245) → (201,415) [scaled @3.0x]
+    [2/2] Typed 'Margaret' into focused field
+    [timing] observe=1.27s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: batch — Entering the last name into the contact card.
+    [think] 2.81s | input={'checkpoint_reason': 'verify Last name field contains Thompson', 'actions': [{'ref': 0, 'action': 'tap_xy', 'y': 535, 'x': 500}, {'text': 'Thompson', 'action': 'type_text', 'ref': 0}], 'reasoning': 'Entering the last name into the contact card.'}
+    [1/2] Tapped (603,1403) → (201,467) [scaled @3.0x]
+    [2/2] Typed 'Thompson' into focused field
+    [timing] observe=1.25s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: scroll — Scrolling down to find the phone number field for the new contact.
+    [think] 2.07s | input={'direction': 'down', 'reasoning': 'Scrolling down to find the phone number field for the new contact.'}
+    → Scrolled down
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 6: scroll — Scrolling up to find the name and phone number fields which are typically at the top of the New Contact screen.
+    [think] 4.38s | input={'direction': 'up', 'reasoning': 'Scrolling up to find the name and phone number fields which are typically at the top of the New Contact screen.'}
+    → Scrolled up
+    [timing] observe=1.03s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 7: tap_xy — Tap 'add phone' to enter the phone number.
+    [think] 3.50s | input={'y': 675, 'reasoning': "Tap 'add phone' to enter the phone number.", 'x': 500}
+    → Tapped (603,1770) → (201,590) [scaled @3.0x]
+    [timing] observe=1.13s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 8: batch — Entering the phone number and tapping the checkmark button to save the new contact.
+    [think] 5.24s | input={'checkpoint_reason': "Save the contact and verify it's created.", 'actions': [{'text': '5550280516', 'ref': 0, 'action': 'type_text'}, {'x': 908, 'y': 114, 'action': 'tap_xy'}], 'reasoning': 'Entering the phone number and tapping the checkmark button to save the new contact.'}
+    [1/2] Typed '5550280516' into focused field
+    [2/2] Tapped (1095,299) → (365,99) [scaled @3.0x]
+    [timing] observe=1.35s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 9: done — The contact for Margaret Thompson with phone number 5550280516 has been successfully created and saved.
+    [think] 2.68s | input={'summary': 'The contact for Margaret Thompson with phone number 5550280516 has been successfully created and saved.'}
+    → DONE: The contact for Margaret Thompson with phone number 5550280516 has been successfully created and saved.
+  Finished in 9 steps, 62.9s

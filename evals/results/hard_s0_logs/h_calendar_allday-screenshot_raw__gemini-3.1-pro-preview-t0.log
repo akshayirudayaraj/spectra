@@ -1,0 +1,43 @@
+TASK: Create an all-day calendar event called "Yoga day with Sam 2000" for tomorrow
+MODE: screenshot_raw@gemini-3.1-pro-preview
+
+    [timing] observe=1.22s
+  [see] app=com.apple.mobilecal mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping the add event button
+    [think] 3.98s | input={'x': 900, 'reasoning': 'Tapping the add event button', 'y': 100}
+    → Tapped (1085,262) → (361,87) [scaled @3.0x]
+    [timing] observe=1.16s
+  [see] app=com.apple.mobilecal mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  [planner] Gemini error (attempt 1/6): Gemini returned no function call: sdk_http_response=HttpResponse(
+  headers=<dict len=12>
+) candidat... retrying in 1s
+  Step 2: tap_xy — Tapping the Title field to enter the event name
+    [think] 27.25s | input={'x': 300, 'reasoning': 'Tapping the Title field to enter the event name', 'y': 250}
+    → Tapped (362,656) → (120,218) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.mobilecal mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: type_text — Typing the event name into the focused title field
+    [think] 4.72s | input={'text': 'Yoga day with Sam 2000', 'ref': 0, 'reasoning': 'Typing the event name into the focused title field'}
+    → Typed 'Yoga day with Sam 2000' into focused field
+    [timing] observe=1.08s
+  [see] app=com.apple.mobilecal mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: tap_xy — Tapping the All-day toggle to make it an all-day event
+    [think] 8.28s | input={'y': 410, 'reasoning': 'Tapping the All-day toggle to make it an all-day event', 'x': 820}
+    → Tapped (989,1075) → (329,358) [scaled @3.0x]
+    [timing] observe=1.10s
+  [see] app=com.apple.mobilecal mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 5: tap_xy — Tapping the Add/Save button (red checkmark) at the top right to create the event
+    [think] 6.32s | input={'x': 905, 'reasoning': 'Tapping the Add/Save button (red checkmark) at the top right to create the event', 'y': 112}
+    → Tapped (1091,294) → (363,98) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.mobilecal mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 6: done — Created the all day event Yoga day with Sam 2000 for tomorrow.
+    [think] 4.85s | input={'summary': 'Created the all day event Yoga day with Sam 2000 for tomorrow.'}
+    → DONE: Created the all day event Yoga day with Sam 2000 for tomorrow.
+  Finished in 6 steps, 71.3s

@@ -1,0 +1,10 @@
+TASK: Look up Kate Bell's email address and report it
+MODE: tree
+
+    [timing] observe=1.52s
+  [see] app=Contacts mode=tree refs=19
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Call" |   [9] Button "Mail" | [10] Cell |   [11] Button "Contact Photo 
+  Step 1: done — Kate Bell's email address is kate-bell@mac.com.
+    [think] 1.22s | input={'summary': "Kate Bell's email address is kate-bell@mac.com."}
+    → DONE: Kate Bell's email address is kate-bell@mac.com.
+  Finished in 1 steps, 4.4s

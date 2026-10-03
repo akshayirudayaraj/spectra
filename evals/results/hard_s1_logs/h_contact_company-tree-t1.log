@@ -1,0 +1,23 @@
+TASK: Change the company on Margaret Mover2005's contact to Firefly Studio
+MODE: tree
+
+    [timing] observe=1.51s
+  [see] app=Contacts mode=tree refs=15
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Mail" | [9] Cell |   [10] Button "Contact Photo & Poster" | [11] Cell |  
+  Step 1: tap — Tap Edit to modify the contact details.
+    [think] 1.22s | input={'reasoning': 'Tap Edit to modify the contact details.', 'ref': 3}
+    → Tapped [3] 'Edit' at (354,84)
+    [timing] observe=1.43s
+  [see] app=Contacts mode=tree refs=23
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "close" |   [3] Button "Done" [disabled] | [4] Button "Add photo" | [5] Button "Add Photo" | [6] Cell |   [7] TextField "First name" → "Margaret" | [8] Cell |   [9] TextField
+  Step 2: batch — I will type the new company name into the company field and then tap Done to save the changes.
+    [think] 1.61s | input={'checkpoint_reason': 'Verify company is set and contact is saved', 'reasoning': 'I will type the new company name into the company field and then tap Done to save the changes.', 'actions': [{'ref': 11, 'action': 'type_text', 'text': 'Firefly Studio'}, {'action': 'tap', 'ref': 3}]}
+    [1/2] Typed 'Firefly Studio' into [11]
+    [2/2] Tapped [3] 'Done' at (364,84)
+    [timing] observe=1.84s
+  [see] app=Contacts mode=tree refs=14
+  [see] tree: [1] NavBar "CNContactView" |   [2] Button "Contacts" |   [3] Button "Edit" | [4] Cell | [5] Cell | [6] Cell |   [7] Button "Message" |   [8] Button "Mail" | [9] Cell |   [10] Button "Contact Photo & Poster" | [11] Cell |  
+  Step 3: done — Changed Margaret Mover2005's company to Firefly Studio.
+    [think] 4.94s | input={'summary': "Changed Margaret Mover2005's company to Firefly Studio."}
+    → DONE: Changed Margaret Mover2005's company to Firefly Studio.
+  Finished in 3 steps, 19.4s

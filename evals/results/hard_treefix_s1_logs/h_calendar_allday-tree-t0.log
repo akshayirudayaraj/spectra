@@ -1,0 +1,29 @@
+TASK: Create an all-day calendar event called "Yoga day with Sam 4000" for tomorrow
+MODE: tree
+
+    [timing] observe=1.60s
+  [see] app=Calendar mode=tree refs=18
+  [see] tree: [1] NavBar "DayViewContainerView" |   [2] Button "October" |   [3] Button "Single Day" |   [4] Button "Search" |   [5] Button "Add" |   [6] Button "Sunday, September 27" |   [7] Button "Monday, September 28" |   [8
+  Step 1: tap — Tap the "Add" button to start creating a new event.
+    [think] 1.19s | input={'reasoning': 'Tap the "Add" button to start creating a new event.', 'ref': 5}
+    → Tapped [5] 'Add' at (363,84)
+    [timing] observe=4.45s
+  [see] app=Calendar mode=tree refs=24
+  [see] tree: [1] NavBar "New" |   [2] Button "Cancel" |   [3] Button "Done" [disabled] |   [4] SegmentedControl "event-reminder-control" |     [5] Button "Event" → "1" |     [6] Button "Reminder" | [7] Cell |   [8] TextField "t
+  Step 2: batch — I need to enter the event title and enable the all-day setting.
+    [think] 2.74s | input={'checkpoint_reason': 'Verify title is entered and All-day is enabled.', 'reasoning': 'I need to enter the event title and enable the all-day setting.', 'actions': [{'ref': 8, 'action': 'type_text', 'text': 'Yoga day with Sam 4000'}, {'ref': 11, 'action': 'tap'}]}
+    [1/2] Typed 'Yoga day with Sam 4000' into [8]
+    [2/2] Tapped [11] 'All-day' at (330,358)
+    [timing] observe=5.11s
+  [see] app=Calendar mode=tree refs=23
+  [see] tree: [1] NavBar "New" |   [2] Button "Cancel" |   [3] Button "Done" |   [4] SegmentedControl "event-reminder-control" |     [5] Button "Event" → "1" |     [6] Button "Reminder" | [7] Cell |   [8] TextField "title-field"
+  Step 3: tap — The event details (title, all-day status, and tomorrow's date) are already correctly set, so I'm tapping Done to save the event.
+    [think] 1.61s | input={'ref': 3, 'reasoning': "The event details (title, all-day status, and tomorrow's date) are already correctly set, so I'm tapping Done to save the event."}
+    → Tapped [3] 'Done' at (364,100)
+    [timing] observe=1.49s
+  [see] app=Calendar mode=tree refs=19
+  [see] tree: [1] NavBar "DayViewContainerView" |   [2] Button "October" |   [3] Button "Single Day" |   [4] Button "Search" |   [5] Button "Add" |   [6] Button "Sunday, September 27" |   [7] Button "Monday, September 28" |   [8
+  Step 4: done — I have created the all-day event "Yoga day with Sam 4000" for tomorrow, and it is now visible on the calendar.
+    [think] 1.41s | input={'summary': 'I have created the all-day event "Yoga day with Sam 4000" for tomorrow, and it is now visible on the calendar.'}
+    → DONE: I have created the all-day event "Yoga day with Sam 4000" for tomorrow, and it is now visible on the calendar.
+  Finished in 4 steps, 27.9s

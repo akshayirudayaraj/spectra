@@ -1,0 +1,46 @@
+TASK: Create a new contact named Dennis Turing with phone number 5550288435
+MODE: screenshot_raw
+
+    [timing] observe=1.23s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the 'X' button to cancel the current search and return to the main contacts list.
+    [think] 3.29s | input={'reasoning': "Tap the 'X' button to cancel the current search and return to the main contacts list.", 'x': 904, 'y': 604}
+    → Tapped (1090,1584) → (363,528) [scaled @3.0x]
+    [timing] observe=1.04s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap the '+' button at the bottom right to start creating a new contact.
+    [think] 2.70s | input={'x': 871, 'y': 935, 'reasoning': "Tap the '+' button at the bottom right to start creating a new contact."}
+    → Tapped (1050,2452) → (350,817) [scaled @3.0x]
+    [timing] observe=1.18s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: batch — I'm tapping the 'First name' field and typing 'Dennis' to begin creating the contact.
+    [think] 3.05s | input={'actions': [{'x': 500, 'action': 'tap_xy', 'y': 475}, {'text': 'Dennis', 'action': 'type_text', 'ref': 0}], 'checkpoint_reason': "The first name 'Dennis' should be entered in the first name field.", 'reasoning': "I'm tapping the 'First name' field and typing 'Dennis' to begin creating the contact."}
+    [1/2] Tapped (603,1245) → (201,415) [scaled @3.0x]
+    [2/2] Typed 'Dennis' into focused field
+    [timing] observe=1.27s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: batch — I will tap the 'Last name' field and type 'Turing' to continue creating the contact.
+    [think] 5.81s | input={'actions': [{'y': 535, 'action': 'tap_xy'}, {'text': 'Turing', 'ref': 0, 'action': 'type_text'}], 'checkpoint_reason': "The last name 'Turing' should be entered.", 'reasoning': "I will tap the 'Last name' field and type 'Turing' to continue creating the contact."}
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 105, in run_one
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=item['mode'], learn=False, stats=stats,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 403, in run_agent
+    item = _to_screenshot_pixels(item, metadata)
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 103, in _to_screenshot_pixels
+    return {**action, 'x': round(action['x'] * w / 1000), 'y': round(action['y'] * h / 1000)}
+                                 ~~~~~~^^^^^
+KeyError: 'x'

@@ -1,0 +1,28 @@
+TASK: Search for Lombard Street in Maps and open its place card
+MODE: screenshot_raw
+
+    [timing] observe=1.27s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping the search bar to initiate a search for Lombard Street.
+    [think] 2.61s | input={'reasoning': 'Tapping the search bar to initiate a search for Lombard Street.', 'x': 438, 'y': 597}
+    → Tapped (528,1565) → (176,521) [scaled @3.0x]
+    [timing] observe=1.12s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — Entering "Lombard Street" into the search bar to find the location.
+    [think] 2.36s | input={'text': 'Lombard Street', 'ref': 0, 'reasoning': 'Entering "Lombard Street" into the search bar to find the location.'}
+    → Typed 'Lombard Street' into focused field
+    [timing] observe=1.13s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tapping the first search result for 'Lombard Street' to open its place card.
+    [think] 3.40s | input={'reasoning': "Tapping the first search result for 'Lombard Street' to open its place card.", 'y': 210, 'x': 430}
+    → Tapped (519,551) → (173,183) [scaled @3.0x]
+    [timing] observe=1.20s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Lombard Street has been searched for and its place card is currently open on the screen.
+    [think] 2.53s | input={'summary': 'Lombard Street has been searched for and its place card is currently open on the screen.'}
+    → DONE: Lombard Street has been searched for and its place card is currently open on the screen.
+  Finished in 4 steps, 23.0s

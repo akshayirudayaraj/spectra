@@ -6,6 +6,7 @@ import os
 
 from google import genai
 from google.genai import types
+from google.genai import errors as genai_errors
 
 SYSTEM_PROMPT = """You are Spectra, an iOS mobile agent. You control an iPhone by reading the accessibility tree and performing actions.
 
@@ -99,7 +100,7 @@ _TOOL_SCHEMAS = [
     },
     {
         "name": "tap_xy",
-        "description": "Tap screen coordinates directly. Only use in screenshot fallback mode when no ref_map is available. Coordinates must be in the PIXEL space of the screenshot image (e.g., if the screenshot is 1206x2622, x ranges 0-1206, y ranges 0-2622). The system will automatically scale to device points.",
+        "description": "Tap screen coordinates directly. Only use in screenshot mode when no ref_map is available. Use the coordinate space the SCREENSHOT MODE note specifies (pixels of the screenshot image unless it says otherwise). The system will automatically scale to device points.",
         "schema": {
             "type": "object",
             "properties": {
@@ -384,7 +385,15 @@ def build_message(
                      "\n".join(f"  {i+1}. {a}" for i, a in enumerate(metadata["page_articles"][:10])))
 
     if metadata.get('perception_mode') == 'screenshot':
-        parts.append("⚠️ SCREENSHOT MODE: No accessibility tree available. Use tap_xy with PIXEL coordinates from the screenshot image (1206x2622 pixels). Be precise — estimate the center of the element you want to tap.")
+        w, h = metadata.get('screenshot_size') or (1206, 2622)
+        if metadata.get('coord_space') == 'norm1000':
+            where = "coordinates normalized to 0-1000 (x: 0 = left edge, 1000 = right edge; y: 0 = top, 1000 = bottom)"
+        else:
+            where = f"PIXEL coordinates from the screenshot image ({w}x{h} pixels)"
+        if metadata.get('ocr'):
+            parts.append(f"⚠️ SCREENSHOT + OCR MODE: No accessibility tree available. You get the screenshot plus OCR TEXT: text found on screen, each with a [ref] and its center in 0-1000 coordinates. Tap text with tap(ref). For icons or anything without text, use tap_xy with {where}. To enter text, tap the field (by its placeholder text ref, or tap_xy), then call type_text with ref 0 — the text goes into the focused field.")
+        else:
+            parts.append(f"⚠️ SCREENSHOT MODE: No accessibility tree available. Use tap_xy with {where}. Be precise — estimate the center of the element you want to tap. To enter text, tap_xy the field first, then call type_text with ref 0 — the text goes into the focused field.")
 
     # Previous screens for context — shows what the agent saw and did at each past step
     if prev_trees:
@@ -442,6 +451,8 @@ class Planner:
         self.client = genai.Client(api_key=api_key)
         self.model = model
         self._cache_name = self._create_cache()
+        # Running totals across calls, read by the perception eval.
+        self.usage = {'calls': 0, 'prompt_tokens': 0, 'output_tokens': 0, 'thought_tokens': 0}
 
     def _create_cache(self) -> str | None:
         """Create a content cache for the system prompt + tools.
@@ -482,27 +493,29 @@ class Planner:
                 max_output_tokens=512,
             )
 
-        for attempt in range(3):
+        attempts = 6
+        for attempt in range(attempts):
             try:
                 response = self.client.models.generate_content(
                     model=self.model,
                     contents=contents,
                     config=config,
                 )
+                self._record_usage(response)
                 return self._extract_action(response)
-            except RuntimeError as e:
-                if '429' in str(e) or 'RESOURCE_EXHAUSTED' in str(e):
-                    raise
-                if attempt < 2:
-                    print(f'  [planner] Gemini error (attempt {attempt+1}/3): {str(e)[:100]}... retrying', flush=True)
-                    import time; time.sleep(1)
-                    continue
-                raise
             except Exception as e:
-                if '429' in str(e) or 'RESOURCE_EXHAUSTED' in str(e):
+                msg = str(e)
+                if '429' in msg or 'RESOURCE_EXHAUSTED' in msg:
                     raise RuntimeError(
                         f'API rate limit hit — stopping agent. Details: {e}'
                     ) from e
+                # 5xx (e.g. 503 "high demand") is transient: back off and retry.
+                transient = isinstance(e, genai_errors.ServerError) or 'UNAVAILABLE' in msg
+                if attempt < attempts - 1 and (transient or isinstance(e, RuntimeError)):
+                    delay = min(2 ** (attempt + 1), 30) if transient else 1
+                    print(f'  [planner] Gemini error (attempt {attempt+1}/{attempts}): {msg[:100]}... retrying in {delay}s', flush=True)
+                    import time; time.sleep(delay)
+                    continue
                 raise
         # If all retries fail, return a wait action so the agent doesn't crash
         return {'name': 'wait', 'input': {'seconds': 2, 'reasoning': 'Gemini did not return an action, waiting to retry'}}
@@ -536,11 +549,19 @@ class Planner:
         prev_trees: list[str] | None = None,
     ) -> dict:
         """Screenshot fallback mode. Sends image + sparse tree to Gemini vision."""
+        png = base64.b64decode(screenshot_b64)
+        if not metadata.get('screenshot_size'):
+            try:
+                from PIL import Image
+                import io
+                metadata = {**metadata, 'screenshot_size': Image.open(io.BytesIO(png)).size}
+            except Exception:
+                pass
         message = build_message(task, tree, history, metadata, warning, memory, plan, prev_trees=prev_trees)
         image_part = types.Part(
             inline_data=types.Blob(
                 mime_type="image/png",
-                data=base64.b64decode(screenshot_b64),
+                data=png,
             )
         )
         text_part = types.Part(text=message)
@@ -565,6 +586,14 @@ class Planner:
             config=config,
         )
         return response.text.strip()
+
+    def _record_usage(self, response) -> None:
+        self.usage['calls'] += 1
+        meta = getattr(response, 'usage_metadata', None)
+        if meta:
+            self.usage['prompt_tokens'] += meta.prompt_token_count or 0
+            self.usage['output_tokens'] += meta.candidates_token_count or 0
+            self.usage['thought_tokens'] += getattr(meta, 'thoughts_token_count', 0) or 0
 
     @staticmethod
     def _extract_action(response) -> dict:

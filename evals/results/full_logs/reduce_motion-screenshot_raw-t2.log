@@ -1,0 +1,28 @@
+TASK: Turn on Reduce Motion
+MODE: screenshot_raw
+
+    [timing] observe=1.21s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tapping Accessibility to find Motion settings.
+    [think] 2.97s | input={'y': 520, 'reasoning': 'Tapping Accessibility to find Motion settings.', 'x': 500}
+    → Tapped (603,1363) → (201,454) [scaled @3.0x]
+    [timing] observe=1.10s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: tap_xy — Tap on 'Motion' to find the 'Reduce Motion' setting.
+    [think] 2.39s | input={'reasoning': "Tap on 'Motion' to find the 'Reduce Motion' setting.", 'x': 500, 'y': 620}
+    → Tapped (603,1626) → (201,542) [scaled @3.0x]
+    [timing] observe=1.08s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tap the 'Reduce Motion' toggle to turn it on.
+    [think] 2.16s | input={'x': 840, 'reasoning': "Tap the 'Reduce Motion' toggle to turn it on.", 'y': 180}
+    → Tapped (1013,472) → (337,157) [scaled @3.0x]
+    [timing] observe=1.06s
+  [see] app=com.apple.Preferences mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — Reduce Motion is now turned on.
+    [think] 1.97s | input={'summary': 'Reduce Motion is now turned on.'}
+    → DONE: Reduce Motion is now turned on.
+  Finished in 4 steps, 19.6s

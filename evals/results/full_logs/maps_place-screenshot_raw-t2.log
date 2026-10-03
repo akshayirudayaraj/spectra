@@ -1,0 +1,28 @@
+TASK: Search for Dolores Park in Maps and open its place card
+MODE: screenshot_raw
+
+    [timing] observe=1.27s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 1: tap_xy — Tap the search bar to begin searching for Dolores Park.
+    [think] 3.50s | input={'reasoning': 'Tap the search bar to begin searching for Dolores Park.', 'y': 595, 'x': 400}
+    → Tapped (482,1560) → (160,520) [scaled @3.0x]
+    [timing] observe=1.09s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 2: type_text — Typing 'Dolores Park' into the focused search bar to find the location.
+    [think] 3.14s | input={'ref': 0, 'reasoning': "Typing 'Dolores Park' into the focused search bar to find the location.", 'text': 'Dolores Park'}
+    → Typed 'Dolores Park' into focused field
+    [timing] observe=0.98s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 3: tap_xy — Tapping the first search suggestion for 'Dolores Park' to open its place card.
+    [think] 2.72s | input={'y': 210, 'reasoning': "Tapping the first search suggestion for 'Dolores Park' to open its place card.", 'x': 457}
+    → Tapped (551,551) → (183,183) [scaled @3.0x]
+    [timing] observe=1.28s
+  [see] app=com.apple.Maps mode=screenshot refs=0
+  [see] tree: [screenshot mode]
+  Step 4: done — I have searched for 'Dolores Park' and opened its place card in Maps.
+    [think] 3.19s | input={'summary': "I have searched for 'Dolores Park' and opened its place card in Maps."}
+    → DONE: I have searched for 'Dolores Park' and opened its place card in Maps.
+  Finished in 4 steps, 22.8s

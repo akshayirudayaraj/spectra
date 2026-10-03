@@ -1,0 +1,64 @@
+TASK: Create a new contact named Ken Lovelace with phone number 5555474347, email ken.lovelace.2005@example.org, and company Blue Harbor Labs
+MODE: screenshot_ocr
+
+    [timing] observe=1.46s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=43
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:21" @(184,37) | [2] "<" @(89,97) | [3] "Contacts" @(500,96) | [4] "A" @(56,156) | [5] "GA" @(94,210) | [6] "Grace 
+  Step 1: tap_xy — Tap the '+' button to create a new contact.
+    [think] 2.07s | input={'y': 942, 'x': 865, 'reasoning': "Tap the '+' button to create a new contact."}
+    → Tapped (1043,2470) → (347,823) [scaled @3.0x]
+    [timing] observe=1.46s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=29
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:21" @(182,37) | [2] "C" @(873,37) | [3] "New Contact" @(499,115) | [4] "Add Photo" @(498,392) | [5] "First name"
+  Step 2: batch — I will fill in the first name, last name, and company fields in a batch.
+    [think] 2.98s | input={'actions': [{'action': 'type_text', 'text': 'Ken', 'ref': 5}, {'action': 'type_text', 'ref': 6, 'text': 'Lovelace'}, {'ref': 7, 'action': 'type_text', 'text': 'Blue Harbor Labs'}], 'reasoning': 'I will fill in the first name, last name, and company fields in a batch.', 'checkpoint_reason': 'First name, last name, and company fields are filled.'}
+    [1/3] Typed 'Ken' into [5]
+    [2/3] Typed 'Lovelace' into [6]
+    [3/3] Typed 'Blue Harbor Labs' into [7]
+    [timing] observe=1.65s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=26
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:21" @(182,37) | [2] "New Contact" @(501,115) | [3] "KL" @(501,218) | [4] "Add Photo" @(498,358) | [5] "Ken" @(12
+  Step 3: batch — Tapping 'add phone' to enter the phone number and then typing the number.
+    [think] 4.93s | input={'checkpoint_reason': 'Verify phone number is entered.', 'actions': [{'ref': 9, 'action': 'tap'}, {'action': 'type_text', 'ref': 0, 'text': '5555474347'}], 'reasoning': "Tapping 'add phone' to enter the phone number and then typing the number."}
+    [1/2] Tapped [9] 'add phone' at (114,560)
+    [2/2] Typed '5555474347' into focused field
+    [timing] observe=1.49s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=29
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:211" @(181,38) | [2] "New Contact" @(499,116) | [3] "U" @(408,161) | [4] "Add Photo" @(498,279) | [5] "Ken" @(12
+  Step 4: scroll — The name, company, and phone number are already filled. I need to find the email field to enter 'ken.lovelace.2005@example.org', which is currently below the fold.
+    [think] 2.82s | input={'direction': 'down', 'reasoning': "The name, company, and phone number are already filled. I need to find the email field to enter 'ken.lovelace.2005@example.org', which is currently below the fold."}
+    → Scrolled down
+    [timing] observe=1.24s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=19
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:21" @(182,38) | [2] "• • • •" @(739,42) | [3] "New Contact" @(501,115) | [4] "Ringtone" @(165,180) | [5] "Defaul
+  Step 5: scroll — I am looking for the 'add email' field which is typically located above 'add url' and below 'add phone'.
+    [think] 5.24s | input={'direction': 'up', 'reasoning': "I am looking for the 'add email' field which is typically located above 'add url' and below 'add phone'."}
+    → Scrolled up
+    [timing] observe=1.29s
+  [see] app=com.apple.MobileAddressBook mode=screenshot refs=18
+  [see] tree: [screenshot mode] | OCR TEXT (tap text with tap(ref); use tap_xy for icons with no text): | [1] "10:22" @(184,37) | [2] "New Contact" @(499,116) | [3] "U" @(408,161) | [4] "L" @(552,162) | [5] "Add Photo" @(498,2
+  Step 6: batch — Tapping 'add email' to reveal the email input field and typing the provided email address.
+    [think] 3.77s | input={'actions': [{'ref': 13, 'action': 'tap'}, {'action': 'type_text', 'text': 'ken.lovelace.2005@example.org'}], 'reasoning': "Tapping 'add email' to reveal the email input field and typing the provided email address.", 'checkpoint_reason': 'Verify email field is focused and text is typed.'}
+    [1/2] Tapped [13] 'add email' at (112,612)
+
+Traceback (most recent call last):
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 123, in run_one
+    _agent(prompt, item['mode'], max_steps, stats)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/akshayirudayaraj/development/spectra/evals/run.py", line 99, in _agent
+    run_agent(
+    ~~~~~~~~~^
+        prompt, max_steps=max_steps, verbose=True, wda_url=sim.WDA_URL,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        gate=_AutoApproveGate(), takeover=_NoHumanTakeover(), ask_user_fn=_no_answer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        perception=perception, learn=False, stats=stats, model=model or None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/akshayirudayaraj/development/spectra/core/agent.py", line 406, in run_agent
+    result = executor.run(sub_action, item, ref_map)
+  File "/Users/akshayirudayaraj/development/spectra/core/executor.py", line 34, in run
+    return self._type(params['ref'], params['text'], ref_map)
+                      ~~~~~~^^^^^^^
+KeyError: 'ref'
